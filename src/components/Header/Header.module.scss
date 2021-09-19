@@ -1,0 +1,24 @@
+.main {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+  min-height: 60px;
+  height: 8vh;
+  max-height: 100px;
+  padding: 0vh 3vw;
+  box-shadow: 0px 5px 40px 5px rgba(0, 0, 0, .2);
+}
+
+.column {
+  display: grid;
+  align-items: center;
+
+  &:nth-child(2) {
+    justify-content: center;
+  }
+
+  &:nth-child(3) {
+    justify-content: end;
+  }
+
+}
