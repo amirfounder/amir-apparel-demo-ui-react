@@ -15,7 +15,7 @@ export const Header = () => {
   return (
     <div className={styles.main}>
       <div className={styles.column}>
-        <Link to="/" className={styles.navLink}>Home</Link>
+        <Link to="/" className={styles.navLink}>Amir Apparel Demo</Link>
       </div>
       <div className={styles.column}>
         <div className={styles.menu}>
