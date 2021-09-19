@@ -1,14 +1,25 @@
 import { Route, Switch } from 'react-router';
 import { Header } from '../Header';
-import { Home } from '../pages/Home';
-import styles from './App.module.css';
+import {
+  AboutPage,
+  ContactPage,
+  HomePage,
+  LoginPage,
+  RegisterPage,
+  ShopPage
+} from '../pages';
 
 export const App = () => {
   return (
     <>
       <Header />
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/about" component={AboutPage} />
+        <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/contact" component={ContactPage} />
+        <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/login" component={LoginPage} />
       </Switch>
     </>
   );

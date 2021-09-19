@@ -20,5 +20,31 @@
   &:nth-child(3) {
     justify-content: end;
   }
+}
 
+.menu {
+  &>.navLink {
+    &:not(:first-child):not(:last-child) {
+      margin: 0 30px;
+    }
+    &:first-child {
+      margin: 0 30px 0 0;
+    }
+    &:last-child {
+      margin: 0 0 0 30px;
+    }
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.loginRegisterLinks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  column-gap: 0px;
 }
