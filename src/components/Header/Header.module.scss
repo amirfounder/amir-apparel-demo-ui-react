@@ -1,46 +1,96 @@
-.main {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 1rem;
-  min-height: 60px;
-  height: 8vh;
-  max-height: 100px;
-  padding: 0vh 3vw;
-  box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, .1);
-  position: sticky;
-  top: 0;
-  background-color: white;
-}
-
-.column {
+.top, .bottom {
   display: grid;
   align-items: center;
+  padding: 0vh 3vw;
+}
 
-  &:nth-child(1) {
-    &>.navLink {
-      font-size: 22px;
+.top {
+  grid-template-columns: repeat(2, 1fr);
+  min-height: 45px;
+  height: 6vh;
+  max-height: 70px;
+  background-color: #f4f4f4;
+  z-index: 999;
+  position: relative;
+  font-size: 14px;
+
+  &>.column:nth-child(1) {
+
+    &>div {
+      display: inline;
+    }
+
+    &>div:nth-child(1) {
+      margin-right: 2vw;
     }
   }
 
-  &:nth-child(2) {
-    justify-content: center;
-  }
+  &>.column:nth-child(2) {
 
-  &:nth-child(3) {
-    justify-content: end;
+    justify-self: end;
+
+    &>.navLink + .navLink {
+      margin-left: 1.5vw;
+    }
   }
 }
+
+.bottom {
+  grid-template-columns: 1fr 3fr 1fr;
+  column-gap: 1rem;
+  min-height: 80px;
+  height: 8vh;
+  max-height: 110px;
+  box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, .05);
+  background-color: white;
+  z-index: 0;
+  position: relative;
+  
+  &>.column {
+    &:nth-child(1) {
+      &>.navLink {
+        font-size: 30px;
+        font-style: italic;
+        font-weight: 600;
+      }
+    }
+  
+    &:nth-child(2) {
+      justify-self: center;
+      font-size: 17px;
+    }
+  
+    &:nth-child(3) {
+      justify-self: end;
+        &>.icon {
+          display: inline;
+        }
+        &>.icon:not(:last-child) {
+          margin-right: 1.5rem;
+        }
+        &>.icon:hover {
+          cursor: pointer;
+          color: #444;
+          transition-duration: .2s;
+        }
+        &>.icon:not(:hover) {
+          transition-duration: .2s;
+        }
+    }
+  }
+}
+
 
 .menu {
   &>.navLink {
     &:not(:first-child):not(:last-child) {
-      margin: 0 30px;
+      margin: 0 1.4vw;
     }
     &:first-child {
-      margin: 0 30px 0 0;
+      margin: 0 1.4vw 0 0;
     }
     &:last-child {
-      margin: 0 0 0 30px;
+      margin: 0 0 0 1.4vw;
     }
   }
 }
@@ -48,12 +98,12 @@
 .navLink {
   text-decoration: none;
   color: black;
-  font-size: 16px;
-}
 
-.loginRegisterLinks {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  column-gap: 0px;
+  &:hover {
+    color: #444;
+    transition-duration: .2s;
+  }
+  &:not(:hover) {
+    transition-duration: .2s;
+  }
 }
