@@ -14,6 +14,7 @@ export const ShopPage = () => {
   }, [setProducts, setIsApiError, setApiErrorMessage])
   return (
     <div className={styles.main}>
+      {isApiError && <div>{apiErrorMessage}</div>}
       <ProductGrid
         products={products}
       />
