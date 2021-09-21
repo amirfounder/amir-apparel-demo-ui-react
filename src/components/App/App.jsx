@@ -8,6 +8,7 @@ import {
   RegisterPage,
   ShopPage
 } from '../pages';
+import { ProductPage } from '../pages/ProductPage';
 
 export const App = () => {
   return (
@@ -20,6 +21,7 @@ export const App = () => {
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/p/:id" component={ProductPage} />
       </Switch>
     </>
   );
