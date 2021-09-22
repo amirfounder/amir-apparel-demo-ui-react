@@ -9,7 +9,7 @@ import { Paragraph } from '../../Paragraph';
 import { Toggle } from '../../Toggle/Toggle';
 import styles from './ProductPage.module.scss';
 import { getProductById } from './ProductPageService';
-import { QuantityPicker } from './QuantityPicker/QuantityPicker';
+import { QuantityPicker } from './QuantityPicker';
 
 export const ProductPage = () => {
 

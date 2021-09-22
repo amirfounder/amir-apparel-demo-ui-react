@@ -1,4 +1,5 @@
 import { Route, Switch } from 'react-router';
+import { Footer } from '../Footer';
 import { Header } from '../Header';
 import {
   AboutPage,
@@ -23,6 +24,7 @@ export const App = () => {
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/p/:nameAndId" component={ProductPage} />
       </Switch>
+      <Footer />
     </>
   );
 }
