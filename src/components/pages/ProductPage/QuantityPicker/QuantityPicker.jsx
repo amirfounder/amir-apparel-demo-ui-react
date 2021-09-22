@@ -13,7 +13,7 @@ export const QuantityPicker = (props) => {
       value.match(/^[0-9]+$/) ||
       value === ''
     ) {
-      setQuantity(e.target.value)
+      setQuantity(Number(e.target.value))
     }
   }
 
