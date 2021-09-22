@@ -1,7 +1,7 @@
 import constants from "../../../utils/constants"
 import { sendHttpRequest } from "../../../utils/httpHelper"
 
-export const getProducts = (setProducts, setIsApiError, setApiErrorMessage) => {
+export const getProducts = (setProducts, setApiError) => {
   sendHttpRequest('GET', constants.PRODUCTS_ENDPOINT)
     .then((response) => {
       if (response.ok) {
@@ -11,10 +11,7 @@ export const getProducts = (setProducts, setIsApiError, setApiErrorMessage) => {
     })
     .then((body) => {
       setProducts(body);
-      setIsApiError(false);
+      setApiError('');
     })
-    .catch((error) => {
-      setIsApiError(true)
-      setApiErrorMessage(error);
-    })
+    .catch(setApiError)
 }

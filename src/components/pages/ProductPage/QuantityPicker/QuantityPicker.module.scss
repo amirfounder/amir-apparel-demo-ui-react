@@ -1,0 +1,20 @@
+.main {
+  margin-bottom: 2rem;
+  display: inline-block;
+}
+
+.label {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: .5rem;
+  align-items: center;
+}
+
+.input {
+  width: 80px;
+  padding: 8px 10px;
+  font-size: 18px;
+  &:hover {
+    cursor: text;
+  }
+}

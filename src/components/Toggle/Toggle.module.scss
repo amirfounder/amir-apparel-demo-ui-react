@@ -1,0 +1,28 @@
+.header {
+  padding: 15px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.icon {
+  &.show {
+    transform: rotate(-180deg);
+  }
+}
+
+.content {
+  padding: 15px;
+
+  &.show {
+    display: inherit;
+  }
+  
+  &:not(.show) {
+    display: none;
+  }
+}
