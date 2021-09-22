@@ -9,7 +9,10 @@ export const ToggleContent = (props) => {
 
   return (
     <div
-      hidden={!show}
+      className={`
+        ${styles.content}
+        ${show && styles.show}
+      `}
     >
       {children}
     </div>

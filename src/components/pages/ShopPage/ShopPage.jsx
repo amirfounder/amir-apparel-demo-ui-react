@@ -12,10 +12,6 @@ export const ShopPage = () => {
     getProducts(setProducts, setApiError);
   }, [setProducts, setApiError])
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  })
-
   return (
     <Page>
       {apiError && <div>{apiError}</div>} 

@@ -2,13 +2,52 @@
   background-color: black;
   border: none;
   color: white;
-  padding: 10px 30px;
   border-radius: 500px;
-  font-size: 15px;
-  font-weight: 600;
+  font-weight: 500;
 
   &:hover {
     cursor: pointer;
+    transition-duration: .3s;
   }
 
+  &:not(:hover) {
+    transition-duration: .3s;
+  }
+}
+
+.primary {
+  background-color: black;
+  border: 2px solid black;
+  color: white;
+
+  &:hover {
+    background-color: #333;
+    border-color: #333;
+  }
+}
+
+.secondary {
+  background-color: white;
+  border: 2px solid black;
+  color: black;
+
+  &:hover {
+    background-color: black;
+    color: white;
+  }
+}
+
+.big {
+  padding: 20px 30px;
+  font-size: 18px;
+}
+
+.medium {
+  padding: 16px 24px;
+  font-size: 16px;
+}
+
+.small {
+  padding: 12px 18px;
+  font-size: 14px;
 }

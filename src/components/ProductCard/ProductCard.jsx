@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 import constants from "../../utils/constants";
+import { scrollToTop } from "../../utils/utils";
 import { Button } from "../Button";
 import { Heading } from "../Heading";
 import styles from './ProductCard.module.scss'
@@ -15,6 +16,7 @@ export const ProductCard = (props) => {
   const handleProductCardClick = () => {
     const productSlug = product.name.toLowerCase().split(' ').join('-')
     history.push(`/p/${productSlug}-${product.id}`)
+    scrollToTop()
   }
 
   return (

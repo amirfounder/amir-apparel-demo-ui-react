@@ -9,6 +9,7 @@ import { Paragraph } from '../../Paragraph';
 import { Toggle } from '../../Toggle/Toggle';
 import styles from './ProductPage.module.scss';
 import { getProductById } from './ProductPageService';
+import { QuantityPicker } from './QuantityPicker/QuantityPicker';
 
 export const ProductPage = () => {
 
@@ -18,7 +19,8 @@ export const ProductPage = () => {
 
   const [product, setProduct] = useState({});
   const [apiError, setApiError] = useState('')
-  const [shippingToggle, setShippingToggle] = useState(false)
+  const [shippingToggle, setShippingToggle] = useState(false);
+  const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     const id = parseIdFromProductPageNameAndIdParam(nameAndId);
@@ -48,20 +50,17 @@ export const ProductPage = () => {
           <Paragraph className={styles.description}>
             {product.description}
           </Paragraph>
+          <QuantityPicker
+            quantity={quantity}
+            setQuantity={setQuantity}
+          />
           <div className={styles.actions}>
-            <Button>
-              Add to Cart
-            </Button>
-            <Button>
-              Add to Wish List
-            </Button>
+            <Button>Add to Cart</Button>
+            <Button type='secondary'>Add to Wish List</Button>
           </div>
           <div className={styles.shippingCosts}>
             <div>
-              Shipping Costs:
-            </div>
-            <div>
-              Login to view accurate Shipping Data
+              Shipping Costs: $0
             </div>
           </div>
           <div className={styles.promotions}>
@@ -69,11 +68,22 @@ export const ProductPage = () => {
           </div>
           <div className={styles.toggles}>
             <Toggle>
-              <Toggle.Header setShow={setShippingToggle}>
-                Shipping & Handling
+              <Toggle.Header
+                show={shippingToggle}
+                setShow={setShippingToggle}
+              >
+                <Heading
+                  style={{marginBottom: 0}}
+                  level={3}
+                >
+                  Shipping & Handling
+                </Heading>
               </Toggle.Header>
               <Toggle.Content show={shippingToggle}>
-                Some stuff
+                <Paragraph>
+                  Free shipping comes for all Amir Apparel Demo members.<br/>
+                  <u>Click here</u> to learn more.
+                </Paragraph>
               </Toggle.Content>
             </Toggle>
           </div>

@@ -1,10 +1,12 @@
 import React from 'react';
 import styles from './Toggle.module.scss'
+import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri'
 
 export const ToggleHeader = (props) => {
   const {
     children,
-    setShow
+    setShow,
+    show
   } = props;
 
   const handleHeaderClick = () => setShow((prevState) => !prevState);
@@ -14,7 +16,18 @@ export const ToggleHeader = (props) => {
       className={styles.header}
       onClick={handleHeaderClick}
     >
-      {children}
+      <div>
+        {children}
+      </div>
+      <>
+        <RiArrowDropDownLine
+          size="35px"
+          className={`
+            ${styles.icon}
+            ${show && styles.show}
+          `}
+        />
+      </>
     </div>
   )
 }
