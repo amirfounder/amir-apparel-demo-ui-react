@@ -31,7 +31,7 @@
       &>.social {
         display: grid;
         justify-content: end;
-        grid-template-columns: repeat(5, auto);
+        grid-template-columns: repeat(3, auto);
         column-gap: .8rem;
 
         &>.icon {
