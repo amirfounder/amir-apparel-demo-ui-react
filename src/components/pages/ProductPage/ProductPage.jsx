@@ -76,7 +76,7 @@ export const ProductPage = () => {
                   style={{marginBottom: 0}}
                   level={3}
                 >
-                  Shipping & Handling
+                  Shipping & FREE Returns
                 </Heading>
               </Toggle.Header>
               <Toggle.Content show={shippingToggle}>
