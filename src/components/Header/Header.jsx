@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from './Header.module.scss'
 import { useHistory } from "react-router-dom";
 import { BiCartAlt, BiShoppingBag } from 'react-icons/bi'
+import { useCartContext } from "../../context/CartContext";
 
 export const Header = () => {
-  const history = useHistory()
+  const {
+    cart
+  } = useCartContext();
+  const history = useHistory();
+
+  const generateCartBadgeNumber = (cart) => {
+    if (Array.isArray(cart)) {
+      if (cart.length > 99) {
+        return '99+'
+      }
+      return cart.length
+    }
+    return '0'
+  }
+
+  const [cartBadgeNumber] = useState()
 
   const handleCartIconClick = () => history.push('/cart')
 
@@ -42,15 +58,18 @@ export const Header = () => {
           </div>
         </div>
         <div className={styles.column}>
-          <BiShoppingBag
-            className={styles.icon}
-            size='30px'
-          />
-          <BiCartAlt
-            onClick={handleCartIconClick}
-            className={styles.icon}
-            size='30px'
-          />
+          <div className={styles.actions}>
+            <BiShoppingBag className={styles.icon} />
+            <div className={styles.cart}>
+              <BiCartAlt
+                onClick={handleCartIconClick}
+                className={styles.icon}
+              />
+              <div className={styles.badge}>
+                {generateCartBadgeNumber(cart)}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
