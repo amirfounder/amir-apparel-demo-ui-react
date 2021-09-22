@@ -1,0 +1,60 @@
+.main {
+  display: grid;
+  background-color: #111;
+  color: white;
+  padding: 7vh 3vw 4vh 3vw;
+  grid-template-rows: auto auto;
+  row-gap: 5rem;
+
+  &>.top {
+    display: grid;
+    grid-template-columns: 1fr 1fr 3fr;
+
+    & .navLink {
+      color: #ddd;
+      text-decoration: none;
+      display: block;
+      line-height: 1.8em;
+      font-weight: 300;
+
+      &:hover {
+        color: white;
+        transition-duration: .3s;
+      }
+
+      &:not(:hover) {
+        transition-duration: .3s;
+      }
+    }
+
+    &>.column:nth-child(3) {
+      &>.social {
+        display: grid;
+        justify-content: end;
+        grid-template-columns: repeat(5, auto);
+        column-gap: .8rem;
+
+        &>.icon {
+          display: inline;
+          background-color: #222;
+          padding: 15px;
+          border-radius: 50px;
+          font-size: 20px;
+
+          &:hover {
+            background-color: #333;
+            transition-duration: .3s;
+            cursor: pointer;
+          }
+          &:not(:hover) {
+            transition-duration: .3s;
+          }
+        }
+      }
+    }
+  }
+
+  &>.bottom {
+    font-weight: 300;
+  }
+}
