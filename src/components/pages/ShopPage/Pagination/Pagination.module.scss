@@ -1,0 +1,33 @@
+.main {
+  margin-top: 5rem;
+  display: grid;
+  justify-content: center;
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  column-gap: 1rem;
+}
+
+.button {
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  display: grid;
+  line-height: 1em;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+
+  &:hover .active {
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    transition-duration: .3s;
+  }
+
+  &:not(:hover) {
+    transition-duration: .3s;
+  }
+}
