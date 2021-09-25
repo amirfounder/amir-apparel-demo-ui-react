@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from './Header.module.scss'
 import { useHistory } from "react-router-dom";
@@ -20,8 +20,6 @@ export const Header = () => {
     }
     return '0'
   }
-
-  const [cartBadgeNumber] = useState()
 
   const handleCartIconClick = () => history.push('/cart')
 

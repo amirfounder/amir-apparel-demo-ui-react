@@ -2,7 +2,6 @@ import React from "react";
 import { useHistory } from "react-router";
 import constants from "../../utils/constants";
 import { scrollToTop } from "../../utils/utils";
-import { Button } from "../Button";
 import { Heading } from "../Heading";
 import styles from './ProductCard.module.scss'
 

@@ -19,10 +19,10 @@ export const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/p/:nameAndId" component={ProductPage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/p/:nameAndId" component={ProductPage} />
       </Switch>
       <Footer />
     </>
