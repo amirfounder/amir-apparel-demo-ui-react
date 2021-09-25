@@ -38,3 +38,9 @@ export const buildSearchQuery = (searchQueryObj) => {
   query += queryParams.join('&')
   return query;
 }
+
+export const rebuildSearchQueryWithUpdatedKeyValue = (currentSearchQuery, key, updatedValue) => {
+  const searchQueryObj = parseSearchQuery(currentSearchQuery);
+  searchQueryObj[key] = updatedValue;
+  return buildSearchQuery(searchQueryObj)
+}
