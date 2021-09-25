@@ -2,14 +2,13 @@ import constants from "../../../utils/constants"
 import { sendHttpRequest } from "../../../utils/httpHelper"
 import { buildSearchQuery } from "../../../utils/utils"
 
-const buildShopPageSearchQuery = (query) => buildSearchQuery({
-  page: query.get('page'),
-  size: query.get('size') || 12,
-  sort: query.get('sort')
+export const buildShopPageSearchQuery = (searchQueryObj) => buildSearchQuery({
+  page: searchQueryObj.page || 0,
+  size: searchQueryObj.size || 12,
+  sort: searchQueryObj.sort || null
 })
 
-export const getProducts = (query, setProducts, setApiError) => {
-  const searchQuery = buildShopPageSearchQuery(query);
+export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPages, setApiError) => {
   sendHttpRequest('GET', constants.PRODUCTS_ENDPOINT + searchQuery)
     .then((response) => {
       if (response.ok) {
@@ -19,6 +18,8 @@ export const getProducts = (query, setProducts, setApiError) => {
     })
     .then((body) => {
       setProducts(body.content);
+      setTotalPages(body.totalPages)
+      setCurrentPage(body.number + 1)
       setApiError('');
     })
     .catch(setApiError);

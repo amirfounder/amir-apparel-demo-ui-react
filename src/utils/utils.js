@@ -16,7 +16,7 @@ export const createCartProductDTO = (product) => {
   }
 }
 
-export const getQueryParams = (search) => {
+export const parseSearchQuery = (search) => {
   const queryParams = search.substring(1).split("&");
   const queryParamObject = {}
   queryParams.forEach((queryParam) => {
@@ -31,7 +31,7 @@ export const buildSearchQuery = (queryParamObject) => {
   const queryParams = []
   Object.entries(queryParamObject).forEach((entry) => {
     const [key, value] = entry;
-    if (value) {
+    if (value !== null && value !== undefined) {
       queryParams.push(`${key}=${value}`)
     }
   })

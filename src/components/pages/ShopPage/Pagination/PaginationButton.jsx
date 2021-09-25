@@ -1,26 +1,28 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router';
 import { scrollToTop } from '../../../../utils/utils';
 import styles from './Pagination.module.scss';
 
 export const PaginationButton = (props) => {
   const {
-    children
+    children,
+    active
   } = props;
 
   const history = useHistory();
-  const active = /^[0-9]+$/.test(children)
+  const clickable = children !== '...'
 
   const handleButtonClick = () => {
-    history.push(`/shop?page=${children}`)
+    history.push(`/shop?page=${children - 1}`)
     scrollToTop()
   }
 
   return (
     <div
-      onClick={handleButtonClick}
+      onClick={clickable && handleButtonClick}
       className={`
         ${styles.button}
+        ${clickable && styles.clickable}
         ${active && styles.active}
       `}
     >

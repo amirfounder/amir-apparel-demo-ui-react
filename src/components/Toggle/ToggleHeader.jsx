@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Toggle.module.scss'
-import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri'
+import { RiArrowDropDownLine } from 'react-icons/ri'
 
 export const ToggleHeader = (props) => {
   const {

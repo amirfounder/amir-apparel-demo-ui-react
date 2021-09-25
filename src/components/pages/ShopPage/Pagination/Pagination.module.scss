@@ -20,14 +20,21 @@
   align-items: center;
   border-radius: 50px;
 
-  &:hover .active {
+  &:hover.clickable {
     cursor: pointer;
     background-color: black;
     color: white;
     transition-duration: .3s;
   }
 
-  &:not(:hover) {
+  &:not(:hover.clickable) {
     transition-duration: .3s;
   }
+}
+
+.active {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  transition-duration: .3s;
 }

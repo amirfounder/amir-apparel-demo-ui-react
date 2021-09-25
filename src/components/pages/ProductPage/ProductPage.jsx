@@ -44,6 +44,7 @@ export const ProductPage = () => {
         {apiError && <p>{apiError}</p>}
         <div className={styles.column}>
           <img
+            alt=""
             src={constants.PLACEHOLDER_IMAGE_URL}
             width='100%'
           />

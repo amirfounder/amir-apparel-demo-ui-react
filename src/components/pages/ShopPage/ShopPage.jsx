@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { ProductGrid } from '../../ProductGrid';
-import { getProducts } from './ShopPageService';
+import { buildShopPageSearchQuery, getProducts } from './ShopPageService';
 import { Page } from '../../Page';
 import { Pagination } from './Pagination';
 import { useLocation } from 'react-router';
-import { getQueryParams } from '../../../utils/utils';
+import { parseSearchQuery } from '../../../utils/utils';
 import { useShopContext } from '../../../context/ShopContext';
 
 export const ShopPage = () => {
-  const query = new URLSearchParams(useLocation().search)
-
+  const location = useLocation();
   const {
     products, setProducts
   } = useShopContext();
 
   const [apiError, setApiError] = useState("");
+  const [currentPage, setCurrentPage] = useState(null)
+  const [totalPages, setTotalPages] = useState(null)
 
   useEffect(() => {
-    getProducts(query, setProducts, setApiError);
-  }, [query, setProducts, setApiError])
+    const searchQueryObj = parseSearchQuery(location.search)
+    const shopPageQueries = buildShopPageSearchQuery(searchQueryObj)
+    getProducts(shopPageQueries, setProducts, setCurrentPage, setTotalPages, setApiError);
+  }, [location.search, setCurrentPage, setTotalPages, setProducts, setApiError])
 
   return (
     <Page>
@@ -27,7 +30,10 @@ export const ShopPage = () => {
         products={products}
       />
       <div>
-        <Pagination />
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
       </div>
     </Page>
   )

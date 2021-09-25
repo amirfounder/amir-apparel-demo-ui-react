@@ -1,43 +1,42 @@
-import React, { useState } from 'react';
-import { useShopContext } from '../../../../context/ShopContext';
+import React, { useEffect, useState } from 'react';
+// import { useShopContext } from '../../../../context/ShopContext';
 import styles from './Pagination.module.scss';
 import { PaginationButton } from './PaginationButton';
+import { generatePaginationButtonValues } from './PaginationService';
 
-export const Pagination = () => {
+export const Pagination = (props) => {
   const {
     currentPage,
     totalPages
-  } = useShopContext();
+  } = props;
 
   const [buttonValues, setButtonValues] = useState([])
+  const [buttonGridColumns, setButtonGridColumns] = useState(7)
 
-  const calculateButtonValues = () => {
-    const TOTAL_PAGINATION_BUTTONS = 7
-    const localButtonValues = [];
-    if (totalPages > 0) {
-      localButtonValues.push(1);
-      if (totalPages > 6)
-      console.log('lol')
-    }
-    setButtonValues(localButtonValues);
-  }
+  useEffect(() => {
+    setButtonValues(generatePaginationButtonValues(currentPage, totalPages))
+    setButtonGridColumns(totalPages > 7 ? 7 : totalPages);
+  }, [currentPage, totalPages])
+
 
   return (
     <div className={styles.main}>
       <div
         className={styles.buttons}
-        style={{gridTemplateColumns: 'repeat(7, auto)'}}
+        style={{gridTemplateColumns: `repeat(${buttonGridColumns}, auto)`}}
       >
-        {Array.isArray(buttonValues) && buttonValues.map((value, index) => {
-
-        })}
-        <PaginationButton>1</PaginationButton>
-        <PaginationButton>...</PaginationButton>
-        <PaginationButton>4</PaginationButton>
-        <PaginationButton>5</PaginationButton>
-        <PaginationButton>6</PaginationButton>
-        <PaginationButton>...</PaginationButton>
-        <PaginationButton>10</PaginationButton>
+        {Array.isArray(buttonValues) && buttonValues.map((buttonValue) => {
+          console.log('buttonval', buttonValue)
+          console.log('currentpage', currentPage)
+          console.log(buttonValue === currentPage)
+          return (
+            <PaginationButton
+              active={currentPage == buttonValue}
+            >
+              {buttonValue}
+            </PaginationButton>
+          )
+          })}
       </div>
     </div>
   )
