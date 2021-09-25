@@ -25,18 +25,14 @@ export const Pagination = (props) => {
         className={styles.buttons}
         style={{gridTemplateColumns: `repeat(${buttonGridColumns}, auto)`}}
       >
-        {Array.isArray(buttonValues) && buttonValues.map((buttonValue) => {
-          console.log('buttonval', buttonValue)
-          console.log('currentpage', currentPage)
-          console.log(buttonValue === currentPage)
-          return (
-            <PaginationButton
-              active={currentPage == buttonValue}
-            >
-              {buttonValue}
-            </PaginationButton>
-          )
-          })}
+        {Array.isArray(buttonValues) && buttonValues.map((buttonValue) => (
+          <PaginationButton
+            key={buttonValue}
+            active={currentPage === buttonValue}
+          >
+            {buttonValue}
+          </PaginationButton>
+        ))}
       </div>
     </div>
   )

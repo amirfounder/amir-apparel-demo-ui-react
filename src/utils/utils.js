@@ -26,10 +26,10 @@ export const parseSearchQuery = (search) => {
   return queryParamObject;
 }
 
-export const buildSearchQuery = (queryParamObject) => {
+export const buildSearchQuery = (searchQueryObj) => {
   let query = '?'
   const queryParams = []
-  Object.entries(queryParamObject).forEach((entry) => {
+  Object.entries(searchQueryObj).forEach((entry) => {
     const [key, value] = entry;
     if (value !== null && value !== undefined) {
       queryParams.push(`${key}=${value}`)

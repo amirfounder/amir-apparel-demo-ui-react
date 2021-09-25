@@ -1,5 +1,4 @@
 import { Route, Switch } from 'react-router';
-import { ShopProvider } from '../../context/ShopContext';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
 import {
@@ -19,13 +18,11 @@ export const App = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/about" component={AboutPage} />
-        <ShopProvider>
-          <Route exact path="/shop" component={ShopPage} />
-        </ShopProvider>
+        <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/p/:nameAndId" component={ProductPage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/p/:nameAndId" component={ProductPage} />
       </Switch>
       <Footer />
     </>
