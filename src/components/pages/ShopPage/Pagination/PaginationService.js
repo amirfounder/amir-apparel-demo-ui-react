@@ -16,18 +16,3 @@ export const generatePaginationButtonValues = (currentPage, totalPages) => {
   }
   return null;
 }
-
-export const generatePaginationButtonValuesWithElipses = (currentPage, totalPages) => {
-  if (totalPages > 0) {
-    if (totalPages > 7) {
-      if (currentPage <= 4) {
-        return [...consecutiveArray(5, 1), '...', totalPages]
-      } else if (totalPages - currentPage <= 3) {
-        return [1, '...', ...consecutiveArray(5, totalPages - 4)]
-      }
-      return [1, '...', ...consecutiveArray(3, currentPage - 1), '...', totalPages]
-    }
-    return consecutiveArray(totalPages, 1)
-  }
-  return null
-}
