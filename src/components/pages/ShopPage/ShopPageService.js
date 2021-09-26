@@ -24,3 +24,17 @@ export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPa
     })
     .catch(setApiError);
 }
+
+export const getFilterOptions = (attributeName, setOptions, setApiErorr) => {
+  sendHttpRequest('GET', `/products/attribute/${attributeName}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+    .then((body) => {
+      setOptions(body)
+      setApiErorr('')
+    })
+    .catch(setApiErorr);
+}

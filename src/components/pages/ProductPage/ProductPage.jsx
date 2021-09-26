@@ -27,16 +27,18 @@ export const ProductPage = () => {
   const [apiError, setApiError] = useState('')
   const [shippingToggle, setShippingToggle] = useState(false);
 
-  useEffect(() => {
-    const id = parseIdFromProductPageNameAndIdParam(nameAndId);
-    getProductById(id, setProduct, setApiError);
-  }, [nameAndId])
-
+  const toggleShippingShow = () => setShippingToggle((prevState) => !prevState);
+  
   const handleAddToCartClick = () => {
     const cartProduct = createCartProductDTO(product)
     addItemToCart(cartProduct, quantity, setCart)
     setQuantity(1)
   }
+
+  useEffect(() => {
+    const id = parseIdFromProductPageNameAndIdParam(nameAndId);
+    getProductById(id, setProduct, setApiError);
+  }, [nameAndId])
 
   return (
     <Page>
@@ -82,7 +84,7 @@ export const ProductPage = () => {
             <Toggle>
               <Toggle.Header
                 show={shippingToggle}
-                setShow={setShippingToggle}
+                toggleShow={toggleShippingShow}
               >
                 <Heading
                   style={{marginBottom: 0}}

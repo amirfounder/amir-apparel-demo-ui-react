@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
 
 const ShopContext = createContext();
 
@@ -7,16 +7,29 @@ export const ShopProvider = (props) => {
     children
   } = props;
 
+  const filterOptionsReducer = (state, action) => {
+    if (action.attribute) {
+      return null;
+    }
+  }
+
+  const [initialFilterOptions, setInitialFilterOptions] = useState({})
+
+  const [filterOptions, dispatchFilterOptions] = useReducer(filterOptionsReducer, initialFilterOptions)
   const [products, setProducts] = useState([])
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <ShopContext.Provider
       value={{
         products, setProducts,
         totalPages, setTotalPages,
-        currentPage, setCurrentPage
+        currentPage, setCurrentPage,
+        showSidebar, setShowSidebar,
+        filterOptions, dispatchFilterOptions,
+        initialFilterOptions, setInitialFilterOptions
       }}
     >
       {children}

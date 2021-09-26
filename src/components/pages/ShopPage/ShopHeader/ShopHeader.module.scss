@@ -1,0 +1,21 @@
+.main {
+  min-height: 50px;
+  margin-bottom: 5vh;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+
+  &>.title {
+    &>* {
+      margin-bottom: 0;
+    }
+  }
+
+  &>.buttons {
+    justify-self: end;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 2rem;
+  }
+}

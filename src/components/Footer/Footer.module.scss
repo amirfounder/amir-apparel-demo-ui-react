@@ -11,19 +11,19 @@
     grid-template-columns: 1fr 1fr 3fr;
 
     & .navLink {
-      color: #ddd;
+      color: #aaa;
       text-decoration: none;
-      display: block;
+      display: inline;
       line-height: 1.8em;
       font-weight: 300;
 
       &:hover {
         color: white;
-        transition-duration: .3s;
+        transition-duration: .2s;
       }
 
       &:not(:hover) {
-        transition-duration: .3s;
+        transition-duration: .2s;
       }
     }
 
@@ -56,5 +56,13 @@
 
   &>.bottom {
     font-weight: 300;
+  }
+}
+
+.menu {
+  padding: 0px;
+
+  & > li {
+    list-style: none;
   }
 }

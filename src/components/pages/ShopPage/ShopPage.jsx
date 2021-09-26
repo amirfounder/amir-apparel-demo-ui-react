@@ -1,21 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import styles from './ShopPage.module.scss'
 import { ProductGrid } from '../../ProductGrid';
-import { buildShopPageSearchQuery, getProducts } from './ShopPageService';
+import { buildShopPageSearchQuery, buildUpdateOptionsStateFunction, getFilterOptions, getProducts } from './ShopPageService';
 import { Page } from '../../Page';
 import { Pagination } from './Pagination';
 import { useLocation } from 'react-router';
 import { parseSearchQuery } from '../../../utils/utils';
 import { useShopContext } from '../../../context/ShopContext';
+import { ShopHeader } from './ShopHeader';
+import { ProductFilterSidebar } from './ProductFilterSidebar/ProductFilterSidebar';
 
 export const ShopPage = () => {
   const location = useLocation();
   const {
-    products, setProducts
+    products, setProducts,
+    showSidebar,
+    dispatchFilterOptions
   } = useShopContext();
 
-  const [apiError, setApiError] = useState("");
+  const [apiError, setApiError] = useState('');
   const [currentPage, setCurrentPage] = useState(null)
   const [totalPages, setTotalPages] = useState(null)
+
+  const buildSetOptions = (attribute) => (value) => dispatchFilterOptions({ attribute: attribute + 's', value })
 
   useEffect(() => {
     const searchQueryObj = parseSearchQuery(location.search)
@@ -23,18 +30,32 @@ export const ShopPage = () => {
     getProducts(shopPageQueries, setProducts, setCurrentPage, setTotalPages, setApiError);
   }, [location.search, setCurrentPage, setTotalPages, setProducts, setApiError])
 
+  useEffect(() => {
+    getFilterOptions('material', buildSetOptions('material'), setApiError)
+    getFilterOptions('type', buildSetOptions('type'), setApiError)
+    getFilterOptions('color', buildSetOptions('color'), setApiError)
+    getFilterOptions('demographic', buildSetOptions('demographic'), setApiError)
+  }, [])
+
   return (
     <Page>
-      {apiError && <div>{apiError}</div>} 
-      <ProductGrid
-        products={products}
-      />
-      <div>
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-        />
+      <div className={styles.header}>
+        <ShopHeader />
       </div>
+      <div
+        style={{gridTemplateColumns: showSidebar ? '1fr 4fr' : '1fr'}}
+        className={styles.main}
+      >
+        <ProductFilterSidebar />
+        <div>
+          {apiError && <div>{apiError}</div>} 
+          <ProductGrid products={products} />
+        </div>
+      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+      />
     </Page>
   )
 }
