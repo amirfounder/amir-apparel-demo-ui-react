@@ -7,20 +7,15 @@ export const buildSetOptionsUsingDispatch = (dispatch) => {
     return (value) => {
       dispatch({
         attribute,
-        value
+        value,
+        type: 'initial_render'
       })
     }
   }
 }
 
-export const buildShopPageSearchQuery = (searchQueryObj) => buildSearchQuery({
-  page: searchQueryObj.page || 0,
-  size: searchQueryObj.size || 12,
-  sort: searchQueryObj.sort || null
-})
-
 export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPages, setApiError) => {
-  sendHttpRequest('GET', constants.PRODUCTS_ENDPOINT + searchQuery)
+  sendHttpRequest('GET', constants.PRODUCTS_ENDPOINT + '/filter' + searchQuery)
     .then((response) => {
       if (response.ok) {
         return response.json()
@@ -32,6 +27,7 @@ export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPa
       setTotalPages(body.totalPages)
       setCurrentPage(body.number + 1)
       setApiError('');
+      // run history.push here!
     })
     .catch(setApiError);
 }

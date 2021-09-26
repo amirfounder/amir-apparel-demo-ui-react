@@ -8,17 +8,33 @@ export const ShopProvider = (props) => {
     children
   } = props;
 
-  const filterOptionsReducer = (state, action) => {
-    const {
-      FILTERABLE_PRODUCT_ATTRIBUTES
-    } = constants;
+  const {
+    FILTERABLE_PRODUCT_ATTRIBUTES: attributes
+  } = constants;
 
-    if (FILTERABLE_PRODUCT_ATTRIBUTES.includes(action.attribute)) {
-      return {
-        ...state,
-        [action.attribute.toLowerCase()]: action.value
-      }
+  const filterOptionsReducer = (state, action) => {
+    switch (action.type) {
+      case 'initial_render':
+        if (attributes.includes(action.attribute)) {
+          return {
+            ...state,
+            [action.attribute.toLowerCase()]: action.value
+          }
+        }
+      case 'update':
+        if (Object.keys(state).includes(action.attribute)) {
+          if (action.key in state[action.attribute]) {
+            return {
+              ...state,
+              [action.attribute]: {
+                ...state[action.attribute],
+                [action.key]: action.value
+              }
+            }
+          }
+        }
     }
+
     return state
   }
 

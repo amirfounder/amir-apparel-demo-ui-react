@@ -16,14 +16,20 @@ export const createCartProductDTO = (product) => {
   }
 }
 
+/**
+ * @name parseSearchQuery
+ * @description parses a searchQueryString and returns an object with the key, value pairs
+ * @param {String} search the search query in the format: "?key1=value1&key2=value2..."
+ * @returns searchQueryObject
+ */
 export const parseSearchQuery = (search) => {
   const queryParams = search.substring(1).split("&");
-  const queryParamObject = {}
+  const searchQueryObj = {}
   queryParams.forEach((queryParam) => {
     const [name, value] = queryParam.split("=")
-    queryParamObject[name] = value
+    searchQueryObj[name] = value
   })
-  return queryParamObject;
+  return searchQueryObj;
 }
 
 export const buildSearchQuery = (searchQueryObj) => {
@@ -44,3 +50,5 @@ export const rebuildSearchQueryWithUpdatedKeyValue = (currentSearchQuery, key, u
   searchQueryObj[key] = updatedValue;
   return buildSearchQuery(searchQueryObj)
 }
+
+export const capitalize = (word) => word.length > 1 && word.substring(0,1).toUpperCase() + word.substring(1)
