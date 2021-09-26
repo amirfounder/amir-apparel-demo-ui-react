@@ -6,7 +6,8 @@ export const ProductFilterToggle = (props) => {
   const {
     name,
     show,
-    toggleShow
+    toggleShow,
+    options
   } = props;
 
   return (
@@ -21,7 +22,11 @@ export const ProductFilterToggle = (props) => {
         <Toggle.Content
           show={show}
         >
-          description
+          {options && Object.entries(options).map((option) => (
+            <div>
+              {option[0]}
+            </div>
+          ))}
         </Toggle.Content>
       </Toggle>
     </div>

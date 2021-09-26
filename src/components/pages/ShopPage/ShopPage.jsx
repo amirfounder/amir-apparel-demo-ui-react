@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ShopPage.module.scss'
 import { ProductGrid } from '../../ProductGrid';
-import { buildShopPageSearchQuery, buildUpdateOptionsStateFunction, getFilterOptions, getProducts } from './ShopPageService';
+import { buildSetOptionsUsingDispatch, buildShopPageSearchQuery, getFilterOptions, getProducts } from './ShopPageService';
 import { Page } from '../../Page';
 import { Pagination } from './Pagination';
 import { useLocation } from 'react-router';
@@ -18,11 +18,11 @@ export const ShopPage = () => {
     dispatchFilterOptions
   } = useShopContext();
 
+  const buildSetOptions = buildSetOptionsUsingDispatch(dispatchFilterOptions)
+  
   const [apiError, setApiError] = useState('');
   const [currentPage, setCurrentPage] = useState(null)
   const [totalPages, setTotalPages] = useState(null)
-
-  const buildSetOptions = (attribute) => (value) => dispatchFilterOptions({ attribute: attribute + 's', value })
 
   useEffect(() => {
     const searchQueryObj = parseSearchQuery(location.search)
@@ -35,7 +35,7 @@ export const ShopPage = () => {
     getFilterOptions('type', buildSetOptions('type'), setApiError)
     getFilterOptions('color', buildSetOptions('color'), setApiError)
     getFilterOptions('demographic', buildSetOptions('demographic'), setApiError)
-  }, [])
+  }, [getFilterOptions, buildSetOptionsUsingDispatch, setApiError])
 
   return (
     <Page>

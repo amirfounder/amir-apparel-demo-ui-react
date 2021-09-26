@@ -2,6 +2,17 @@ import constants from "../../../utils/constants"
 import { sendHttpRequest } from "../../../utils/httpHelper"
 import { buildSearchQuery } from "../../../utils/utils"
 
+export const buildSetOptionsUsingDispatch = (dispatch) => {
+  return (attribute) => {
+    return (value) => {
+      dispatch({
+        attribute,
+        value
+      })
+    }
+  }
+}
+
 export const buildShopPageSearchQuery = (searchQueryObj) => buildSearchQuery({
   page: searchQueryObj.page || 0,
   size: searchQueryObj.size || 12,
@@ -33,7 +44,9 @@ export const getFilterOptions = (attributeName, setOptions, setApiErorr) => {
       }
     })
     .then((body) => {
-      setOptions(body)
+      if (Array.isArray(body)) {
+        setOptions(Object.fromEntries(body.map((option) => [option.toLowerCase(), false])))
+      }
       setApiErorr('')
     })
     .catch(setApiErorr);

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
+import constants from '../utils/constants';
 
 const ShopContext = createContext();
 
@@ -8,9 +9,17 @@ export const ShopProvider = (props) => {
   } = props;
 
   const filterOptionsReducer = (state, action) => {
-    if (action.attribute) {
-      return null;
+    const {
+      FILTERABLE_PRODUCT_ATTRIBUTES
+    } = constants;
+
+    if (FILTERABLE_PRODUCT_ATTRIBUTES.includes(action.attribute)) {
+      return {
+        ...state,
+        [action.attribute.toLowerCase()]: action.value
+      }
     }
+    return state
   }
 
   const [initialFilterOptions, setInitialFilterOptions] = useState({})

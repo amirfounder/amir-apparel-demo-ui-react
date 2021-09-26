@@ -1,21 +1,20 @@
 import React, { useReducer } from 'react';
 import { useShopContext } from '../../../../context/ShopContext';
-import { Toggle } from '../../../Toggle/Toggle';
+import constants from '../../../../utils/constants';
 import { ProductFilterToggle } from '../ProductFilterToggle/ProductFilterToggle';
 import styles from './ProductFilterSidebar.module.scss'
 
 export const ProductFilterSidebar = () => {
-
   const {
-    showSidebar
+    showSidebar,
+    filterOptions
   } = useShopContext()
 
-  const showFiltersInitialState = {
-    demographics: false,
-    materials: false,
-    types: false,
-    color: false
-  }
+  const {
+    FILTERABLE_PRODUCT_ATTRIBUTES: attributes
+  } = constants
+
+  const showFiltersInitialState = Object.fromEntries(attributes.map((attribute) => [attribute, false]))
 
   const showFiltersReducer = (state, action) => {
     if (Object.keys(showFiltersInitialState).includes(action.type)) {
@@ -25,21 +24,37 @@ export const ProductFilterSidebar = () => {
 
   const [state, dispatch] = useReducer(showFiltersReducer, showFiltersInitialState);
 
-  const toggleDemographicsFilters = () => dispatch({ type: 'demographics' })
-  const toggleMaterialsFilters = () => dispatch({ type: 'materials' })
+  const buildToggler = (attribute) => () => dispatch({ type: attribute })
 
   return (
     <div
       className={styles.main}
       hidden={!showSidebar}
     >
-      <Toggle>
-        <ProductFilterToggle
-          name='Demographics'
-          show={state?.demographics}
-          toggleShow={toggleDemographicsFilters}
-        />
-      </Toggle>
+      <ProductFilterToggle
+        name='Demographics'
+        show={state?.demographic}
+        toggleShow={buildToggler('demographic')}
+        options={filterOptions.demographic}
+      />
+      <ProductFilterToggle
+        name='Colors'
+        show={state?.color}
+        toggleShow={buildToggler('color')}
+        options={filterOptions.color}
+      />
+      <ProductFilterToggle
+        name='Type'
+        show={state?.type}
+        toggleShow={buildToggler('type')}
+        options={filterOptions.type}
+      />
+      <ProductFilterToggle
+        name='Materials'
+        show={state?.material}
+        toggleShow={buildToggler('material')}
+        options={filterOptions.material}
+      />
     </div>
   )
 }
