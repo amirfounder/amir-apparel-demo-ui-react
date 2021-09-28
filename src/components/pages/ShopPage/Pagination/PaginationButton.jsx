@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { rebuildSearchQueryWithUpdatedKeyValue, scrollToTop } from '../../../../utils/utils';
+import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../utils/utils';
 import styles from './Pagination.module.scss';
 
 export const PaginationButton = (props) => {
@@ -14,7 +14,7 @@ export const PaginationButton = (props) => {
   const clickable = children !== '...'
 
   const handleButtonClick = () => {
-    const searchQuery = rebuildSearchQueryWithUpdatedKeyValue(
+    const searchQuery = updateSearchQueryKeyValuePair(
       location.search,
       'page',
       children - 1

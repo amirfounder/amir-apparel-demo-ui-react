@@ -3,14 +3,13 @@ import styles from './ShopPage.module.scss'
 import { ProductGrid } from '../../ProductGrid';
 import {
   buildSetOptionsUsingDispatch,
-  buildShopPageSearchQuery,
   getFilterOptions,
   getProducts
 } from './ShopPageService';
 import { Page } from '../../Page';
 import { Pagination } from './Pagination';
 import { useLocation } from 'react-router';
-import { buildSearchQuery, parseSearchQuery } from '../../../utils/utils';
+import { buildSearchQuery, buildSearchQueryObj } from '../../../utils/utils';
 import { useShopContext } from '../../../context/ShopContext';
 import { ShopHeader } from './ShopHeader';
 import { ProductFilterSidebar } from './ProductFilterSidebar/ProductFilterSidebar';
@@ -33,7 +32,7 @@ export const ShopPage = () => {
   const [totalPages, setTotalPages] = useState(null)
 
   useEffect(() => {
-    const searchQueryObj = parseSearchQuery(location.search)
+    const searchQueryObj = buildSearchQueryObj(location.search)
     if (!searchQueryObj?.page) searchQueryObj.page = 0
     if (!searchQueryObj?.size) searchQueryObj.size = 12
     const shopPageQueries = buildSearchQuery(searchQueryObj)

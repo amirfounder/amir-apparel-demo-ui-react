@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from './Pagination.module.scss'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
-import { rebuildSearchQueryWithUpdatedKeyValue, scrollToTop } from '../../../../utils/utils';
+import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../utils/utils';
 import { useHistory, useLocation } from 'react-router';
 
 export const PaginationArrow = (props) => {
@@ -24,7 +24,7 @@ export const PaginationArrow = (props) => {
     const currentSearchQuery = location.search;
     const key = 'page';
     const value = direction === 'right' ? currentPage : currentPage - 2
-    const searchQuery = rebuildSearchQueryWithUpdatedKeyValue(currentSearchQuery, key, value)
+    const searchQuery = updateSearchQueryKeyValuePair(currentSearchQuery, key, value)
     history.push(searchQuery);
     scrollToTop()
   }

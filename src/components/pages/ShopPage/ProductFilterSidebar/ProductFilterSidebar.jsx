@@ -2,7 +2,7 @@ import React, { useReducer, useState } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { useShopContext } from '../../../../context/ShopContext';
 import constants from '../../../../utils/constants';
-import { buildSearchQuery, parseSearchQuery } from '../../../../utils/utils';
+import { buildSearchQuery, buildSearchQueryObj, filterSearchQueryObjByKeys, updateSearchQueryKeyValuePair } from '../../../../utils/utils';
 import { Button } from '../../../Button';
 import { ProductFilterToggle } from '../ProductFilterToggle/ProductFilterToggle';
 import styles from './ProductFilterSidebar.module.scss'
@@ -34,9 +34,14 @@ export const ProductFilterSidebar = () => {
 
   const handleApplyButtonClick = () => {
     const filterOptionsSearchQueryObj = buildFilterOptionsSearchQueryObj(filterOptions);
-    const urlSearchQueryObj = parseSearchQuery(location.search)
-    const searchQueryObj = { ...urlSearchQueryObj, ...filterOptionsSearchQueryObj }
+
+    const urlSearchQueryObj = buildSearchQueryObj(location.search)
+    const urlSearchQueryPageableObj = filterSearchQueryObjByKeys(urlSearchQueryObj, ['page', 'size', 'sort'])
+    if ('page' in urlSearchQueryPageableObj) urlSearchQueryPageableObj.page = '0'
+
+    const searchQueryObj = { ...urlSearchQueryPageableObj, ...filterOptionsSearchQueryObj }
     const searchQuery = buildSearchQuery(searchQueryObj);
+
     history.push(location.pathname + searchQuery)
   }
 

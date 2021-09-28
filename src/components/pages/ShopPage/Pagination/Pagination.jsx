@@ -16,13 +16,13 @@ export const Pagination = (props) => {
   useEffect(() => {
     if (9 % 2 === 0) throw new Error("Please make pagination button count an odd number")
     setButtonValues(generatePaginationButtonValues(currentPage, totalPages))
-    setButtonGridColumns(7);
+    setButtonGridColumns(totalPages > 7 ? 7 : totalPages + 2);
   }, [currentPage, totalPages])
 
 
   return (
     <div className={styles.main}>
-      <div
+      {totalPages > 1 && <div
         className={styles.buttons}
         style={{gridTemplateColumns: `repeat(${buttonGridColumns}, 1fr)`}}
       >
@@ -48,7 +48,7 @@ export const Pagination = (props) => {
           direction='right'
         /> :
         <div />}
-      </div>
+      </div>}
     </div>
   )
 }
