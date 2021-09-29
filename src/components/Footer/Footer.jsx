@@ -24,9 +24,9 @@ export const Footer = () => {
         <div className={styles.column}>
           <Heading>Shop</Heading>
           <ul className={styles.menu}>
-            <li><Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Men</Link></li>
-            <li><Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Women</Link></li>
-            <li><Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Kids</Link></li>
+            <li><Link onClick={scrollToTop} to="/shop?demographic=men" className={styles.navLink}>Men</Link></li>
+            <li><Link onClick={scrollToTop} to="/shop?demographic=women" className={styles.navLink}>Women</Link></li>
+            <li><Link onClick={scrollToTop} to="/shop?demographic=kids" className={styles.navLink}>Kids</Link></li>
             <li><Link onClick={scrollToTop} to="/shop" className={styles.navLink}>New Releases</Link></li>
             <li><Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Sale</Link></li>
           </ul>
