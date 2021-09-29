@@ -1,0 +1,28 @@
+.main {
+
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: .8rem;
+  align-items: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &>.icon {
+    font-size: 35px;
+    display: grid;
+    align-items: center;
+  }
+
+  & .button {
+    line-height: normal;
+    font-size: 18px;
+  }
+}
+
+.content {
+  display: grid;
+}

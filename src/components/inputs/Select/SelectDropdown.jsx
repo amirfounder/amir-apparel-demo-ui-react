@@ -1,16 +1,16 @@
 import React from 'react';
-import styles from '../inputs.module.scss'
+import styles from './Select.module.scss'
 
 export const SelectDropdown = (props) => {
   const {
     options,
-    setShow,
+    toggleDropdown,
     setValue,
     show
   } = props;
 
   const handleOptionClick = (e) => {
-    setShow((prevState) => !prevState);
+    toggleDropdown();
     setValue(e.target.value)
   }
 

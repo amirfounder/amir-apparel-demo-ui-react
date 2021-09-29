@@ -1,38 +1,45 @@
 import React, { useState } from 'react';
-import styles from '../inputs.module.scss';
+import { RiArrowDropDownLine } from 'react-icons/ri';
+import styles from './Select.module.scss';
 import { SelectDropdown } from './SelectDropdown';
+
+const dropdownOptions = [
+  {display: 'Price (Lowest)', value:'price,asc'},
+  {display: 'Price (Highest)', value:'price,desc'},
+  {display: 'Name', value:'name'}
+]
 
 export const Select = (props) => {
   const {
     options,
-    id,
   } = props
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [value, setValue] = useState(Array.isArray(options) && options?.value)
 
-  const handleButtonClick = () => {
+  const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState);
   }
 
   return (
-    <div style={{position: 'relative', display: 'grid', alignItems: 'center'}}>
-      <button
-        className={styles.select}
-        children={value || 'Click here'}
-        onClick={handleButtonClick}
-        id={id}
-      />
-      <SelectDropdown
-        show={showDropdown}
-        setShow={setShowDropdown}
-        setValue={setValue}
-        options={[
-          {display: 'lol', value:'lol'},
-          {display: 'lol', value:'lol'},
-          {display: 'lol', value:'lol'}
-        ]}
-      />
+    <div
+      className={styles.main}
+      onClick={toggleDropdown}
+    >
+      <div>
+        <div className={styles.button}>
+          {value ? `Sort By: ${value}` : 'Sort By'}
+        </div>
+        <SelectDropdown
+          show={showDropdown}
+          toggleDropdown={toggleDropdown}
+          setValue={setValue}
+          options={dropdownOptions}
+        />
+      </div>
+      <div className={styles.icon}>
+        <RiArrowDropDownLine />
+      </div>
     </div>
   )
 }
