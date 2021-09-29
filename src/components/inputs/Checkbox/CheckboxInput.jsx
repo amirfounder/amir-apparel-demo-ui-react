@@ -1,22 +1,24 @@
 import React from 'react';
-import styles from './Input.module.scss'
+import styles from '../inputs.module.scss'
 
-export const Checkbox = (props) => {
+export const CheckboxInput = (props) => {
   const {
     label,
     id,
     onChange,
-    value
+    value,
+    checked
   } = props;
 
   return (
     <label
-      className={styles.label}
+      className={styles.label__checkbox}
       htmlFor={id}
     >
       <input
         type="checkbox"
         id={id}
+        checked={checked}
         value={value}
         onChange={onChange}
       />

@@ -14,13 +14,14 @@ export const ShopProvider = (props) => {
 
   const filterOptionsReducer = (state, action) => {
     switch (action.type) {
-      case 'initial_render':
+      case 'init':
         if (attributes.includes(action.attribute)) {
           return {
             ...state,
             [action.attribute.toLowerCase()]: action.value
           }
         }
+        break;
       case 'update':
         if (Object.keys(state).includes(action.attribute)) {
           if (action.key in state[action.attribute]) {
@@ -33,14 +34,15 @@ export const ShopProvider = (props) => {
             }
           }
         }
+        break;
+      default: {}
     }
 
     return state
   }
 
-  const [initialFilterOptions, setInitialFilterOptions] = useState({})
 
-  const [filterOptions, dispatchFilterOptions] = useReducer(filterOptionsReducer, initialFilterOptions)
+  const [filterOptions, filterOptionsDispatcher] = useReducer(filterOptionsReducer, {})
   const [products, setProducts] = useState([])
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
@@ -53,8 +55,7 @@ export const ShopProvider = (props) => {
         totalPages, setTotalPages,
         currentPage, setCurrentPage,
         showSidebar, setShowSidebar,
-        filterOptions, dispatchFilterOptions,
-        initialFilterOptions, setInitialFilterOptions
+        filterOptions, filterOptionsDispatcher,
       }}
     >
       {children}

@@ -1,6 +1,8 @@
 import React from 'react';
+import { RiFilter3Line } from 'react-icons/ri';
 import { useShopContext } from '../../../../context/ShopContext';
 import { Heading } from '../../../Heading';
+import { Select } from '../../../inputs/Select/Select';
 import styles from './ShopHeader.module.scss'
 
 export const ShopHeader = () => {
@@ -19,12 +21,20 @@ export const ShopHeader = () => {
         </Heading>
       </div>
       <div className={styles.buttons}>
-        <button onClick={toggleSidebar}>
+        <div
+          className={styles.filterContainer}
+          onClick={toggleSidebar}
+        >
           {showSidebar ? `Hide Filters` : 'Show Filters'}
-        </button>
-        <button>
-          button two
-        </button>
+          <RiFilter3Line className={styles.filterIcon} />
+        </div>
+        <Select
+          options={[
+            {displayText: 'lol', value: 'lol'},
+            {displayText: 'lol', value: 'lol'},
+            {displayText: 'lol', value: 'lol'}
+          ]}
+        />
       </div>
     </div>
   )

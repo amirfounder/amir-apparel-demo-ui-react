@@ -1,5 +1,3 @@
-import { sendHttpRequest } from "../../../../utils/httpHelper";
-
 export const buildFilterOptionsSearchQueryObj = (filterOptions) => {
   const searchQueryObj = {};
   Object.entries(filterOptions).forEach(([attribute, options]) => {

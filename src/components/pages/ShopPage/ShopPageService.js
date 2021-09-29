@@ -1,14 +1,28 @@
 import constants from "../../../utils/constants"
 import { sendHttpRequest } from "../../../utils/httpHelper"
-import { buildSearchQuery } from "../../../utils/utils"
+import { buildSearchQueryObj } from "../../../utils/utils"
 
-export const buildSetOptionsUsingDispatch = (dispatch) => {
+
+const modifyFilterOptionsBasedOnSearchQuery = (filterOptions, attribute, searchQuery) => {
+  const searchQueryObject = buildSearchQueryObj(searchQuery);
+  if (attribute in searchQueryObject) {
+    searchQueryObject[attribute]
+      .split(',')
+      .forEach((searchQueryValue) => {
+        if (searchQueryValue in filterOptions) {
+          filterOptions[searchQueryValue] = true;
+        }
+      })
+  }
+}
+
+export const buildSetFilterOptionsFnFn = (filterOptionsDispatcher) => {
   return (attribute) => {
     return (value) => {
-      dispatch({
+      filterOptionsDispatcher({
         attribute,
         value,
-        type: 'initial_render'
+        type: 'init'
       })
     }
   }
@@ -27,23 +41,25 @@ export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPa
       setTotalPages(body.totalPages)
       setCurrentPage(body.number + 1)
       setApiError('');
-      // run history.push here!
     })
     .catch(setApiError);
 }
 
-export const getFilterOptions = (attributeName, setOptions, setApiErorr) => {
-  sendHttpRequest('GET', `/products/attribute/${attributeName}`)
+export const getFilterOptionsByAttribute = (attribute, searchQuery, setFilterOptions, setApiError) => {
+  sendHttpRequest('GET', `/products/attribute/${attribute}`)
     .then((response) => {
       if (response.ok) {
         return response.json()
       }
+      throw new Error(`Response status was ${response.status}`)
     })
     .then((body) => {
       if (Array.isArray(body)) {
-        setOptions(Object.fromEntries(body.map((option) => [option.toLowerCase(), false])))
+        const filterOptions = Object.fromEntries(body.map((option) => [option.toLowerCase(), false]))
+        modifyFilterOptionsBasedOnSearchQuery(filterOptions, attribute, searchQuery)
+        setFilterOptions(filterOptions);
+        setApiError('')
       }
-      setApiErorr('')
     })
-    .catch(setApiErorr);
+    .catch(setApiError);
 }

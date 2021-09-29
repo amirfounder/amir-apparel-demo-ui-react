@@ -1,6 +1,6 @@
 import React from 'react';
 import { useShopContext } from '../../../../context/ShopContext';
-import { Checkbox } from '../../../inputs/Checkbox';
+import { CheckboxInput } from '../../../inputs/Checkbox/CheckboxInput';
 import { Toggle } from '../../../Toggle/Toggle';
 import styles from './ProductFilterToggle.module.scss'
 
@@ -14,12 +14,12 @@ export const ProductFilterToggle = (props) => {
   } = props;
 
   const {
-    dispatchFilterOptions
+    filterOptionsDispatcher
   } = useShopContext();
 
   const handleCheckboxCheck = (e) => {
     const { id: key, checked: value } = e.target;
-    dispatchFilterOptions({ type: 'update', value, key, attribute})
+    filterOptionsDispatcher({ type: 'update', value, key, attribute})
   }
 
   return (
@@ -39,10 +39,11 @@ export const ProductFilterToggle = (props) => {
           {options && Object.entries(options).map((option) => {
             const [key, value] = option;
             return (
-              <Checkbox
+              <CheckboxInput
                 id={key}
                 onChange={handleCheckboxCheck}
                 value={value}
+                checked={value}
                 label={key}
               />
             )

@@ -1,8 +1,8 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { useShopContext } from '../../../../context/ShopContext';
 import constants from '../../../../utils/constants';
-import { buildSearchQuery, buildSearchQueryObj, filterSearchQueryObjByKeys, updateSearchQueryKeyValuePair } from '../../../../utils/utils';
+import { buildSearchQuery, buildSearchQueryObj, filterSearchQueryObjByKeys } from '../../../../utils/utils';
 import { Button } from '../../../Button';
 import { ProductFilterToggle } from '../ProductFilterToggle/ProductFilterToggle';
 import styles from './ProductFilterSidebar.module.scss'
@@ -12,7 +12,6 @@ export const ProductFilterSidebar = () => {
   const {
     showSidebar,
     filterOptions,
-    setProducts
   } = useShopContext()
 
   const location = useLocation();

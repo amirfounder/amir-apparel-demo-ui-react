@@ -15,7 +15,27 @@
   &>.buttons {
     justify-self: end;
     display: grid;
+    justify-content: end;
     grid-template-columns: auto auto;
     column-gap: 2rem;
+    align-self: center;
+
+    &> .filterContainer {
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      column-gap: .8rem;
+      padding: 10px;
+      font-size: 18px;
+      user-select: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &>.filterIcon {
+        font-size: 20px;
+      }
+    }
   }
 }

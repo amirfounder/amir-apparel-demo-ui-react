@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styles from './ShopPage.module.scss'
 import { ProductGrid } from '../../ProductGrid';
 import {
-  buildSetOptionsUsingDispatch,
-  getFilterOptions,
+  buildSetFilterOptionsFnFn,
+  getFilterOptionsByAttribute,
   getProducts
 } from './ShopPageService';
 import { Page } from '../../Page';
@@ -20,7 +20,7 @@ export const ShopPage = () => {
   const {
     products, setProducts,
     showSidebar,
-    dispatchFilterOptions
+    filterOptionsDispatcher
   } = useShopContext();
 
   const {
@@ -52,17 +52,22 @@ export const ShopPage = () => {
   ])
 
   useEffect(() => {
-    const buildSetOptions = buildSetOptionsUsingDispatch(dispatchFilterOptions)
-
+    const buildSetFilterOptionsFn = buildSetFilterOptionsFnFn(filterOptionsDispatcher);
     attributes.forEach((attribute) => {
-      getFilterOptions(
+      const setFilterOptions = buildSetFilterOptionsFn(attribute)
+      getFilterOptionsByAttribute(
         attribute,
-        buildSetOptions(attribute),
+        location.search,
+        setFilterOptions,
         setApiError
       )
     })
-
-  }, [setApiError, dispatchFilterOptions])
+  }, [
+    attributes,
+    location.search,
+    setApiError,
+    filterOptionsDispatcher
+  ])
 
   return (
     <Page>
@@ -75,7 +80,7 @@ export const ShopPage = () => {
       >
         <ProductFilterSidebar />
         <div>
-          {apiError && <div>{apiError}</div>} 
+          {apiError && <div>There was an error reaching our servers. Please try again later</div>} 
           <ProductGrid products={products} />
         </div>
       </div>
