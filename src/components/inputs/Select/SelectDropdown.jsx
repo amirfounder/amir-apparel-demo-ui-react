@@ -29,9 +29,9 @@ export const SelectDropdown = (props) => {
           const { display, value } = option;
           return (
             <div
-            value={value}
-            onClick={handleOptionClick}
-            className={styles.option}
+              value={value}
+              onClick={handleOptionClick}
+              className={styles.option}
             >
               {display}
             </div>

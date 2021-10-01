@@ -6,7 +6,6 @@ export const ToggleContent = (props) => {
     children,
     show,
     className,
-    customClass
   } = props;
 
   return (
@@ -14,7 +13,7 @@ export const ToggleContent = (props) => {
       className={`
         ${styles.content}
         ${show && styles.show}
-        ${customClass ? className : styles.padded}
+        ${className ? className : styles.padding}
       `}
     >
       {children}

@@ -1,5 +1,7 @@
 import React from 'react';
 import { useShopContext } from '../../../../context/ShopContext';
+import { capitalize } from '../../../../utils/utils';
+import { Heading } from '../../../Heading';
 import { CheckboxInput } from '../../../inputs/Checkbox/CheckboxInput';
 import { Toggle } from '../../../Toggle/Toggle';
 import styles from './ProductFilterToggle.module.scss'
@@ -26,14 +28,16 @@ export const ProductFilterToggle = (props) => {
     <div className={styles.main}>
       <Toggle>
         <Toggle.Header
-          customClass
+          className={styles.toggleHeader}
           show={show}
           toggleShow={toggleShow}
         >
-          {name}
+          <Heading level={4}>
+            {name}
+          </Heading>
         </Toggle.Header>
         <Toggle.Content
-          customClass
+          className={styles.toggleContent}
           show={show}
         >
           {options && Object.entries(options).map((option) => {
@@ -44,7 +48,7 @@ export const ProductFilterToggle = (props) => {
                 onChange={handleCheckboxCheck}
                 value={value}
                 checked={value}
-                label={key}
+                label={capitalize(key)}
               />
             )
           })}

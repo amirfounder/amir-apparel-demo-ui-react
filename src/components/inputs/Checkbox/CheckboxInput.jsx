@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../inputs.module.scss'
+import styles from './CheckboxInput.module.scss'
 
 export const CheckboxInput = (props) => {
   const {
@@ -12,11 +12,12 @@ export const CheckboxInput = (props) => {
 
   return (
     <label
-      className={styles.label__checkbox}
+      className={styles.label}
       htmlFor={id}
     >
       <input
         type="checkbox"
+        className={styles.input}
         id={id}
         checked={checked}
         value={value}

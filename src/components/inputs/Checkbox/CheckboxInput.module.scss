@@ -1,0 +1,9 @@
+.label {
+  display: block;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: .5rem;
+  align-items: center;
+  font-size: 17px;
+  line-height: 1.4em;
+}

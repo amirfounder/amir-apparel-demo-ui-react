@@ -8,7 +8,8 @@ import styles from './ShopHeader.module.scss'
 export const ShopHeader = () => {
 
   const {
-    showSidebar, setShowSidebar
+    showSidebar,
+    setShowSidebar
   } = useShopContext();
 
   const toggleSidebar = () => setShowSidebar((prevState) => !prevState);
@@ -16,7 +17,7 @@ export const ShopHeader = () => {
   return (
     <div className={styles.main}>
       <div className={styles.title}>
-        <Heading>
+        <Heading level={1}>
           Shop Products
         </Heading>
       </div>

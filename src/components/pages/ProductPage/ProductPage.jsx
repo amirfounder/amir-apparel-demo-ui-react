@@ -87,7 +87,7 @@ export const ProductPage = () => {
                 toggleShow={toggleShippingShow}
               >
                 <Heading
-                  style={{marginBottom: 0}}
+                  // style={{marginBottom: 0}}
                   level={3}
                 >
                   Shipping & FREE Returns

@@ -7,15 +7,14 @@ export const ToggleHeader = (props) => {
     children,
     toggleShow,
     show,
-    className,
-    customClass
+    className
   } = props;
 
   return (
     <div
       className={`
         ${styles.header}
-        ${customClass ? className : styles.padded}
+        ${className ? className : styles.padding}
       `}
       onClick={toggleShow}
     >

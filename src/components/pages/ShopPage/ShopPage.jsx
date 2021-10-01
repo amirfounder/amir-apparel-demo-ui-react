@@ -62,8 +62,12 @@ export const ShopPage = () => {
         setApiError
       )
     })
-    // eslint-disable-next-line
-  }, [attributes, filterOptionsDispatcher, setApiError])
+  }, [
+    attributes,
+    filterOptionsDispatcher,
+    setApiError,
+    location.search
+  ])
 
   return (
     <Page>
