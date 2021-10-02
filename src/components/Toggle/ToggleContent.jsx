@@ -4,7 +4,8 @@ import styles from './Toggle.module.scss'
 export const ToggleContent = (props) => {
   const {
     children,
-    show
+    show,
+    className,
   } = props;
 
   return (
@@ -12,6 +13,7 @@ export const ToggleContent = (props) => {
       className={`
         ${styles.content}
         ${show && styles.show}
+        ${className ? className : styles.padding}
       `}
     >
       {children}

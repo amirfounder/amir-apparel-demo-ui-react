@@ -49,9 +49,9 @@ export const Header = () => {
         <div className={styles.column}>
           <div className={styles.menu}>
             <Link to="/shop" className={styles.navLink}>New Releases</Link>
-            <Link to="/shop" className={styles.navLink}>Men</Link>
-            <Link to="/shop" className={styles.navLink}>Women</Link>
-            <Link to="/shop" className={styles.navLink}>Kids</Link>
+            <Link to="/shop?demographic=men" className={styles.navLink}>Men</Link>
+            <Link to="/shop?demographic=women" className={styles.navLink}>Women</Link>
+            <Link to="/shop?demographic=kids" className={styles.navLink}>Kids</Link>
             <Link to="/shop" className={styles.navLink}>Sale</Link>
           </div>
         </div>

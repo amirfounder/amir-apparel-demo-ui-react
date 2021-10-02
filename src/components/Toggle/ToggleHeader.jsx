@@ -5,16 +5,18 @@ import { RiArrowDropDownLine } from 'react-icons/ri'
 export const ToggleHeader = (props) => {
   const {
     children,
-    setShow,
-    show
+    toggleShow,
+    show,
+    className
   } = props;
-
-  const handleHeaderClick = () => setShow((prevState) => !prevState);
 
   return (
     <div
-      className={styles.header}
-      onClick={handleHeaderClick}
+      className={`
+        ${styles.header}
+        ${className ? className : styles.padding}
+      `}
+      onClick={toggleShow}
     >
       <div>
         {children}

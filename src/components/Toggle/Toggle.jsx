@@ -4,7 +4,7 @@ import { ToggleContent } from './ToggleContent';
 
 export const Toggle = (props) => {
   const {
-    children
+    children,
   } = props;
 
   return(

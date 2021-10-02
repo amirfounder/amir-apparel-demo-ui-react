@@ -1,0 +1,49 @@
+.main {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: .8rem;
+  align-items: center;
+  align-items: center;
+  user-select: none;
+  font-size: 18px;
+  line-height: normal;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  & > .icon {
+    font-size: 35px;
+    display: grid;
+    align-items: center;
+  }
+
+}
+
+.dropdown {
+  display: grid;
+  width: max-content;
+  text-align: end;
+  background-color: #f4f4f4;
+  border-radius: 0px 0px 10px 10px;
+  padding: 20px 10px 10px 10px;
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translateX(-100%);
+}
+
+.option {
+  padding: 5px 15px;
+  font-size: 16px;
+
+  &:hover {
+    color: #999;
+    transition-duration: .3s;
+  }
+
+  &:not(:hover) {
+    transition-duration: .3s;
+  }
+}

@@ -1,0 +1,12 @@
+.label {
+  margin-bottom: 0;
+  
+  &__dropdown {
+    display: block;
+    align-items: center;
+  }
+  
+  &__checkbox {
+    display: block;
+  }
+}

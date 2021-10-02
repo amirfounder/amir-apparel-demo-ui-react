@@ -14,18 +14,22 @@ export const Footer = () => {
       <div className={styles.top}>
         <div className={styles.column}>
           <Heading>About</Heading>
-          <Link onClick={scrollToTop} to="/about" className={styles.navLink}>About</Link>
-          <Link onClick={scrollToTop} to="/careers" className={styles.navLink}>Careers</Link>
-          <Link onClick={scrollToTop} to="/contact" className={styles.navLink}>Contact</Link>
-          <Link onClick={scrollToTop} to="/press" className={styles.navLink}>Press</Link>
+          <ul className={styles.menu}>
+            <li><Link onClick={scrollToTop} to="/about" className={styles.navLink}>About</Link></li>
+            <li><Link onClick={scrollToTop} to="/careers" className={styles.navLink}>Careers</Link></li>
+            <li><Link onClick={scrollToTop} to="/contact" className={styles.navLink}>Contact</Link></li>
+            <li><Link onClick={scrollToTop} to="/press" className={styles.navLink}>Press</Link></li>
+          </ul>
         </div>
         <div className={styles.column}>
           <Heading>Shop</Heading>
-          <Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Men</Link>
-          <Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Women</Link>
-          <Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Kids</Link>
-          <Link onClick={scrollToTop} to="/shop" className={styles.navLink}>New Releases</Link>
-          <Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Sale</Link>
+          <ul className={styles.menu}>
+            <li><Link onClick={scrollToTop} to="/shop?demographic=men" className={styles.navLink}>Men</Link></li>
+            <li><Link onClick={scrollToTop} to="/shop?demographic=women" className={styles.navLink}>Women</Link></li>
+            <li><Link onClick={scrollToTop} to="/shop?demographic=kids" className={styles.navLink}>Kids</Link></li>
+            <li><Link onClick={scrollToTop} to="/shop" className={styles.navLink}>New Releases</Link></li>
+            <li><Link onClick={scrollToTop} to="/shop" className={styles.navLink}>Sale</Link></li>
+          </ul>
         </div>
         <div className={styles.column}>
           <div className={styles.social}>

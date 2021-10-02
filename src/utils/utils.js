@@ -16,31 +16,43 @@ export const createCartProductDTO = (product) => {
   }
 }
 
-export const parseSearchQuery = (search) => {
-  const queryParams = search.substring(1).split("&");
-  const queryParamObject = {}
-  queryParams.forEach((queryParam) => {
-    const [name, value] = queryParam.split("=")
-    queryParamObject[name] = value
-  })
-  return queryParamObject;
+/**
+ * @name buildSearchQueryObj
+ * @description parses a searchQueryString and returns an object with the key, value pairs
+ * @param {String} search the search query in the format: "?key1=value1&key2=value2..."
+ * @returns searchQueryObject
+ */
+export const buildSearchQueryObject = (searchQuery) => {
+  return Object
+    .fromEntries(searchQuery
+      .replace('?', '')
+      .split("&")
+      .map((keyValuePair) => keyValuePair.split("=")))
 }
 
 export const buildSearchQuery = (searchQueryObj) => {
-  let query = '?'
-  const queryParams = []
-  Object.entries(searchQueryObj).forEach((entry) => {
-    const [key, value] = entry;
-    if (value !== null && value !== undefined) {
-      queryParams.push(`${key}=${value}`)
-    }
-  })
-  query += queryParams.join('&')
-  return query;
+  return '?' + Object
+    .entries(sortObject(searchQueryObj))
+    .filter(([_, value]) => value)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&')
 }
 
-export const rebuildSearchQueryWithUpdatedKeyValue = (currentSearchQuery, key, updatedValue) => {
-  const searchQueryObj = parseSearchQuery(currentSearchQuery);
-  searchQueryObj[key] = updatedValue;
+export const updateSearchQueryKeyValuePair = (query, key, value) => {
+  const searchQueryObj = buildSearchQueryObject(query);
+  searchQueryObj[key] = value;
   return buildSearchQuery(searchQueryObj)
 }
+
+export const modifySearchQueryObject = (object, key, value) => ({ ...object, [key]: value })
+
+export const filterSearchQueryObjByKeys = (searchQueryObj, keys) => Object
+  .fromEntries(
+    Object
+      .entries(searchQueryObj)
+      .filter(([key]) => keys.includes(key))
+  )
+
+export const sortObject = (object) => Object.fromEntries(Object.keys(object).sort().map((key) => [key, object[key]]))
+
+export const capitalize = (word) => word.length > 1 && word.substring(0,1).toUpperCase() + word.substring(1)
