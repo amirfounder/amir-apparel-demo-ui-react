@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ShopPage.module.scss'
-import { ProductGrid } from '../../ProductGrid';
+import { ProductGrid } from './ProductGrid';
 import {
   buildSetFilterOptionsFnFn,
   getFilterOptionsByAttribute,

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import styles from './Select.module.scss';
-import { SelectDropdown } from './SelectDropdown';
+import { useEffect } from 'react/cjs/react.development';
+import styles from './SortByDropdown.module.scss';
+import { SortByDropdownContent } from './SortByDropdownContent';
 
 const dropdownOptions = [
   {display: 'Price (Lowest)', value:'price,asc'},
@@ -14,23 +15,42 @@ export const Select = (props) => {
     options,
   } = props
 
+  const test = useRef(null);
+
   const [showDropdown, setShowDropdown] = useState(false);
-  const [value, setValue] = useState(Array.isArray(options) && options?.value)
+  const [value, setValue] = useState(Array.isArray(options) ? options[0]?.value : null)
 
   const toggleDropdown = () => {
     setShowDropdown((prevState) => !prevState);
   }
 
+  const handleClick = (e) => {
+    if (test.current.contains(e.target)) {
+      console.log('clicked the dropdon')
+    } else {
+      console.log('clicked out of compoennt')
+      toggleDropdown()
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClick)
+    return () => {
+      document.removeEventListener('mouseenter', handleClick)
+    }
+  })
+
   return (
     <div
+      ref={test}
       className={styles.main}
       onClick={toggleDropdown}
     >
       <div>
-        <div className={styles.button}>
+        <div>
           {value ? `Sort By: ${value}` : 'Sort By'}
         </div>
-        <SelectDropdown
+        <SortByDropdownContent
           show={showDropdown}
           toggleDropdown={toggleDropdown}
           setValue={setValue}

@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router";
-import constants from "../../utils/constants";
-import { scrollToTop } from "../../utils/utils";
-import { Heading } from "../Heading";
+import constants from "../../../../utils/constants";
+import { scrollToTop } from "../../../../utils/utils";
+import { Heading } from "../../../Heading";
 import styles from './ProductCard.module.scss'
 
 export const ProductCard = (props) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { RiFilter3Line } from 'react-icons/ri';
 import { useShopContext } from '../../../../context/ShopContext';
 import { Heading } from '../../../Heading';
-import { Select } from '../../../inputs/Select/Select';
+import { Select } from '../../../inputs/SortByDropdown/SortByDropdown';
 import styles from './ShopHeader.module.scss'
 
 export const ShopHeader = () => {

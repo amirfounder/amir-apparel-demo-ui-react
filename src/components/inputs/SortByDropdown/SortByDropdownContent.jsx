@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './Select.module.scss'
+import styles from './SortByDropdown.module.scss'
+import { SortByDropdownOption } from './SortByDropdownOption';
 
-export const SelectDropdown = (props) => {
+export const SortByDropdownContent = (props) => {
   const {
     options,
     toggleDropdown,
@@ -15,26 +16,18 @@ export const SelectDropdown = (props) => {
   }
 
   return (
-    <div
-      hidden={!show}
-      style={{
-        position: 'absolute',
-        top: '100%',
-        left: '100%',
-        transform: 'translateX(-100%)'
-      }}
-    >
-      <div className={styles.content}>
+    <div hidden={!show}>
+      <div className={styles.dropdown}>
         {Array.isArray(options) && options.map((option) => {
           const { display, value } = option;
           return (
-            <div
+            <SortByDropdownOption
               value={value}
               onClick={handleOptionClick}
               className={styles.option}
             >
               {display}
-            </div>
+            </SortByDropdownOption>
           )
         })}
       </div>

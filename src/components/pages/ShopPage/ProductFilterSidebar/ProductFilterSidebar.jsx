@@ -4,7 +4,7 @@ import { useShopContext } from '../../../../context/ShopContext';
 import constants from '../../../../utils/constants';
 import { buildSearchQuery, buildSearchQueryObj, filterSearchQueryObjByKeys } from '../../../../utils/utils';
 import { Button } from '../../../Button';
-import { ProductFilterToggle } from '../ProductFilterToggle/ProductFilterToggle';
+import { ProductFilterToggle } from './ProductFilterToggle/ProductFilterToggle';
 import styles from './ProductFilterSidebar.module.scss'
 import { buildFilterOptionsSearchQueryObj } from './ProductFilterSidebarService';
 

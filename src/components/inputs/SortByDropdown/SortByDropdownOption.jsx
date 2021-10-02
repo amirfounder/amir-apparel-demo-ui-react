@@ -1,15 +1,19 @@
 import React from 'react';
-import styles from './Select.module.scss';
+import styles from './SortByDropdown.module.scss';
 
-export const SelectOption = (props) => {
+export const SortByDropdownOption = (props) => {
   const {
     setSelectValue,
     value,
-    children
+    children,
+    onClick
   } = props;
 
   const handleOptionClick = () => {
     setSelectValue(value);
+    if (onClick) {
+      onClick();
+    }
   }
 
   return (

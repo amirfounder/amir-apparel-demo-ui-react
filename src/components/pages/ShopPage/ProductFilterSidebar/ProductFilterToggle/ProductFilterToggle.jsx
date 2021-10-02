@@ -1,9 +1,9 @@
 import React from 'react';
-import { useShopContext } from '../../../../context/ShopContext';
-import { capitalize } from '../../../../utils/utils';
-import { Heading } from '../../../Heading';
-import { CheckboxInput } from '../../../inputs/Checkbox/CheckboxInput';
-import { Toggle } from '../../../Toggle/Toggle';
+import { useShopContext } from '../../../../../context/ShopContext';
+import { capitalize } from '../../../../../utils/utils';
+import { Heading } from '../../../../Heading';
+import { CheckboxInput } from '../../../../inputs/Checkbox/CheckboxInput';
+import { Toggle } from '../../../../Toggle/Toggle';
 import styles from './ProductFilterToggle.module.scss'
 
 export const ProductFilterToggle = (props) => {
