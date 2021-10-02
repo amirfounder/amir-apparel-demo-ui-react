@@ -5,15 +5,10 @@ import { SortByDropdownOption } from './SortByDropdownOption';
 export const SortByDropdownContent = (props) => {
   const {
     options,
-    toggleDropdown,
     setValue,
+    setDisplay,
     show
   } = props;
-
-  const handleOptionClick = (e) => {
-    toggleDropdown();
-    setValue(e.target.value)
-  }
 
   return (
     <div hidden={!show}>
@@ -22,9 +17,11 @@ export const SortByDropdownContent = (props) => {
           const { display, value } = option;
           return (
             <SortByDropdownOption
+              key={value}
               value={value}
-              onClick={handleOptionClick}
               className={styles.option}
+              setValue={setValue}
+              setDisplay={setDisplay}
             >
               {display}
             </SortByDropdownOption>

@@ -2,7 +2,7 @@ import React from 'react';
 import { RiFilter3Line } from 'react-icons/ri';
 import { useShopContext } from '../../../../context/ShopContext';
 import { Heading } from '../../../Heading';
-import { Select } from '../../../inputs/SortByDropdown/SortByDropdown';
+import { SortByDropdown } from '../SortByDropdown/SortByDropdown';
 import styles from './ShopHeader.module.scss'
 
 export const ShopHeader = () => {
@@ -29,13 +29,7 @@ export const ShopHeader = () => {
           {showSidebar ? `Hide Filters` : 'Show Filters'}
           <RiFilter3Line className={styles.filterIcon} />
         </div>
-        <Select
-          options={[
-            {displayText: 'lol', value: 'lol'},
-            {displayText: 'lol', value: 'lol'},
-            {displayText: 'lol', value: 'lol'}
-          ]}
-        />
+        <SortByDropdown />
       </div>
     </div>
   )
