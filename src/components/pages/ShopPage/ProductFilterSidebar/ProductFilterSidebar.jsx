@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import { useHistory, useLocation } from 'react-router';
 import { useShopContext } from '../../../../context/ShopContext';
 import constants from '../../../../utils/constants';
-import { buildSearchQuery, buildSearchQueryObj, filterSearchQueryObjByKeys } from '../../../../utils/utils';
+import { buildSearchQuery, buildSearchQueryObject, filterSearchQueryObjByKeys } from '../../../../utils/utils';
 import { Button } from '../../../Button';
 import { ProductFilterToggle } from '../ProductFilterToggle/ProductFilterToggle';
 import styles from './ProductFilterSidebar.module.scss'
@@ -26,21 +26,44 @@ export const ProductFilterSidebar = () => {
       return { ...state, [action.type]: !state[action.type]}
     }
   }
+
   const showFiltersInitialState = Object.fromEntries(attributes.map((attribute) => [attribute, false]))
   const [state, dispatch] = useReducer(showFiltersReducer, showFiltersInitialState);
 
-  const buildToggler = (attribute) => () => dispatch({ type: attribute })
+  const buildShowFilterTogglerFn = (attribute) => () => dispatch({ type: attribute })
 
   const handleApplyButtonClick = () => {
     const filterOptionsSearchQueryObj = buildFilterOptionsSearchQueryObj(filterOptions);
 
-    const urlSearchQueryObj = buildSearchQueryObj(location.search)
-    const urlSearchQueryPageableObj = filterSearchQueryObjByKeys(urlSearchQueryObj, ['page', 'size', 'sort'])
-    if ('page' in urlSearchQueryPageableObj) urlSearchQueryPageableObj.page = '0'
+    const searchQueryObj = buildSearchQueryObject(location.search)
+    const pageableSearchQueryObj = filterSearchQueryObjByKeys(searchQueryObj, ['page', 'size', 'sort'])
 
-    const searchQueryObj = { ...urlSearchQueryPageableObj, ...filterOptionsSearchQueryObj }
-    const searchQuery = buildSearchQuery(searchQueryObj);
+    if ('page' in pageableSearchQueryObj) {
+      pageableSearchQueryObj.page = '0';
+    }
 
+    const newSearchQueryObj = {
+      ...pageableSearchQueryObj,
+      ...filterOptionsSearchQueryObj
+    }
+
+    const searchQuery = buildSearchQuery(newSearchQueryObj);
+    history.push(location.pathname + searchQuery)
+  }
+
+  const handleClearButtonClick = () => {
+    const searchQueryObj = buildSearchQueryObject(location.search);
+    const pageableSearchQueryObj = filterSearchQueryObjByKeys(searchQueryObj, ['page', 'size', 'sort'])
+
+    if ('page' in pageableSearchQueryObj) {
+      pageableSearchQueryObj.page = '0'
+    }
+
+    const newSearchQueryObj = {
+      ...pageableSearchQueryObj
+    }
+
+    const searchQuery = buildSearchQuery(newSearchQueryObj)
     history.push(location.pathname + searchQuery)
   }
 
@@ -52,34 +75,34 @@ export const ProductFilterSidebar = () => {
       <ProductFilterToggle
         name='Demographics'
         show={state?.demographic}
-        toggleShow={buildToggler('demographic')}
+        toggleShow={buildShowFilterTogglerFn('demographic')}
         attribute='demographic'
         options={filterOptions.demographic}
       />
       <ProductFilterToggle
         name='Colors'
         show={state?.color}
-        toggleShow={buildToggler('color')}
+        toggleShow={buildShowFilterTogglerFn('color')}
         attribute='color'
         options={filterOptions.color}
       />
       <ProductFilterToggle
         name='Type'
         show={state?.type}
-        toggleShow={buildToggler('type')}
+        toggleShow={buildShowFilterTogglerFn('type')}
         attribute='type'
         options={filterOptions.type}
       />
       <ProductFilterToggle
         name='Materials'
         show={state?.material}
-        toggleShow={buildToggler('material')}
+        toggleShow={buildShowFilterTogglerFn('material')}
         attribute='material'
         options={filterOptions.material}
       />
       <div className={styles.buttons}>
         <Button onClick={handleApplyButtonClick}>Apply</Button>
-        <Button type="secondary">Clear</Button>
+        <Button onClick={handleClearButtonClick} type="secondary">Clear</Button>
       </div>
     </div>
   )

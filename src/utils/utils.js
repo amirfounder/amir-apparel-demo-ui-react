@@ -22,7 +22,7 @@ export const createCartProductDTO = (product) => {
  * @param {String} search the search query in the format: "?key1=value1&key2=value2..."
  * @returns searchQueryObject
  */
-export const buildSearchQueryObj = (searchQuery) => {
+export const buildSearchQueryObject = (searchQuery) => {
   return Object
     .fromEntries(searchQuery
       .replace('?', '')
@@ -39,16 +39,18 @@ export const buildSearchQuery = (searchQueryObj) => {
 }
 
 export const updateSearchQueryKeyValuePair = (query, key, value) => {
-  const searchQueryObj = buildSearchQueryObj(query);
+  const searchQueryObj = buildSearchQueryObject(query);
   searchQueryObj[key] = value;
   return buildSearchQuery(searchQueryObj)
 }
+
+export const modifySearchQueryObject = (object, key, value) => ({ ...object, [key]: value })
 
 export const filterSearchQueryObjByKeys = (searchQueryObj, keys) => Object
   .fromEntries(
     Object
       .entries(searchQueryObj)
-      .filter(([key, _]) => keys.includes(key))
+      .filter(([key]) => keys.includes(key))
   )
 
 export const sortObject = (object) => Object.fromEntries(Object.keys(object).sort().map((key) => [key, object[key]]))

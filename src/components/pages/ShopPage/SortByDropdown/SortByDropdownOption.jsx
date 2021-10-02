@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { buildSearchQuery, buildSearchQueryObj } from '../../../../utils/utils';
+import { buildSearchQuery, buildSearchQueryObject } from '../../../../utils/utils';
 import styles from './SortByDropdown.module.scss';
 
 export const SortByDropdownOption = (props) => {
@@ -17,7 +17,7 @@ export const SortByDropdownOption = (props) => {
   const handleOnChange = () => {
     setValue(value);
     setDisplay(children)
-    const searchQueryObject = buildSearchQueryObj(location.search)
+    const searchQueryObject = buildSearchQueryObject(location.search)
     searchQueryObject.sort = value;
     const searchQuery = buildSearchQuery(searchQueryObject);
     history.push(searchQuery);

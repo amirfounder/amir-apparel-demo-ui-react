@@ -1,6 +1,6 @@
-import { buildSearchQuery } from "./utils";
+import { buildSearchQuery, buildSearchQueryObject } from "./utils";
 
-describe('Test Build Search Query', () => {
+describe('Build Search Query', () => {
 
   test('valid key value pair', () => {
     const testObject = { key: 'value' }
@@ -66,4 +66,23 @@ describe('Test Build Search Query', () => {
     expect(actual).toBe(expected)
   })
 
+})
+
+describe('Build Search Query Object', () => {
+
+  test('empty string', () => {
+    const searchQuery = ''
+    const actual = buildSearchQueryObject(searchQuery)
+    const expected = {}
+    expect(actual).toBe(expected)
+  })
+
+  test('null', () => {
+    const
+      searchQuery = null,
+      actual = buildSearchQueryObject(searchQuery)
+      expected = {}
+    
+    expected(actual).toBe(expected)
+  })
 })

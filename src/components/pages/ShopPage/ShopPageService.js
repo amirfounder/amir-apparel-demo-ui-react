@@ -1,10 +1,10 @@
 import constants from "../../../utils/constants"
 import { sendHttpRequest } from "../../../utils/httpHelper"
-import { buildSearchQueryObj } from "../../../utils/utils"
+import { buildSearchQueryObject } from "../../../utils/utils"
 
 
 const modifyFilterOptionsBasedOnSearchQuery = (filterOptions, attribute, searchQuery) => {
-  const searchQueryObject = buildSearchQueryObj(searchQuery);
+  const searchQueryObject = buildSearchQueryObject(searchQuery);
   if (attribute in searchQueryObject) {
     searchQueryObject[attribute]
       .split(',')

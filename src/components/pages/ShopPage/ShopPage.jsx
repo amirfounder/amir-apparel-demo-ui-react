@@ -9,7 +9,7 @@ import {
 import { Page } from '../../Page';
 import { Pagination } from './Pagination';
 import { useLocation } from 'react-router';
-import { buildSearchQuery, buildSearchQueryObj } from '../../../utils/utils';
+import { buildSearchQuery, buildSearchQueryObject } from '../../../utils/utils';
 import { useShopContext } from '../../../context/ShopContext';
 import { ShopHeader } from './ShopHeader';
 import { ProductFilterSidebar } from './ProductFilterSidebar/ProductFilterSidebar';
@@ -32,7 +32,7 @@ export const ShopPage = () => {
   const [totalPages, setTotalPages] = useState(null)
 
   useEffect(() => {
-    const searchQueryObj = buildSearchQueryObj(location.search)
+    const searchQueryObj = buildSearchQueryObject(location.search)
     if (!searchQueryObj?.page) searchQueryObj.page = 0
     if (!searchQueryObj?.size) searchQueryObj.size = 12
     const shopPageQueries = buildSearchQuery(searchQueryObj)

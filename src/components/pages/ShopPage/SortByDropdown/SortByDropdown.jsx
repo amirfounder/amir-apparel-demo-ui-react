@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { useLocation } from 'react-router';
 import { useEffect } from 'react/cjs/react.development';
-import { buildSearchQueryObj } from '../../../../utils/utils';
+import { buildSearchQueryObject } from '../../../../utils/utils';
 import styles from './SortByDropdown.module.scss';
 import { SortByDropdownContent } from './SortByDropdownContent';
 
@@ -44,7 +44,7 @@ export const SortByDropdown = () => {
   }, [])
 
   useEffect(() => {
-    const searchQueryObject = buildSearchQueryObj(location.search)
+    const searchQueryObject = buildSearchQueryObject(location.search)
     if ('sort' in searchQueryObject) {
       setValue(searchQueryObject.sort)
     }
