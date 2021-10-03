@@ -9,7 +9,7 @@ import { SortByDropdownContent } from './SortByDropdownContent';
 const dropdownOptions = [
   {display: 'Price (Lowest)', value:'price,asc'},
   {display: 'Price (Highest)', value:'price,desc'},
-  {display: 'Name', value:'name'}
+  {display: 'Name', value:'name,asc'}
 ]
 
 export const SortByDropdown = () => {
