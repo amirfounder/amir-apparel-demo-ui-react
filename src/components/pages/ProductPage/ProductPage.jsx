@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useCartContext } from '../../../context/CartContext';
 import constants from '../../../utils/constants';
-import { createCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
+import { buildCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
 import { Button } from '../../Button';
 import { Heading } from '../../Heading';
 import { Page } from '../../Page';
@@ -30,7 +30,7 @@ export const ProductPage = () => {
   const toggleShippingShow = () => setShippingToggle((prevState) => !prevState);
   
   const handleAddToCartClick = () => {
-    const cartProduct = createCartProductDTO(product)
+    const cartProduct = buildCartProductDTO(product)
     addItemToCart(cartProduct, quantity, setCart)
     setQuantity(1)
   }
