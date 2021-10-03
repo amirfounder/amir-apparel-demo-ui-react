@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import constants from '../utils/constants';
+import { filterOptionsReducer } from './ShopContextService';
 
 const ShopContext = createContext();
 
@@ -7,40 +7,6 @@ export const ShopProvider = (props) => {
   const {
     children
   } = props;
-
-  const {
-    FILTERABLE_PRODUCT_ATTRIBUTES: attributes
-  } = constants;
-
-  const filterOptionsReducer = (state, action) => {
-    switch (action.type) {
-      case 'init':
-        if (attributes.includes(action.attribute)) {
-          return {
-            ...state,
-            [action.attribute.toLowerCase()]: action.value
-          }
-        }
-        break;
-      case 'update':
-        if (Object.keys(state).includes(action.attribute)) {
-          if (action.key in state[action.attribute]) {
-            return {
-              ...state,
-              [action.attribute]: {
-                ...state[action.attribute],
-                [action.key]: action.value
-              }
-            }
-          }
-        }
-        break;
-      default: {}
-    }
-
-    return state
-  }
-
 
   const [filterOptions, filterOptionsDispatcher] = useReducer(filterOptionsReducer, {})
   const [products, setProducts] = useState([])
