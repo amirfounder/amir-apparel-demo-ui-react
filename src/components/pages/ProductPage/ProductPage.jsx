@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useLocation, useParams } from 'react-router';
 import { useCartContext } from '../../../context/CartContext';
 import constants from '../../../utils/constants';
 import { buildCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
@@ -15,12 +15,10 @@ import { QuantityPicker } from './QuantityPicker';
 export const ProductPage = () => {
 
   const {
-    nameAndId
-  } = useParams();
-
-  const {
     setCart
   } = useCartContext();
+
+  const location = useLocation();
 
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1)
@@ -36,9 +34,9 @@ export const ProductPage = () => {
   }
 
   useEffect(() => {
-    const id = parseIdFromProductPageNameAndIdParam(nameAndId);
+    const id = parseIdFromProductPageNameAndIdParam(location.pathname);
     getProductById(id, setProduct, setApiError);
-  }, [nameAndId])
+  }, [location.pathname])
 
   return (
     <Page>

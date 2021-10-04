@@ -10,7 +10,7 @@ export const Footer = () => {
   const [year] = useState(new Date().getFullYear());
   
   return (
-    <div className={styles.main}>
+    <div className={styles.main} data-testid='footer'>
       <div className={styles.top}>
         <div className={styles.column}>
           <Heading>About</Heading>
