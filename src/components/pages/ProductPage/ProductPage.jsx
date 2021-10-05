@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router';
+import { useLocation } from 'react-router';
 import { useCartContext } from '../../../context/CartContext';
 import constants from '../../../utils/constants';
 import { buildCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
@@ -39,7 +39,7 @@ export const ProductPage = () => {
   }, [location.pathname])
 
   return (
-    <Page>
+    <Page dataTestId="product-page">
       <div className={styles.main}>
         {apiError && <p>{apiError}</p>}
         <div className={styles.column}>
@@ -81,17 +81,18 @@ export const ProductPage = () => {
           <div className={styles.toggles}>
             <Toggle>
               <Toggle.Header
+                dataTestId='shipping-toggle-header'
                 show={shippingToggle}
                 toggleShow={toggleShippingShow}
               >
-                <Heading
-                  // style={{marginBottom: 0}}
-                  level={3}
-                >
+                <Heading level={3}>
                   Shipping & FREE Returns
                 </Heading>
               </Toggle.Header>
-              <Toggle.Content show={shippingToggle}>
+              <Toggle.Content
+                dataTestId='shipping-toggle-content'
+                show={shippingToggle}
+              >
                 <Paragraph>
                   Free shipping comes for all Amir Apparel Demo members.<br/>
                   <u>Click here</u> to learn more.

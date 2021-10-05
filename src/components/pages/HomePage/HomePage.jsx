@@ -1,9 +1,10 @@
 import React from 'react';
+import { Page } from '../../Page';
 
 export const HomePage = () => {
   return (
-    <div>
+    <Page dataTestId="home-page">
       Home page
-    </div>
+    </Page>
   )
 }

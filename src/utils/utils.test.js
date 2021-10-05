@@ -136,10 +136,11 @@ describe('Parse Id From Product Page Name And Id Param', () => {
 
   test('no product base slug', () => {
     const
-      url = 'http://localhost:8080/cotton-shorts-1';
+      expected = null,
+      url = 'http://localhost:8080/cotton-shorts-1',
+      actual = parseIdFromProductPageNameAndIdParam(url);
     
-    expect(() => parseIdFromProductPageNameAndIdParam(url))
-      .toThrow('The slug does not belong to a product page: http://localhost:8080/cotton-shorts-1')
+    expect(actual).toBe(expected);
   })
 })
 

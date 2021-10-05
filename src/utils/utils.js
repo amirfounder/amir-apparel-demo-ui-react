@@ -3,7 +3,7 @@ export const parseIdFromProductPageNameAndIdParam = (url) => {
   const indexOfProductBaseSlug = urlArr.indexOf('p')
   
   if (indexOfProductBaseSlug === -1) {
-    throw new Error(`The slug does not belong to a product page: ${url}`)
+    return null;
   }
 
   const productNameAndIdSlug = urlArr

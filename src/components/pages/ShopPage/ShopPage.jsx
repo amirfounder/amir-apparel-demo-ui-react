@@ -70,7 +70,7 @@ export const ShopPage = () => {
   ])
 
   return (
-    <Page>
+    <Page dataTestId="shop-page">
       <div className={styles.header}>
         <ShopHeader />
       </div>

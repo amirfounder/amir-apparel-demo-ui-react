@@ -1,9 +1,10 @@
 import React from 'react';
+import { Page } from '../../Page';
 
 export const ContactPage = () => {
   return (
-    <div>
+    <Page dataTestId="contact-page">
       Contact page
-    </div>
+    </Page>
   )
 }
