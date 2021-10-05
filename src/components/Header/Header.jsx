@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styles from './Header.module.scss'
-import { useHistory } from "react-router-dom";
 import { BiCartAlt, BiShoppingBag } from 'react-icons/bi'
 import { useCartContext } from "../../context/CartContext";
+import { generateCartBadgeNumber } from "./HeaderService";
 
 export const Header = () => {
   const {
@@ -11,20 +11,10 @@ export const Header = () => {
   } = useCartContext();
   const history = useHistory();
 
-  const generateCartBadgeNumber = (cart) => {
-    if (Array.isArray(cart)) {
-      if (cart.length > 99) {
-        return '99+'
-      }
-      return cart.length
-    }
-    return '0'
-  }
-
   const handleCartIconClick = () => history.push('/cart')
 
   return (
-    <div className={styles.main}>
+    <div className={styles.main} data-testid='header'>
       <div className={styles.top}>
         <div className={styles.column}>
           <div>
@@ -60,6 +50,7 @@ export const Header = () => {
             <BiShoppingBag className={styles.icon} />
             <div className={styles.cart}>
               <BiCartAlt
+                data-testid='header-cart-icon'
                 onClick={handleCartIconClick}
                 className={styles.icon}
               />
