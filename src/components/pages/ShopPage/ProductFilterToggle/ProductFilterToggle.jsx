@@ -47,7 +47,6 @@ export const ProductFilterToggle = (props) => {
                 key={key}
                 id={key}
                 onChange={handleCheckboxCheck}
-                value={value}
                 checked={value}
                 label={capitalize(key)}
               />

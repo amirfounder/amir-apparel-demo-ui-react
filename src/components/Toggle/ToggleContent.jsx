@@ -6,14 +6,16 @@ export const ToggleContent = (props) => {
     children,
     show,
     className,
+    dataTestId
   } = props;
 
   return (
     <div
+      data-testid={dataTestId || 'toggle-content'}
       className={`
         ${styles.content}
         ${show && styles.show}
-        ${className ? className : styles.padding}
+        ${className || styles.padding}
       `}
     >
       {children}

@@ -7,14 +7,16 @@ export const ToggleHeader = (props) => {
     children,
     toggleShow,
     show,
-    className
+    className,
+    dataTestId
   } = props;
 
   return (
     <div
+      data-testid={dataTestId || 'toggle-header'}
       className={`
         ${styles.header}
-        ${className ? className : styles.padding}
+        ${className || styles.padding}
       `}
       onClick={toggleShow}
     >
@@ -23,7 +25,7 @@ export const ToggleHeader = (props) => {
       </div>
       <>
         <RiArrowDropDownLine
-          size="35px"
+          data-testid='toggle-header-icon'
           className={`
             ${styles.icon}
             ${show && styles.show}

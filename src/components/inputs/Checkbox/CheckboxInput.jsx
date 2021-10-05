@@ -6,12 +6,12 @@ export const CheckboxInput = (props) => {
     label,
     id,
     onChange,
-    value,
     checked
   } = props;
 
   return (
     <label
+      data-testid='checkbox-input'
       className={styles.label}
       htmlFor={id}
     >
@@ -20,7 +20,6 @@ export const CheckboxInput = (props) => {
         className={styles.input}
         id={id}
         checked={checked}
-        value={value}
         onChange={onChange}
       />
       {label}
