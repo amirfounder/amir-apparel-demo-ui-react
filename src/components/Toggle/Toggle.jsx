@@ -9,7 +9,7 @@ export const Toggle = (props) => {
   } = props;
 
   return(
-    <div data-testId={dataTestId || 'toggle'}>
+    <div data-testid={dataTestId || 'toggle'}>
       {children}
     </div>
   )

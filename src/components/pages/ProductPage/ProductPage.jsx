@@ -9,13 +9,13 @@ import { Page } from '../../Page';
 import { Paragraph } from '../../Paragraph';
 import { Toggle } from '../../Toggle/Toggle';
 import styles from './ProductPage.module.scss';
-import { addItemToCart, getProductById } from './ProductPageService';
+import { getProductById } from './ProductPageService';
 import { QuantityPicker } from './QuantityPicker';
 
 export const ProductPage = () => {
 
   const {
-    setCart
+    cartDispatcher
   } = useCartContext();
 
   const location = useLocation();
@@ -29,7 +29,11 @@ export const ProductPage = () => {
   
   const handleAddToCartClick = () => {
     const cartProduct = buildCartProductDTO(product)
-    addItemToCart(cartProduct, quantity, setCart)
+    cartDispatcher({
+      type: 'add',
+      product: cartProduct,
+      quantity
+    })
     setQuantity(1)
   }
 
@@ -41,7 +45,7 @@ export const ProductPage = () => {
   return (
     <Page dataTestId="product-page">
       <div className={styles.main}>
-        {apiError && <p>{apiError}</p>}
+        {apiError && <p data-testid='api-error-message' >{apiError}</p>}
         <div className={styles.column}>
           <img
             alt=""
@@ -67,7 +71,12 @@ export const ProductPage = () => {
             setQuantity={setQuantity}
           />
           <div className={styles.actions}>
-            <Button onClick={handleAddToCartClick}>Add to Cart</Button>
+            <Button
+              onClick={handleAddToCartClick}
+              dataTestId='add-to-cart-button'
+            >
+              Add to Cart
+            </Button>
             <Button type='secondary'>Add to Wish List</Button>
           </div>
           <div className={styles.shippingCosts}>

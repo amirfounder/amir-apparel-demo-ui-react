@@ -8,7 +8,9 @@ export const ShopProvider = (props) => {
     children
   } = props;
 
-  const [filterOptions, filterOptionsDispatcher] = useReducer(filterOptionsReducer, {})
+  const filterOptionsInitialValue = {}
+  
+  const [filterOptions, filterOptionsDispatcher] = useReducer(filterOptionsReducer, filterOptionsInitialValue)
   const [products, setProducts] = useState([])
   const [totalPages, setTotalPages] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);

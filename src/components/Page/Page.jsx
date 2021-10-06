@@ -9,7 +9,7 @@ export const Page = React.memo((props) => {
 
   return (
     <div
-      data-testId={dataTestId || 'page'}
+      data-testid={dataTestId || 'page'}
       className={styles.main}
     >
       {children}
