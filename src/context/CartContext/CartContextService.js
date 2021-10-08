@@ -1,3 +1,5 @@
+import { getDeepCopy } from "../../utils/utils";
+
 export const cartReducer = (state, action) => {
   const {
     product,
@@ -11,7 +13,7 @@ export const cartReducer = (state, action) => {
         .map((cartItem) => cartItem.id)
         .indexOf(product.id)
       if (indexOfExistingProduct === -1) {
-        return [...state, product]
+        return [...state, { ...product, quantity: quantity }]
       } else {
         const stateCopy = getDeepCopy(state);
         const existingProduct = stateCopy.splice(indexOfExistingProduct, 1)[0];
