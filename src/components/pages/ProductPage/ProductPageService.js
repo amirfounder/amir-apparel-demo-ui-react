@@ -7,6 +7,7 @@ export const getProductById = async (productId, setProduct, setApiError) => {
       if (response.ok) {
         return response.json()
       }
+      throw new Error("Response status not OK")
     })
     .then((body) => {
       setProduct(body);
