@@ -3,13 +3,13 @@ import styles from './ShopPage.module.scss'
 import { ProductGrid } from './ProductGrid';
 import {
   buildSetFilterOptionsFnFn,
+  buildShopPageSearchQuery,
   getFilterOptionsByAttribute,
   getProducts
 } from './ShopPageService';
 import { Page } from '../../Page';
 import { Pagination } from './Pagination';
 import { useLocation } from 'react-router';
-import { buildSearchQuery, buildSearchQueryObject } from '../../../utils/utils';
 import { useShopContext } from '../../../context/ShopContext';
 import { ShopHeader } from './ShopHeader';
 import { ProductFilterSidebar } from './ProductFilterSidebar/ProductFilterSidebar';
@@ -29,15 +29,12 @@ export const ShopPage = () => {
   
   const [apiError, setApiError] = useState('');
   const [currentPage, setCurrentPage] = useState(null)
-  const [totalPages, setTotalPages] = useState(null)
+  const [totalPages, setTotalPages] = useState(null);
 
   useEffect(() => {
-    const searchQueryObj = buildSearchQueryObject(location.search)
-    if (!searchQueryObj?.page) searchQueryObj.page = 0
-    if (!searchQueryObj?.size) searchQueryObj.size = 12
-    const shopPageQueries = buildSearchQuery(searchQueryObj)
+    const shopPageQuery = buildShopPageSearchQuery(location.search);
     getProducts(
-      shopPageQueries,
+      shopPageQuery,
       setProducts,
       setCurrentPage,
       setTotalPages,
@@ -77,10 +74,11 @@ export const ShopPage = () => {
       <div
         style={{gridTemplateColumns: showSidebar ? '2fr 7fr' : '1fr'}}
         className={styles.main}
+        data-testid='main-container'
       >
         <ProductFilterSidebar />
         <div>
-          {apiError && <div>There was an error reaching our servers. Please try again later</div>} 
+          {apiError && <div data-testid="api-error-message">There was an error reaching our servers. Please try again later</div>} 
           <ProductGrid products={products} />
         </div>
       </div>

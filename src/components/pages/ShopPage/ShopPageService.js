@@ -1,7 +1,18 @@
 import constants from "../../../utils/constants"
 import { sendHttpRequest } from "../../../utils/httpHelper"
-import { buildSearchQueryObject } from "../../../utils/utils"
+import { buildSearchQuery, buildSearchQueryObject } from "../../../utils/utils"
 
+
+export const buildShopPageSearchQuery = (urlSearchQuery) => {
+  const searchQueryObj = buildSearchQueryObject(urlSearchQuery)
+  if (!searchQueryObj?.page) {
+    searchQueryObj.page = 0
+  }
+  if (!searchQueryObj?.size) {
+    searchQueryObj.size = 12
+  }
+  return buildSearchQuery(searchQueryObj)
+}
 
 const modifyFilterOptionsBasedOnSearchQuery = (filterOptions, attribute, searchQuery) => {
   const searchQueryObject = buildSearchQueryObject(searchQuery);

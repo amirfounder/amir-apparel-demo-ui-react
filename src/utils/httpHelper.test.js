@@ -2,12 +2,10 @@ import { waitFor } from "@testing-library/react";
 import constants from "./constants";
 import { sendHttpRequest } from "./httpHelper";
 
-global.fetch = jest.fn(() => {
-  Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve({ key: 'value' })
-  })
-})
+global.fetch = jest.fn(() => Promise.resolve({
+  ok: true,
+  json: () => Promise.resolve({ key: 'value' })
+}))
 
 test('Call sendHttpHelper with "GET"', async () => {
   const

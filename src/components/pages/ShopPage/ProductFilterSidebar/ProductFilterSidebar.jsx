@@ -77,28 +77,28 @@ export const ProductFilterSidebar = () => {
         show={state?.demographic}
         toggleShow={buildShowFilterTogglerFn('demographic')}
         attribute='demographic'
-        options={filterOptions.demographic}
+        options={filterOptions?.demographic}
       />
       <ProductFilterToggle
         name='Colors'
         show={state?.color}
         toggleShow={buildShowFilterTogglerFn('color')}
         attribute='color'
-        options={filterOptions.color}
+        options={filterOptions?.color}
       />
       <ProductFilterToggle
         name='Type'
         show={state?.type}
         toggleShow={buildShowFilterTogglerFn('type')}
         attribute='type'
-        options={filterOptions.type}
+        options={filterOptions?.type}
       />
       <ProductFilterToggle
         name='Materials'
         show={state?.material}
         toggleShow={buildShowFilterTogglerFn('material')}
         attribute='material'
-        options={filterOptions.material}
+        options={filterOptions?.material}
       />
       <div className={styles.buttons}>
         <Button onClick={handleApplyButtonClick}>Apply</Button>
