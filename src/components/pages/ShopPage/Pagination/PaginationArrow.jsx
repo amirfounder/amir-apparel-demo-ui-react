@@ -8,7 +8,8 @@ export const PaginationArrow = (props) => {
   const {
     direction,
     currentPage,
-    totalPages
+    totalPages,
+    dataTestId
   } = props;
 
   const location = useLocation();
@@ -37,8 +38,8 @@ export const PaginationArrow = (props) => {
     <>
       {
         direction === 'right' ?
-        <RiArrowRightSLine onClick={handleRightArrowClick} className={styles.arrow} /> :
-        <RiArrowLeftSLine onClick={handleLeftArrowClick} className={styles.arrow} /> 
+        <RiArrowRightSLine data-testid={dataTestId || 'pagination-arrow'} onClick={handleRightArrowClick} className={styles.arrow} /> :
+        <RiArrowLeftSLine data-testid={dataTestId || 'pagination-arrow'} onClick={handleLeftArrowClick} className={styles.arrow} /> 
       }
     </>
   )

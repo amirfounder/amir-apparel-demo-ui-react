@@ -33,6 +33,7 @@ export const Pagination = (props) => {
           currentPage={currentPage}
           totalPages={totalPages}
           direction='left'
+          dataTestId={'left-pagination-arrow'}
         /> :
         <div />}
         {Array.isArray(buttonValues) && buttonValues.map((buttonValue) => (
@@ -48,6 +49,7 @@ export const Pagination = (props) => {
           currentPage={currentPage}
           totalPages={totalPages}
           direction='right'
+          dataTestId={'right-pagination-arrow'}
         /> :
         <div />}
       </div>}
