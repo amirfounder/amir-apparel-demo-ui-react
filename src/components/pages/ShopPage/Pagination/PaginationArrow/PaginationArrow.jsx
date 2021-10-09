@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import styles from './Pagination.module.scss'
+import styles from '../Pagination.module.scss'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
-import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../utils/utils';
+import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../../utils/utils';
 import { useHistory, useLocation } from 'react-router';
+import { buildPaginationArrowTargetSearchQuery } from './PaginationArrowService';
 
 export const PaginationArrow = (props) => {
   const {
@@ -22,17 +23,18 @@ export const PaginationArrow = (props) => {
   })
 
   const handleClick = (direction) => {
-    const currentSearchQuery = location.search;
-    const key = 'page';
-    const value = direction === 'right' ? currentPage : currentPage - 2
-    const searchQuery = updateSearchQueryKeyValuePair(currentSearchQuery, key, value)
+    const searchQuery =
+      buildPaginationArrowTargetSearchQuery(
+        location.search,
+        currentPage,
+        direction
+      )
     history.push(searchQuery);
     scrollToTop()
   }
 
-  const handleRightArrowClick = () => currentPage < totalPages && handleClick('right')
-
-  const handleLeftArrowClick = () => currentPage > 1 && handleClick('left')
+  const handleRightArrowClick = () => handleClick('right')
+  const handleLeftArrowClick = () => handleClick('left')
 
   return (
     <>

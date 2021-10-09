@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router';
-import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../utils/utils';
-import styles from './Pagination.module.scss';
+import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../../utils/utils';
+import styles from '../Pagination.module.scss';
 
 export const PaginationButton = (props) => {
   const {
