@@ -40,7 +40,7 @@ export const buildSearchQueryObject = (searchQuery) => {
   };
 
   if (!searchQuery.startsWith('?')) {
-    throw new Error(`Search Query must start with '?'. Cannot build object from '${searchQuery}''`)
+    return null;
   }
 
   return Object

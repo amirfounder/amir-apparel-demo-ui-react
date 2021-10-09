@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './ShopPage.module.scss'
 import { ProductGrid } from './ProductGrid';
 import {
-  buildSetFilterOptionsFnFn,
+  buildSetFilterOptionsWithNewAttributeOptionsFnFn,
   buildShopPageSearchQuery,
   getFilterOptionsByAttribute,
   getProducts
@@ -49,13 +49,15 @@ export const ShopPage = () => {
   ])
 
   useEffect(() => {
-    const buildSetFilterOptionsFn = buildSetFilterOptionsFnFn(filterOptionsDispatcher);
+    const buildSetFilterOptionsWithNewAttributeOptionsFn =
+      buildSetFilterOptionsWithNewAttributeOptionsFnFn(filterOptionsDispatcher);
     attributes.forEach((attribute) => {
-      const setFilterOptions = buildSetFilterOptionsFn(attribute)
+      const buildSetFilterOptionsWithNewAttributeOptions =
+        buildSetFilterOptionsWithNewAttributeOptionsFn(attribute)
       getFilterOptionsByAttribute(
         attribute,
         location.search,
-        setFilterOptions,
+        buildSetFilterOptionsWithNewAttributeOptions,
         setApiError
       )
     })

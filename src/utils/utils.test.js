@@ -117,10 +117,10 @@ describe('Build Search Query Object', () => {
 
   test('key=value', () => {
     const
-      searchQuery = 'key=value';
+      searchQuery = 'key=value',
+      actual = buildSearchQueryObject(searchQuery);
     
-    expect(() => buildSearchQueryObject(searchQuery))
-      .toThrow("Search Query must start with '?'. Cannot build object from 'key=value'");
+    expect(actual).toEqual(null);
   })
 
 })

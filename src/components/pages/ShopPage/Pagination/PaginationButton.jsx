@@ -6,7 +6,8 @@ import styles from './Pagination.module.scss';
 export const PaginationButton = (props) => {
   const {
     children,
-    active
+    active,
+    dataTestId
   } = props;
 
   const history = useHistory();
@@ -25,12 +26,13 @@ export const PaginationButton = (props) => {
 
   return (
     <div
-      onClick={clickable ? handleButtonClick: undefined}
       className={`
         ${styles.button}
         ${clickable && styles.clickable}
         ${active && styles.active}
       `}
+      data-testid={dataTestId || 'pagination-button'}
+      onClick={clickable ? handleButtonClick: undefined}
     >
         {children}
     </div>

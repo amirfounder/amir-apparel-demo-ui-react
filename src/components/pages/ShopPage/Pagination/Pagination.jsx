@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styles from './Pagination.module.scss';
 import { PaginationArrow } from './PaginationArrow';
 import { PaginationButton } from './PaginationButton';
-import { generatePaginationButtonValues } from './PaginationService';
+import { buildGridColumns, generatePaginationButtonValues } from './PaginationService';
 
 export const Pagination = (props) => {
   const {
@@ -10,18 +10,20 @@ export const Pagination = (props) => {
     totalPages,
   } = props;
 
-  const [buttonValues, setButtonValues] = useState([])
-  const [buttonGridColumns, setButtonGridColumns] = useState(7)
+  const [buttonValues, setButtonValues] = useState([]);
+  const [buttonGridColumns, setButtonGridColumns] = useState(7);
 
   useEffect(() => {
-    if (9 % 2 === 0) throw new Error("Please make pagination button count an odd number")
-    setButtonValues(generatePaginationButtonValues(currentPage, totalPages))
-    setButtonGridColumns(totalPages > 7 ? 7 : totalPages + 2);
-  }, [currentPage, totalPages])
+    setButtonValues(generatePaginationButtonValues(currentPage, totalPages));
+    setButtonGridColumns(buildGridColumns(totalPages));
+  }, [currentPage, totalPages]);
 
 
   return (
-    <div className={styles.main}>
+    <div
+      data-testid='pagination'
+      className={styles.main}
+    >
       {totalPages > 1 && <div
         className={styles.buttons}
         style={{gridTemplateColumns: `repeat(${buttonGridColumns}, 1fr)`}}
