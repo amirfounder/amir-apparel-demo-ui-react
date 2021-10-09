@@ -12,7 +12,6 @@ export const PaginationButton = (props) => {
 
   const history = useHistory();
   const location = useLocation();
-  const clickable = children !== '...'
 
   const handleButtonClick = () => {
     const searchQuery = updateSearchQueryKeyValuePair(
@@ -28,11 +27,11 @@ export const PaginationButton = (props) => {
     <div
       className={`
         ${styles.button}
-        ${clickable && styles.clickable}
+        ${styles.clickable}
         ${active && styles.active}
       `}
       data-testid={dataTestId || 'pagination-button'}
-      onClick={clickable ? handleButtonClick: undefined}
+      onClick={handleButtonClick}
     >
         {children}
     </div>
