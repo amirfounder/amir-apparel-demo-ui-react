@@ -9,7 +9,7 @@ import {
 } from './ShopPageService';
 import { Page } from '../../Page';
 import { Pagination } from './Pagination';
-import { useLocation } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { useShopContext } from '../../../context/ShopContext';
 import { ShopHeader } from './ShopHeader';
 import { ProductFilterSidebar } from './ProductFilterSidebar/ProductFilterSidebar';

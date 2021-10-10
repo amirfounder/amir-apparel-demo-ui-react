@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from '../Pagination.module.scss'
 import { RiArrowLeftSLine, RiArrowRightSLine } from 'react-icons/ri'
 import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../../utils/utils';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { buildPaginationArrowTargetSearchQuery } from './PaginationArrowService';
 
 export const PaginationArrow = (props) => {

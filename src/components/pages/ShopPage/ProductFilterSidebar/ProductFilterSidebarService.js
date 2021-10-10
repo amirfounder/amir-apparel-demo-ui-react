@@ -8,3 +8,23 @@ export const buildFilterOptionsSearchQueryObj = (filterOptions) => {
   })
   return searchQueryObj;
 }
+
+export const showFiltersReducer = (state, action) => {
+  switch (action.type) {
+    case 'toggleShow':
+      if (Object.keys(showFiltersInitialState).includes(action.value)) {
+        return { ...state, [action.value]: !state[action.value]}
+      }
+  }
+}
+
+export const buildShowFilterTogglerFnUsingDispatcher = (dispatcher) => {
+  return (attribute) => {
+    return () => {
+      dispatcher({
+        type: 'toggleShow',
+        value: attribute
+      })
+    }
+  }
+}

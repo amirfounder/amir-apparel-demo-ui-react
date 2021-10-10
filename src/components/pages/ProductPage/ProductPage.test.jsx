@@ -8,8 +8,8 @@ import { getProductById } from './ProductPageService';
 
 const mockCartDispatcher = jest.fn()
 
-jest.mock('react-router', () => ({
-  ...jest.requireActual('react-router'),
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
   useLocation: () => ({
     pathname: '/p/product-1'
   })

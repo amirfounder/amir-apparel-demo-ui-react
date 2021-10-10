@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../../utils/utils';
 import styles from '../Pagination.module.scss';
 
