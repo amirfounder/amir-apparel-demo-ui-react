@@ -1,0 +1,35 @@
+.main {
+  display: grid;
+  grid-template-columns: 2fr 3fr .8fr .8fr;
+  background-color: white;
+  padding: 20px;
+  column-gap: 3rem;
+
+  & > .column:nth-child(2) {
+    display: grid;
+
+    & > * > .description {
+      font-size: 15px;
+      align-self: start;
+    }
+
+    & > .links {
+
+      align-self: bottom;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      justify-content: start;
+      column-gap: .6rem;
+    
+      & > .link {
+        font-size: 12px;
+        color: black;
+      }
+    
+    }
+  }
+}
+
+.image {
+  width: 100%;
+}

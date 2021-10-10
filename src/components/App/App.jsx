@@ -7,6 +7,7 @@ import {
   HomePage,
   LoginPage,
   RegisterPage,
+  CartPage,
   ShopPage
 } from '../pages';
 import { ProductPage } from '../pages/ProductPage';
@@ -19,6 +20,7 @@ export const App = () => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/cart" component={CartPage} />
         <Route exact path="/p/:productNameAndId" component={ProductPage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/register" component={RegisterPage} />

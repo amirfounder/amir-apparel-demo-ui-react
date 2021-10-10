@@ -25,7 +25,8 @@ export const buildCartProductDTO = (product) => ({
   id: product?.id,
   name: product?.name,
   description: product?.description,
-  imageSrc: product?.imageSrc
+  imageSrc: product?.imageSrc,
+  price: product?.price || 0
 })
 
 /**
