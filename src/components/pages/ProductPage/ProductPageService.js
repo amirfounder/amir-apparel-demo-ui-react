@@ -7,25 +7,11 @@ export const getProductById = async (productId, setProduct, setApiError) => {
       if (response.ok) {
         return response.json()
       }
+      throw new Error("Response status not OK")
     })
     .then((body) => {
       setProduct(body);
       setApiError('');
     })
     .catch(setApiError);
-}
-
-export const addItemToCart = (product, quantity, setCart) => {
-  console.log('lol')
-  setCart((prevCartState) => {
-    const indexOfExistingProduct = prevCartState.map((cartItem) => cartItem.id).indexOf(product.id)
-    if (indexOfExistingProduct === -1) {
-      return [...prevCartState, product]
-    } else {
-      const prevCartStateCopy = getDeepCopy(prevCartState);
-      const existingProduct = prevCartStateCopy.splice(indexOfExistingProduct, 1)[0]
-      existingProduct.quantity += quantity
-      return [...prevCartStateCopy, existingProduct]
-    }
-  })
 }

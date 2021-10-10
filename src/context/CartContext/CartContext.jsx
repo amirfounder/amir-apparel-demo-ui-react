@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
+import { cartReducer } from './CartContextService';
 
 const CartContext = createContext();
 
@@ -7,10 +8,11 @@ export const CartProvider = (props) => {
     children
   } = props;
 
-  const [cart, setCart] = useState([])
+  const cartInitialValue = []
+  const [cart, cartDispatcher] = useReducer(cartReducer, cartInitialValue)
 
   return (
-    <CartContext.Provider value={{cart, setCart}}>
+    <CartContext.Provider value={{cart, cartDispatcher}}>
       {children}
     </CartContext.Provider>
   )

@@ -1,20 +1,32 @@
-export const parseIdFromProductPageNameAndIdParam = (slug) => {
-  const slugArr = slug.split('-')
-  return slugArr[slugArr.length - 1]
+export const parseIdFromProductPageNameAndIdParam = (url) => {
+  const urlArr = url.split('/')
+  const indexOfProductBaseSlug = urlArr.indexOf('p')
+  
+  if (indexOfProductBaseSlug === -1) {
+    return null;
+  }
+
+  const productNameAndIdSlug = urlArr
+    .slice(
+      indexOfProductBaseSlug + 1,
+      indexOfProductBaseSlug + 2
+    )
+    .join('')
+  
+  const productNameAndIdSlugArr = productNameAndIdSlug.split('-') 
+  return productNameAndIdSlugArr[productNameAndIdSlugArr.length - 1]
 }
 
 export const scrollToTop = () => window.scrollTo(0,0)
 
 export const getDeepCopy = (object) => JSON.parse(JSON.stringify(object));
 
-export const createCartProductDTO = (product) => {
-  return {
-    id: product?.id,
-    name: product?.name,
-    description: product?.description,
-    imageSrc: product?.imageSrc
-  }
-}
+export const buildCartProductDTO = (product) => ({
+  id: product?.id,
+  name: product?.name,
+  description: product?.description,
+  imageSrc: product?.imageSrc
+})
 
 /**
  * @name buildSearchQueryObj
@@ -23,6 +35,14 @@ export const createCartProductDTO = (product) => {
  * @returns searchQueryObject
  */
 export const buildSearchQueryObject = (searchQuery) => {
+  if (!searchQuery) {
+    return {}
+  };
+
+  if (!searchQuery.startsWith('?')) {
+    return null;
+  }
+
   return Object
     .fromEntries(searchQuery
       .replace('?', '')
@@ -43,8 +63,6 @@ export const updateSearchQueryKeyValuePair = (query, key, value) => {
   searchQueryObj[key] = value;
   return buildSearchQuery(searchQueryObj)
 }
-
-export const modifySearchQueryObject = (object, key, value) => ({ ...object, [key]: value })
 
 export const filterSearchQueryObjByKeys = (searchQueryObj, keys) => Object
   .fromEntries(

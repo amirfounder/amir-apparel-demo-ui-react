@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { useHistory, useLocation } from 'react-router-dom';
 import { buildSearchQuery, buildSearchQueryObject } from '../../../../utils/utils';
 import styles from './SortByDropdown.module.scss';
 

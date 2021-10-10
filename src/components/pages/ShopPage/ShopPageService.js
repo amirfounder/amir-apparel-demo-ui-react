@@ -1,22 +1,35 @@
 import constants from "../../../utils/constants"
 import { sendHttpRequest } from "../../../utils/httpHelper"
-import { buildSearchQueryObject } from "../../../utils/utils"
+import { buildSearchQuery, buildSearchQueryObject, getDeepCopy } from "../../../utils/utils"
 
 
-const modifyFilterOptionsBasedOnSearchQuery = (filterOptions, attribute, searchQuery) => {
+export const buildShopPageSearchQuery = (urlSearchQuery) => {
+  const searchQueryObj = buildSearchQueryObject(urlSearchQuery)
+  if (!searchQueryObj?.page) {
+    searchQueryObj.page = 0
+  }
+  if (!searchQueryObj?.size) {
+    searchQueryObj.size = 12
+  }
+  return buildSearchQuery(searchQueryObj)
+}
+
+export const buildNewAttributeOptionsBasedOnSearchQuery = (filterOptions, attribute, searchQuery) => {
   const searchQueryObject = buildSearchQueryObject(searchQuery);
+  const filterOptionsCopy = getDeepCopy(filterOptions);
   if (attribute in searchQueryObject) {
     searchQueryObject[attribute]
       .split(',')
       .forEach((searchQueryValue) => {
         if (searchQueryValue in filterOptions) {
-          filterOptions[searchQueryValue] = true;
+          filterOptionsCopy[searchQueryValue] = true;
         }
       })
   }
+  return filterOptionsCopy;
 }
 
-export const buildSetFilterOptionsFnFn = (filterOptionsDispatcher) => {
+export const buildSetFilterOptionsWithNewAttributeOptionsFnFn = (filterOptionsDispatcher) => {
   return (attribute) => {
     return (value) => {
       filterOptionsDispatcher({
@@ -34,7 +47,7 @@ export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPa
       if (response.ok) {
         return response.json()
       }
-      throw new Error("Error")
+      throw new Error(`Response status was ${response.status}`)
     })
     .then((body) => {
       setProducts(body.content);
@@ -45,7 +58,7 @@ export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPa
     .catch(setApiError);
 }
 
-export const getFilterOptionsByAttribute = (attribute, searchQuery, setFilterOptions, setApiError) => {
+export const getFilterOptionsByAttribute = (attribute, searchQuery, setFilterOptionsWithNewAttributeOptions, setApiError) => {
   sendHttpRequest('GET', `/products/attribute/${attribute}`)
     .then((response) => {
       if (response.ok) {
@@ -55,9 +68,9 @@ export const getFilterOptionsByAttribute = (attribute, searchQuery, setFilterOpt
     })
     .then((body) => {
       if (Array.isArray(body)) {
-        const filterOptions = Object.fromEntries(body.map((option) => [option.toLowerCase(), false]))
-        modifyFilterOptionsBasedOnSearchQuery(filterOptions, attribute, searchQuery)
-        setFilterOptions(filterOptions);
+        const attributeOptions = Object.fromEntries(body.map((option) => [option.toLowerCase(), false]))
+        const newAttributeOptions = buildNewAttributeOptionsBasedOnSearchQuery(attributeOptions, attribute, searchQuery)
+        setFilterOptionsWithNewAttributeOptions(newAttributeOptions);
         setApiError('')
       }
     })

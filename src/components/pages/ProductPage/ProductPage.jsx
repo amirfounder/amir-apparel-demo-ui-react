@@ -1,26 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { useCartContext } from '../../../context/CartContext';
 import constants from '../../../utils/constants';
-import { createCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
+import { buildCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
 import { Button } from '../../Button';
 import { Heading } from '../../Heading';
 import { Page } from '../../Page';
 import { Paragraph } from '../../Paragraph';
 import { Toggle } from '../../Toggle/Toggle';
 import styles from './ProductPage.module.scss';
-import { addItemToCart, getProductById } from './ProductPageService';
+import { getProductById } from './ProductPageService';
 import { QuantityPicker } from './QuantityPicker';
 
 export const ProductPage = () => {
 
   const {
-    nameAndId
-  } = useParams();
-
-  const {
-    setCart
+    cartDispatcher
   } = useCartContext();
+
+  const location = useLocation();
 
   const [product, setProduct] = useState({});
   const [quantity, setQuantity] = useState(1)
@@ -30,20 +28,24 @@ export const ProductPage = () => {
   const toggleShippingShow = () => setShippingToggle((prevState) => !prevState);
   
   const handleAddToCartClick = () => {
-    const cartProduct = createCartProductDTO(product)
-    addItemToCart(cartProduct, quantity, setCart)
+    const cartProduct = buildCartProductDTO(product)
+    cartDispatcher({
+      type: 'add',
+      product: cartProduct,
+      quantity
+    })
     setQuantity(1)
   }
 
   useEffect(() => {
-    const id = parseIdFromProductPageNameAndIdParam(nameAndId);
+    const id = parseIdFromProductPageNameAndIdParam(location.pathname);
     getProductById(id, setProduct, setApiError);
-  }, [nameAndId])
+  }, [location.pathname])
 
   return (
-    <Page>
+    <Page dataTestId="product-page">
       <div className={styles.main}>
-        {apiError && <p>{apiError}</p>}
+        {apiError && <p data-testid='api-error-message' >{apiError}</p>}
         <div className={styles.column}>
           <img
             alt=""
@@ -69,7 +71,12 @@ export const ProductPage = () => {
             setQuantity={setQuantity}
           />
           <div className={styles.actions}>
-            <Button onClick={handleAddToCartClick}>Add to Cart</Button>
+            <Button
+              onClick={handleAddToCartClick}
+              dataTestId='add-to-cart-button'
+            >
+              Add to Cart
+            </Button>
             <Button type='secondary'>Add to Wish List</Button>
           </div>
           <div className={styles.shippingCosts}>
@@ -83,17 +90,18 @@ export const ProductPage = () => {
           <div className={styles.toggles}>
             <Toggle>
               <Toggle.Header
+                dataTestId='shipping-toggle-header'
                 show={shippingToggle}
                 toggleShow={toggleShippingShow}
               >
-                <Heading
-                  // style={{marginBottom: 0}}
-                  level={3}
-                >
+                <Heading level={3}>
                   Shipping & FREE Returns
                 </Heading>
               </Toggle.Header>
-              <Toggle.Content show={shippingToggle}>
+              <Toggle.Content
+                dataTestId='shipping-toggle-content'
+                show={shippingToggle}
+              >
                 <Paragraph>
                   Free shipping comes for all Amir Apparel Demo members.<br/>
                   <u>Click here</u> to learn more.

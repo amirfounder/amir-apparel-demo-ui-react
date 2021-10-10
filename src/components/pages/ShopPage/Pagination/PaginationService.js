@@ -16,3 +16,5 @@ export const generatePaginationButtonValues = (currentPage, totalPages) => {
   }
   return null;
 }
+
+export const buildGridColumns = (totalPages) => totalPages > 7 ? 7 : totalPages + 2

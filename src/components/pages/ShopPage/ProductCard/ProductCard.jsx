@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import constants from "../../../../utils/constants";
 import { scrollToTop } from "../../../../utils/utils";
 import { Heading } from "../../../Heading";
@@ -13,7 +13,7 @@ export const ProductCard = (props) => {
   const history = useHistory();
 
   const handleProductCardClick = () => {
-    const productSlug = product.name.toLowerCase().split(' ').join('-')
+    const productSlug = String(product?.name).toLowerCase().split(' ').join('-')
     history.push(`/p/${productSlug}-${product.id}`)
     scrollToTop()
   }
@@ -22,6 +22,7 @@ export const ProductCard = (props) => {
     <div
       className={styles.main}
       onClick={handleProductCardClick}
+      data-testid='product-card'
     >
       <div
         className={styles.image}
@@ -37,15 +38,15 @@ export const ProductCard = (props) => {
           <Heading
             level={3}
           >
-            {product.name}
+            {product?.name}
           </Heading>
         </div>
         <p className={styles.description}>
-          {product.description}
+          {product?.description}
         </p>
         <div className={styles.price}>
           <span className={styles.priceLabel}>Your investment: </span>
-          <span className={styles.priceValue}>${product.price.toFixed(2)}</span>
+          <span className={styles.priceValue}>${Number(product?.price).toFixed(2)}</span>
         </div>
       </div>
     </div>

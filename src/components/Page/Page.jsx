@@ -3,11 +3,15 @@ import styles from './Page.module.scss';
 
 export const Page = React.memo((props) => {
   const {
-    children
+    children,
+    dataTestId
   } = props;
 
   return (
-    <div className={styles.main}>
+    <div
+      data-testid={dataTestId || 'page'}
+      className={styles.main}
+    >
       {children}
     </div>
   )

@@ -5,10 +5,11 @@ import { ToggleContent } from './ToggleContent';
 export const Toggle = (props) => {
   const {
     children,
+    dataTestId
   } = props;
 
   return(
-    <div>
+    <div data-testid={dataTestId || 'toggle'}>
       {children}
     </div>
   )

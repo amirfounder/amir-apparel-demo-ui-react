@@ -1,17 +1,17 @@
 import React from 'react';
-import { useHistory, useLocation } from 'react-router';
-import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../utils/utils';
-import styles from './Pagination.module.scss';
+import { useHistory, useLocation } from 'react-router-dom';
+import { updateSearchQueryKeyValuePair, scrollToTop } from '../../../../../utils/utils';
+import styles from '../Pagination.module.scss';
 
 export const PaginationButton = (props) => {
   const {
     children,
-    active
+    active,
+    dataTestId
   } = props;
 
   const history = useHistory();
   const location = useLocation();
-  const clickable = children !== '...'
 
   const handleButtonClick = () => {
     const searchQuery = updateSearchQueryKeyValuePair(
@@ -25,12 +25,13 @@ export const PaginationButton = (props) => {
 
   return (
     <div
-      onClick={clickable ? handleButtonClick: undefined}
       className={`
         ${styles.button}
-        ${clickable && styles.clickable}
+        ${styles.clickable}
         ${active && styles.active}
       `}
+      data-testid={dataTestId || 'pagination-button'}
+      onClick={handleButtonClick}
     >
         {children}
     </div>

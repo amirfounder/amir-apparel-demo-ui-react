@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import { useLocation } from 'react-router';
+import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react/cjs/react.development';
 import { buildSearchQueryObject } from '../../../../utils/utils';
 import styles from './SortByDropdown.module.scss';
@@ -9,7 +9,7 @@ import { SortByDropdownContent } from './SortByDropdownContent';
 const dropdownOptions = [
   {display: 'Price (Lowest)', value:'price,asc'},
   {display: 'Price (Highest)', value:'price,desc'},
-  {display: 'Name', value:'name'}
+  {display: 'Name', value:'name,asc'}
 ]
 
 export const SortByDropdown = () => {
