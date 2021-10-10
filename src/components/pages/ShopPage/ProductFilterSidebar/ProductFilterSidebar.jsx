@@ -1,12 +1,11 @@
 import React, { useReducer } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useShopContext } from '../../../../context/ShopContext';
-import constants from '../../../../utils/constants';
 import { buildSearchQuery, buildSearchQueryObject, filterSearchQueryObjByKeys } from '../../../../utils/utils';
 import { Button } from '../../../Button';
 import { ProductFilterToggle } from '../ProductFilterToggle/ProductFilterToggle';
 import styles from './ProductFilterSidebar.module.scss'
-import { buildFilterOptionsSearchQueryObj, buildShowFilterTogglerFnUsingDispatcher, showFiltersReducer } from './ProductFilterSidebarService';
+import { buildFilterOptionsSearchQueryObj, buildShowFiltersInitialState, buildShowFilterTogglerFnUsingDispatcher, showFiltersReducer } from './ProductFilterSidebarService';
 
 export const ProductFilterSidebar = () => {
   const {
@@ -17,11 +16,7 @@ export const ProductFilterSidebar = () => {
   const location = useLocation();
   const history = useHistory();
 
-  const {
-    FILTERABLE_PRODUCT_ATTRIBUTES: attributes
-  } = constants
-
-  const showFiltersInitialState = Object.fromEntries(attributes.map((attribute) => [attribute, false]))
+  const showFiltersInitialState = buildShowFiltersInitialState();
   const [state, showFiltersDispatcher] = useReducer(showFiltersReducer, showFiltersInitialState);
 
   const buildShowFilterTogglerFn = buildShowFilterTogglerFnUsingDispatcher(showFiltersDispatcher)
