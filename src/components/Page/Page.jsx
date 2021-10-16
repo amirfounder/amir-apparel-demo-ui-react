@@ -5,7 +5,6 @@ export const Page = React.memo((props) => {
   const {
     children,
     dataTestId,
-    contained
   } = props;
 
   return (

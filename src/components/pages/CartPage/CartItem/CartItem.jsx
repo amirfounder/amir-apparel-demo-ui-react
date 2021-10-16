@@ -28,9 +28,7 @@ export const CartItem = (props) => {
           </Paragraph>
         </div>
         <div className={styles.links}>
-          <Link className={styles.link}>Edit</Link>
-          <Link className={styles.link}>Delete</Link>
-          <Link className={styles.link}>Move to Wishlist</Link>
+          <span className={styles.link}>Delete</span>
         </div>
       </div>
       <div className={styles.column}>

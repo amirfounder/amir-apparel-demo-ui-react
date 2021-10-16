@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './CartPage.module.scss'
-import { Page } from '../../Page'
 import { useCartContext } from '../../../context/CartContext';
 import { CartItem } from './CartItem';
 import { Heading } from '../../Heading';
+import { ContainedPage } from '../../ContainedPage';
 
 export const CartPage = () => {
   const {
@@ -11,7 +11,7 @@ export const CartPage = () => {
   } = useCartContext();
 
   return (
-    <Page>
+    <ContainedPage>
       <Heading level={1}>Your Cart</Heading>
       <div className={styles.columns}>
         <div>
@@ -23,6 +23,6 @@ export const CartPage = () => {
           test
         </div>
       </div>
-    </Page>
+    </ContainedPage>
   )
 }
