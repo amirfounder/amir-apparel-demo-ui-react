@@ -4,6 +4,7 @@ import { useCartContext } from '../../../context/CartContext';
 import { CartItem } from './CartItem';
 import { Heading } from '../../Heading';
 import { ContainedPage } from '../../ContainedPage';
+import { OrderSummary } from './OrderSummary';
 
 export const CartPage = () => {
   const {
@@ -15,12 +16,14 @@ export const CartPage = () => {
       <Heading level={1}>Your Cart</Heading>
       <div className={styles.columns}>
         <div>
-          {Array.isArray(cart) && cart.map((product) => (
-            <CartItem product={product} />
-          ))}
+          {
+            Array.isArray(cart) && cart.length > 0
+              ? cart.map((product) => (<CartItem product={product} />))
+              : 'There are no products in your cart'
+          }
         </div>
-        <div>
-          test
+        <div className={styles.orderSummaryContainer}>
+          <OrderSummary />
         </div>
       </div>
     </ContainedPage>
