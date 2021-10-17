@@ -1,13 +1,15 @@
-import { calculateTotalPrice } from "./OrderSummaryService"
+import { calculateCartTotal } from "./OrderSummaryService"
 
-test('calculate total price of cart', () => {
-  const
-    products = [
-      {price: 8.00},
-      {price: 4.00}
-    ],
-    expected = 12.00,
-    actual = calculateTotalPrice(products);
-    
-  expect(actual).toEqual(expected);
+describe('calculate total price of cart', () => {
+  test('no quantity', () => {
+    const
+      products = [
+        { price: 8.00 },
+        { price: 4.00 }
+      ],
+      expected = Number(12).toFixed(2),
+      actual = calculateCartTotal(products);
+  
+    expect(actual).toEqual(expected);
+  })
 })
