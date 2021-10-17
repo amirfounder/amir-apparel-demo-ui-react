@@ -7,7 +7,7 @@ export const TextInput = (props) => {
     id,
     onChange,
     value,
-    size
+    size,
   } = props;
 
   const validSizes = ['small', 'medium', 'large'];

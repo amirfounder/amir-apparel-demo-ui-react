@@ -1,11 +1,12 @@
 import React from 'react';
 import { Heading } from '../../../Heading';
-import styles from './FormContainer.module.scss'
+import styles from './WidgetContainer.module.scss'
 
-export const FormContainer = (props) => {
+export const WidgetContainer = (props) => {
   const {
     children,
-    name
+    name,
+    show
   } = props;
 
   return (

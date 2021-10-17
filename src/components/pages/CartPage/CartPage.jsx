@@ -12,7 +12,7 @@ export const CartPage = () => {
   } = useCartContext();
 
   return (
-    <Page style={{paddingBottom: '12vh'}}>
+    <Page>
       <Heading level='1'>Cart</Heading>
       <div className={styles.columns}>
         <div>

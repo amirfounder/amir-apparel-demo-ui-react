@@ -4,26 +4,43 @@ import styles from './DeliveryAddressForm.module.scss'
 
 export const DeliveryAddressForm = (props) => {
   const {
-    values
+    formValues,
+    setFormValues
   } = props;
 
   return (
     <div className={styles.main}>
-      <TextInput
-        label='First Name'
-        id='firstName'
-      />
-      <TextInput
-        label='Last Name'
-        id='lastName'
-      />
+      <div
+        style={{
+          display: 'grid',
+          columnGap: '1rem',
+          gridTemplateColumns: '1fr 1fr'
+        }}
+      >
+        <TextInput
+          label='First Name'
+          id='firstName'
+        />
+        <TextInput
+          label='Last Name'
+          id='lastName'
+        />
+      </div>
       <TextInput
         label='Email'
         id='email'
       />
       <TextInput
-        label='Phone Number'
-        id='phone'
+        label='Street'
+        id='street'
+      />
+      <TextInput
+        label='Street (Optional)'
+        id='streetOptional'
+      />
+      <TextInput
+        label='Zip Code'
+        id='zipCode'
       />
     </div>
   )
