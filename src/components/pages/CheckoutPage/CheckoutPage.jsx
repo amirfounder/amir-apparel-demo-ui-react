@@ -7,10 +7,32 @@ import styles from './CheckoutPage.module.scss'
 import { WidgetContainer } from './WidgetContainer';
 import { Button } from '../../Button'
 import { PaymentDetailsForm } from '../../forms/PaymentDetailsForm';
+import { validateDeliveryAddressForm, validatePaymentDetailsForm } from './CheckoutPageService';
 
 export const CheckoutPage = () => {
   const [deliveryAddressState, setDeliveryAddressState] = useState({});
-  const [paymentDetailsState, setPaymentDetailsState] = useState({})
+  const [paymentDetailsState, setPaymentDetailsState] = useState({});
+  const [deliveryAddressErrorsState, setDeliveryAddressErrorsState] = useState({});
+  const [paymentDetailsErrorsState, setPaymentDetailsErrorsState] = useState({});
+
+  const handleCompletePurchase = () => {
+    const
+      deliveryAddressErrors = validateDeliveryAddressForm(deliveryAddressState),
+      paymentDetailsErrors = validatePaymentDetailsForm(paymentDetailsState);
+    
+    const formsAreValid =
+      Object.keys(deliveryAddressErrors).length === 0 &&
+      Object.keys(paymentDetailsErrors).length === 0
+
+    if (formsAreValid) {
+      //
+    } else {
+      //
+    }
+
+    setDeliveryAddressErrorsState(deliveryAddressErrors)
+    setPaymentDetailsErrorsState(paymentDetailsErrors)
+  }
 
   return (
     <Page>
