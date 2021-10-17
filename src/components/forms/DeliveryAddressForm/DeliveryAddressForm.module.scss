@@ -1,0 +1,6 @@
+.main {
+  display: grid;
+  // grid-template-columns: [cline-1] 1fr [cline-2] 1fr [cline-3];
+  grid-template-rows: [rline-1] 1fr [rline-2];
+  row-gap: .5rem;
+}

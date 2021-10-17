@@ -1,0 +1,32 @@
+.label {
+  width: 100%;
+  line-height: 1.4em;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #bbb;
+
+  &:focus {
+    border: 1px solid #bbb;
+    outline: none;
+  }
+}
+
+.input--size-large {
+  padding: 10px;
+  width: calc(100% - 22px);
+  font-size: 20px;
+}
+
+.input--size-medium {
+  padding: 8px;
+  width: calc(100% - 18px);
+  font-size: 17px;
+}
+
+.input--size-small {
+  padding: 5px;
+  width: calc(100% - 12px);
+  font-size: 15px;
+}

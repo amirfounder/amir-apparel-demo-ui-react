@@ -1,5 +1,11 @@
-.main {
+.body {
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 3fr 7fr;
   column-gap: 3rem;
+}
+
+.forms {
+  display: grid;
+  // grid-template-rows: 1fr 1fr;
+  row-gap: 2rem;
 }

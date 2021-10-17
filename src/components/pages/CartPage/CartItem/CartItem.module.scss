@@ -1,6 +1,6 @@
 .main {
   display: grid;
-  grid-template-columns: 2fr 3fr .8fr .8fr;
+  grid-template-columns: 2fr 3fr 1fr;
   background-color: white;
   padding: 35px 20px;
   column-gap: 1.5rem;
@@ -32,6 +32,10 @@
       }
     
     }
+  }
+
+  & > .column:nth-child(3) {
+    justify-self: end;
   }
 }
 

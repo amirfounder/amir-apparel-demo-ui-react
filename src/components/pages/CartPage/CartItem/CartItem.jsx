@@ -31,12 +31,9 @@ export const CartItem = (props) => {
           <span className={styles.link}>Delete</span>
         </div>
       </div>
-      <div className={styles.column}>
+      {/* <div className={styles.column}>
         Count: {product?.quantity}
-      </div>
-      <div className={styles.column}>
-        ${(Number(product?.price) * Number(product?.quantity)).toFixed(2)}
-      </div>
+      </div> */}
     </div>
   )
 }

@@ -34,7 +34,7 @@ export const OrderSummary = () => {
   return (
     <div>
       <div className={styles.header}>
-        <Heading ignoreMargin>
+        <Heading level='3' ignoreMargin>
           Order Summary
         </Heading>
       </div>

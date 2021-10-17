@@ -8,14 +8,14 @@ export const CartSummary = () => {
   const {
     cart
   } = useCartContext()
-  
+
   return (
     <div className={styles.main}>
-      <div className={styles.header}>
+      {/* <div className={styles.header}>
         <Heading ignoreMargin level='3'>
-          Your Cart
+          Cart Summary
         </Heading>
-      </div>
+      </div> */}
       <div className={styles.body}>
         {Array.isArray(cart) && cart.map((product) => (
           <CartSummaryItem
