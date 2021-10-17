@@ -4,11 +4,12 @@ import { Header } from '../Header';
 import {
   AboutPage,
   ContactPage,
+  CheckoutPage,
   HomePage,
   LoginPage,
   RegisterPage,
   CartPage,
-  ShopPage
+  ShopPage,
 } from '../pages';
 import { ProductPage } from '../pages/ProductPage';
 
@@ -24,6 +25,7 @@ export const App = () => {
         <Route exact path="/p/:productNameAndId" component={ProductPage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/register" component={RegisterPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
         <Route exact path="/login" component={LoginPage} />
       </Switch>
       <Footer />
