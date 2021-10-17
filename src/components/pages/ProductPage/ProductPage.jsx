@@ -6,7 +6,6 @@ import { buildCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../..
 import { Button } from '../../Button';
 import { ContainedPage } from '../../ContainedPage';
 import { Heading } from '../../Heading';
-import { Page } from '../../Page';
 import { Paragraph } from '../../Paragraph';
 import { Toggle } from '../../Toggle/Toggle';
 import styles from './ProductPage.module.scss';

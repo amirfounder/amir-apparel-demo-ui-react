@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import constants from '../../../../utils/constants';
 import { Heading } from '../../../Heading';
 import { Paragraph } from '../../../Paragraph';
@@ -14,6 +13,7 @@ export const CartItem = (props) => {
     <div className={styles.main}>
       <div className={styles.column}>
         <img
+          alt='placeholder'
           src={constants.PLACEHOLDER_IMAGE_URL}
           className={styles.image}
         />

@@ -25,7 +25,7 @@ export const OrderSummary = () => {
     setEstimatedTax(newEstimatedTax || '-')
     setEstimatedShipping(newEstimatedShipping || '-')
     setTotal(newTotal)
-  })
+  }, [cart])
 
   return (
     <div>
