@@ -1,0 +1,38 @@
+.header {
+  padding: 15px 20px;
+  background-color: black;
+  color: white;
+}
+
+.body {
+  padding: 25px 20px;
+  background-color: white;
+}
+
+.orderSummaryLines {
+  padding-bottom: 50px;
+}
+
+.buttons {
+  display: grid;
+}
+
+.orderSummaryLine {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 5px 0px;
+
+  & > span:nth-child(2) {
+    justify-self: end;
+  }
+
+  &:nth-child(3) {
+    padding-bottom: 20px;
+  }
+
+  &:nth-child(4) {
+    padding-top: 20px;
+    border-top: 1px solid gray;
+    font-weight: 700;
+  }
+}

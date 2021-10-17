@@ -153,14 +153,16 @@ describe('Build Cart Product DTO', () => {
         description: 'description',
         imageSrc: 'imageSrc',
         price: 'price',
-        key: 'value'
+        key: 'value',
+        unkownValue: 'unkown'
       },
       actual = buildCartProductDTO(product),
       expected = {
         id: 1,
         name: 'name',
         description: 'description',
-        imageSrc: 'imageSrc'
+        imageSrc: 'imageSrc',
+        price: 'price'
       };
     expect(actual).toStrictEqual(expected)
   })
@@ -173,7 +175,8 @@ describe('Build Cart Product DTO', () => {
         id: undefined,
         name: undefined,
         description: undefined,
-        imageSrc: undefined
+        imageSrc: undefined,
+        price: undefined
       }
     expect(actual).toStrictEqual(expected);
   })
@@ -191,7 +194,8 @@ describe('Build Cart Product DTO', () => {
         id: 0,
         name: false,
         description: null,
-        imageSrc: undefined
+        imageSrc: undefined,
+        price: undefined
       };
     expect(actual).toStrictEqual(expected);
   })

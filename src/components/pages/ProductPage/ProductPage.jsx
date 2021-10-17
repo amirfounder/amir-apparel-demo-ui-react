@@ -4,8 +4,8 @@ import { useCartContext } from '../../../context/CartContext';
 import constants from '../../../utils/constants';
 import { buildCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
 import { Button } from '../../Button';
+import { ContainedPage } from '../../ContainedPage';
 import { Heading } from '../../Heading';
-import { Page } from '../../Page';
 import { Paragraph } from '../../Paragraph';
 import { Toggle } from '../../Toggle/Toggle';
 import styles from './ProductPage.module.scss';
@@ -43,7 +43,7 @@ export const ProductPage = () => {
   }, [location.pathname])
 
   return (
-    <Page dataTestId="product-page">
+    <ContainedPage dataTestId="product-page">
       <div className={styles.main}>
         {apiError && <p data-testid='api-error-message' >{apiError}</p>}
         <div className={styles.column}>
@@ -111,6 +111,6 @@ export const ProductPage = () => {
           </div>
         </div>
       </div>
-    </Page>
+    </ContainedPage>
   )
 }

@@ -1,0 +1,13 @@
+.main {
+  display: grid;
+  align-items: top;
+  justify-content: center;
+  padding: 8vh 3vw;
+  min-height: calc(100vh - 300px);
+  background-color: #f4f4f4;
+}
+
+.container {
+  max-width: 1200px;
+  min-width: 1200px;
+}

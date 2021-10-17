@@ -48,7 +48,7 @@ export const SortByDropdown = () => {
     if ('sort' in searchQueryObject) {
       setValue(searchQueryObject.sort)
     }
-  }, [setValue])
+  }, [setValue, location.search])
 
   return (
     <div

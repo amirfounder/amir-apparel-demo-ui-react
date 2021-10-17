@@ -20,5 +20,6 @@ export const cartReducer = (state, action) => {
         existingProduct.quantity += quantity;
         return [...stateCopy, existingProduct];
       }
+    default: {}
   }
 }
