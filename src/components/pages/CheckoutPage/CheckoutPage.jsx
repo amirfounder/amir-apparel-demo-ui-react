@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DeliveryAddressForm } from '../../forms';
 import { Heading } from '../../Heading';
 import { Page } from '../../Page';
@@ -51,12 +51,22 @@ export const CheckoutPage = () => {
           </div>
           <div className={styles.forms}>
             <WidgetContainer name="1. Delivery Address">
-              <DeliveryAddressForm />
+              <DeliveryAddressForm
+                formErrors={deliveryAddressErrorsState}
+                formValues={deliveryAddressState}
+                setFormValues={setDeliveryAddressState}
+                handleCompletePurchase={handleCompletePurchase}
+              />
             </WidgetContainer>
             <WidgetContainer name="2. Payment Details">
-              <PaymentDetailsForm />
+              <PaymentDetailsForm
+                formErrors={paymentDetailsErrorsState}
+                formValues={paymentDetailsState}
+                setFormValues={setPaymentDetailsState}
+                handleCompletePurchase={handleCompletePurchase}
+              />
             </WidgetContainer>
-            <Button size='medium'>
+            <Button size='medium' onClick={handleCompletePurchase}>
               Complete Purchase
             </Button>
           </div>

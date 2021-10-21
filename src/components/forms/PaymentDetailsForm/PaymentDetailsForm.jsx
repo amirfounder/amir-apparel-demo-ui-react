@@ -4,15 +4,32 @@ import styles from './PaymentDetailsForm.module.scss'
 
 export const PaymentDetailsForm = (props) => {
   const {
+    formErrors,
     formValues,
-    setFormValues
+    setFormValues,
+    handleCompletePurchase
   } = props;
+
+  const handleOnChange = (e) => {
+    const { value, id } = e.target;
+    setFormValues((prevState) => ({ ...prevState, [id]: value }))
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleCompletePurchase()
+    }
+  }
 
   return (
     <div className={styles.main}>
       <TextInput
         label='Credit Card'
         id='creditCard'
+        value={formValues?.creditCard}
+        error={formErrors?.creditCard}
+        onChange={handleOnChange}
+        onKeyDown={handleKeyDown}
       />
       <div
         style={{
@@ -23,11 +40,19 @@ export const PaymentDetailsForm = (props) => {
       >
         <TextInput
           label='Expiration Date'
-          id='expiration'
+          id='expirationDate'
+          value={formValues?.expirationDate}
+          error={formErrors?.expirationDate}
+          onChange={handleOnChange}
+          onKeyDown={handleKeyDown}
         />
         <TextInput
           label='CVV'
           id='cvv'
+          value={formValues?.cvv}
+          error={formErrors?.cvv}
+          onChange={handleOnChange}
+          onKeyDown={handleKeyDown}
         />
       </div>
     </div>

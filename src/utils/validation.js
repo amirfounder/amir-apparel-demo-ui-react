@@ -7,13 +7,13 @@ const REGEX = {
   CVV: /^[0-9]{3}$/i
 }
 
-const isNotEmpty = (value) => String(value).trim().length > 0
-const isAlphanumeric = (value) => String(value).match(REGEX.ALPHANUMERIC)
-const isEmail = (value) => String(value).match(REGEX.EMAIL)
-const isZipCode = (value) => String(value).match(REGEX.ZIP_CODE)
-const isCreditCard = (value) => String(value).match(REGEX.CREDIT_CARD)
-const isExpirationDate = (value) => String(value).match(REGEX.EXPIRATION_DATE)
-const isCVV = (value) => String(value).match(REGEX.CVV)
+const isNotEmpty = (value) => !!value === true && String(value).trim().length > 0
+const isAlphanumeric = (value) => !!value === true && String(value).match(REGEX.ALPHANUMERIC)
+const isEmail = (value) => !!value === true && String(value).match(REGEX.EMAIL)
+const isZipCode = (value) => !!value === true && String(value).match(REGEX.ZIP_CODE)
+const isCreditCard = (value) => !!value === true && String(value).match(REGEX.CREDIT_CARD)
+const isExpirationDate = (value) => !!value === true && String(value).match(REGEX.EXPIRATION_DATE)
+const isCVV = (value) => !!value === true && String(value).match(REGEX.CVV)
 
 export const validateAlphanumeric = (value) => {
   if (isNotEmpty(value)) {

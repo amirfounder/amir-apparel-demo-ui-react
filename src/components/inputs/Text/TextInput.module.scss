@@ -13,6 +13,14 @@
   }
 }
 
+.error {
+  color: red;
+  font-size: 14px;
+  line-height: 1em;
+  margin-block-start: .8em;
+  margin-block-end: .8em;
+}
+
 .input--size-large {
   padding: 10px;
   width: calc(100% - 22px);

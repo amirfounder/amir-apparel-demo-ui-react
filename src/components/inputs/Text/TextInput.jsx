@@ -8,6 +8,8 @@ export const TextInput = (props) => {
     onChange,
     value,
     size,
+    error,
+    onKeyDown
   } = props;
 
   const validSizes = ['small', 'medium', 'large'];
@@ -33,7 +35,9 @@ export const TextInput = (props) => {
         id={id}
         value={value}
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
+      <p className={styles.error}>{error}</p>
     </label>
   )
 }
