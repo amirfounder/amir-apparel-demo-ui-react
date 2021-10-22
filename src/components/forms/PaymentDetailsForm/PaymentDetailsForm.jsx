@@ -24,6 +24,14 @@ export const PaymentDetailsForm = (props) => {
   return (
     <div className={styles.main}>
       <TextInput
+        label='Cardholder Name'
+        id='cardholderName'
+        value={formValues?.cardholderName}
+        error={formErrors?.cardholderName}
+        onChange={handleOnChange}
+        onKeyDown={handleKeyDown}
+      />
+      <TextInput
         label='Credit Card'
         id='creditCard'
         value={formValues?.creditCard}

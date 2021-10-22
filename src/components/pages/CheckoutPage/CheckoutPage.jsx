@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DeliveryAddressForm } from '../../forms';
 import { Heading } from '../../Heading';
 import { Page } from '../../Page';

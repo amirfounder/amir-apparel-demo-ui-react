@@ -72,6 +72,14 @@ export const DeliveryAddressForm = (props) => {
         onKeyDown={handleKeyDown}
       />
       <TextInput
+        label='City'
+        id='city'
+        value={formValues?.city}
+        error={formErrors?.city}
+        onChange={handleOnChange}
+        onKeyDown={handleKeyDown}
+      />
+      <TextInput
         label='Zip Code'
         id='zipCode'
         value={formValues?.zipCode}

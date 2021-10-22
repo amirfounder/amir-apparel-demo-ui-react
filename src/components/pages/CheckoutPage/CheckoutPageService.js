@@ -13,6 +13,7 @@ export const validateDeliveryAddressForm = (formValues) => {
     firstName: validateAlphanumeric(formValues?.firstName),
     lastName: validateAlphanumeric(formValues?.lastName),
     street: validateRequired(formValues?.street),
+    city: validateRequired(formValues?.city),
     email: validateEmail(formValues?.email),
     zipCode: validateZipCode(formValues?.zipCode)
   })
@@ -20,6 +21,7 @@ export const validateDeliveryAddressForm = (formValues) => {
 
 export const validatePaymentDetailsForm = (formValues) => {
   return minimizeFormErrorObject({
+    cardholderName: validateAlphanumeric(formValues?.cardholderName),
     creditCard: validateCreditCard(formValues?.creditCard),
     expirationDate: validatExpirationDate(formValues?.expirationDate),
     cvv: validateCVV(formValues?.cvv)
@@ -29,7 +31,7 @@ export const validatePaymentDetailsForm = (formValues) => {
 export const minimizeFormErrorObject = (errors) => {
   return Object.fromEntries(
     Object.entries(errors).filter((entry) => {
-      const [_, value] = entry;
+      const [, value] = entry;
       return value !== ''
     })
   )

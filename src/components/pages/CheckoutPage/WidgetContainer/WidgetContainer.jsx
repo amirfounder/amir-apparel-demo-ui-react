@@ -6,7 +6,6 @@ export const WidgetContainer = (props) => {
   const {
     children,
     name,
-    show
   } = props;
 
   return (
