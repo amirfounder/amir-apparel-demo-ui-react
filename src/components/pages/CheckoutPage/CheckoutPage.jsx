@@ -8,7 +8,7 @@ import { WidgetContainer } from './WidgetContainer';
 import { Button } from '../../Button'
 import { validateShippingDetailsForm, validatePaymentDetailsForm, savePurchase, buildPurchaseDTO } from './CheckoutPageService';
 import { useCartContext } from '../../../context/CartContext';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { CheckboxInput } from '../../inputs';
 import constants from '../../../utils/constants';
 

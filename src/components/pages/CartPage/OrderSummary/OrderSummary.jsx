@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { useCartContext } from '../../../../context/CartContext';
 import { Button } from '../../../Button';
 import { Heading } from '../../../Heading';
