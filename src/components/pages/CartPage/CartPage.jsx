@@ -18,7 +18,7 @@ export const CartPage = () => {
         <div>
           {
             Array.isArray(cart) && cart.length > 0
-              ? cart.map((product) => (<CartItem product={product} />))
+              ? cart.map((ele) => (<CartItem lineItem={ele} />))
               : 'There are no products in your cart'
           }
         </div>

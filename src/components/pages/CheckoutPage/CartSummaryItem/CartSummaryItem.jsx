@@ -3,13 +3,13 @@ import styles from './CartSummaryItem.module.scss'
 
 export const CartSummaryItem = (props) => {
   const {
-    product
+    lineItem
   } = props;
 
   return (
     <div className={styles.main}>
-      <div>{product.name} ({product.quantity})</div>
-      <div>${Number(product.quantity * product.price).toFixed(2)}</div>
+      <div>{lineItem.product.name} ({lineItem.quantity})</div>
+      <div>${Number(lineItem.quantity * lineItem.product.price).toFixed(2)}</div>
     </div>
   )
 }

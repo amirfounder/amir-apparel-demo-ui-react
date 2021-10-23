@@ -11,10 +11,10 @@ export const CartSummary = () => {
   return (
     <div className={styles.main}>
       <div className={styles.body}>
-        {Array.isArray(cart) && cart.map((product) => (
+        {Array.isArray(cart) && cart.map((ele) => (
           <CartSummaryItem
-            key={product.id}
-            product={product}
+            key={ele.product.id}
+            lineItem={ele}
           />
         ))}
       </div>

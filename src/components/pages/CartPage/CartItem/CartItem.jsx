@@ -6,8 +6,10 @@ import styles from './CartItem.module.scss'
 
 export const CartItem = (props) => {
   const {
-    product
+    lineItem
   } = props;
+
+  const { product } = lineItem;
 
   return (
     <div className={styles.main}>
@@ -26,6 +28,9 @@ export const CartItem = (props) => {
           <Paragraph className={styles.description}>
             {product?.description}
           </Paragraph>
+          <div className={styles.quantity}>
+            Quantity: {lineItem?.quantity}
+          </div>
         </div>
         <div className={styles.links}>
           <span className={styles.link}>Delete</span>
