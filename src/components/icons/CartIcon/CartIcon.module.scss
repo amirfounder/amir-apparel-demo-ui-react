@@ -1,0 +1,17 @@
+.main {
+  position: relative;
+}
+
+.icon {
+  font-size: 38px;
+
+  &:hover {
+    cursor: pointer;
+    color: #444;
+    transition-duration: .2s;
+  }
+
+  &:not(:hover) {
+    transition-duration: .2s;
+  }
+}

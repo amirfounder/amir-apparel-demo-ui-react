@@ -1,6 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { Footer } from '../Footer';
-import { Header } from '../Header';
+import { MainHeader, PurchaseFlowHeader } from '../headers';
 import {
   AboutPage,
   ContactPage,
@@ -10,14 +11,24 @@ import {
   RegisterPage,
   CartPage,
   ShopPage,
+  ProductPage,
+  ThankYouPage
 } from '../pages';
-import { ProductPage } from '../pages/ProductPage';
-import { ThankYouPage } from '../pages/ThankYouPage';
 
 export const App = () => {
+
+  const location = useLocation()
+  const purchaseFlowPathnames = ['/cart', '/checkout']
+
+  console.log(location)
+
   return (
     <div data-testid="app">
-      <Header />
+      {
+        purchaseFlowPathnames.includes(location.pathname)
+          ? <PurchaseFlowHeader />
+          : <MainHeader />
+      }
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/about" component={AboutPage} />

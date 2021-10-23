@@ -1,4 +1,5 @@
 import { sendHttpRequest } from "../../../utils/httpHelper"
+import { scrollToTop } from "../../../utils/utils"
 import {
   validateAlphanumeric,
   validateCreditCardNumber,
@@ -83,7 +84,8 @@ export const savePurchase = (
     .then((response) => {
       if (response.ok) {
         history.push('/checkout/thank-you');
-        cartDispatcher({ type: 'clear' })
+        cartDispatcher({ type: 'clear' });
+        scrollToTop();
       }
       throw new Error(response.statusText)
     })
