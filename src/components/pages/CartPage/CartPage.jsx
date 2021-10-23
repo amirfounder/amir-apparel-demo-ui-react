@@ -3,7 +3,7 @@ import styles from './CartPage.module.scss'
 import { useCartContext } from '../../../context/CartContext';
 import { CartItem } from './CartItem';
 import { Heading } from '../../Heading';
-import { ContainedPage } from '../../ContainedPage';
+import { Page } from '../../Page';
 import { OrderSummary } from './OrderSummary';
 
 export const CartPage = () => {
@@ -12,13 +12,13 @@ export const CartPage = () => {
   } = useCartContext();
 
   return (
-    <ContainedPage style={{paddingBottom: '15vh'}}>
-      <Heading level={1}>Your Cart</Heading>
+    <Page>
+      <Heading level='1'>Cart</Heading>
       <div className={styles.columns}>
         <div>
           {
             Array.isArray(cart) && cart.length > 0
-              ? cart.map((product) => (<CartItem product={product} />))
+              ? cart.map((ele) => (<CartItem lineItem={ele} />))
               : 'There are no products in your cart'
           }
         </div>
@@ -26,6 +26,6 @@ export const CartPage = () => {
           <OrderSummary />
         </div>
       </div>
-    </ContainedPage>
+    </Page>
   )
 }

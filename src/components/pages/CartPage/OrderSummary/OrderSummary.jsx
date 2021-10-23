@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import { useCartContext } from '../../../../context/CartContext';
 import { Button } from '../../../Button';
 import { Heading } from '../../../Heading';
@@ -9,6 +10,7 @@ export const OrderSummary = () => {
   const {
     cart
   } = useCartContext();
+  const history = useHistory();
 
   const [cartTotal, setCartTotal] = useState(null);
   const [estimatedTax, setEstimatedTax] = useState(null);
@@ -27,15 +29,17 @@ export const OrderSummary = () => {
     setTotal(newTotal)
   }, [cart])
 
+  const handleContinueToCheckoutClick = () => { history.push('/checkout') }
+
   return (
     <div>
       <div className={styles.header}>
-        <Heading ignoreMargin>
+        <Heading level='3' ignoreMargin>
           Order Summary
         </Heading>
       </div>
       <div className={styles.body}>
-        <div className={styles.orderSummaryLines}>
+        <div>
           <div className={styles.orderSummaryLine}>
             <span>Total Price:</span>
             <span>${cartTotal}</span>
@@ -53,9 +57,15 @@ export const OrderSummary = () => {
             <span>${total}</span>
           </div>
         </div>
-        <div className={styles.buttons}>
-          <Button size='medium' type='secondary'>Continue to Checkout</Button>
-        </div>
+        {Array.isArray(cart) && cart.length > 0 && <div className={styles.buttons}>
+          <Button
+            size='medium'
+            type='secondary'
+            onClick={handleContinueToCheckoutClick}
+          >
+            Continue to Checkout
+          </Button>
+        </div>}
       </div>
     </div>
   )

@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* The below style would be fun to uncomment :) */
+/* * {
+  display: none;
+} */

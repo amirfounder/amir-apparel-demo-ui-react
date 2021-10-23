@@ -9,17 +9,20 @@ export const cartReducer = (state, action) => {
 
   switch (type) {
     case 'add':
-      const indexOfExistingProduct = state
-        .map((cartItem) => cartItem.id)
+      const indexOfExistingLineItem = state
+        .map((cartItem) => cartItem?.product?.id)
         .indexOf(product.id)
-      if (indexOfExistingProduct === -1) {
-        return [...state, { ...product, quantity: quantity }]
+      if (indexOfExistingLineItem === -1) {
+        return [ ...state, { product, quantity }]
       } else {
         const stateCopy = getDeepCopy(state);
-        const existingProduct = stateCopy.splice(indexOfExistingProduct, 1)[0];
-        existingProduct.quantity += quantity;
-        return [...stateCopy, existingProduct];
-      }
-    default: {}
+        const existingLineItem = stateCopy.splice(indexOfExistingLineItem, 1)[0];
+        existingLineItem.quantity += quantity;
+        return [...stateCopy, existingLineItem];
+      };
+    case 'clear':
+      return []
+    default: 
+      return state
   }
 }

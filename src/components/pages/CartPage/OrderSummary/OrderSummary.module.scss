@@ -1,6 +1,6 @@
 .header {
   padding: 15px 20px;
-  background-color: black;
+  background-color: #222;
   color: white;
 }
 
@@ -9,11 +9,8 @@
   background-color: white;
 }
 
-.orderSummaryLines {
-  padding-bottom: 50px;
-}
-
 .buttons {
+  padding-top: 50px;
   display: grid;
 }
 

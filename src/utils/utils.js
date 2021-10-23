@@ -17,9 +17,13 @@ export const parseIdFromProductPageNameAndIdParam = (url) => {
   return productNameAndIdSlugArr[productNameAndIdSlugArr.length - 1]
 }
 
-export const scrollToTop = () => window.scrollTo(0, 0)
+export const scrollToTop = () => {
+  window.scrollTo(0, 0);
+}
 
-export const getDeepCopy = (object) => JSON.parse(JSON.stringify(object));
+export const getDeepCopy = (object) => {
+  return JSON.parse(JSON.stringify(object));
+}
 
 export const buildCartProductDTO = (product) => ({
   id: product?.id,
@@ -72,6 +76,14 @@ export const filterSearchQueryObjByKeys = (searchQueryObj, keys) => Object
       .filter(([key]) => keys.includes(key))
   )
 
-export const sortObject = (object) => Object.fromEntries(Object.keys(object).sort().map((key) => [key, object[key]]))
+export const sortObject = (object) => {
+  return Object.fromEntries(Object.keys(object).sort().map((key) => [key, object[key]]));
+}
 
-export const capitalize = (word) => word.length > 1 && word.substring(0,1).toUpperCase() + word.substring(1)
+export const capitalize = (word) => {
+  return word.length > 1 && word.substring(0,1).toUpperCase() + word.substring(1);
+}
+
+export const calculateCartTotal = (cart) => {
+  return Array.isArray(cart) && Number(cart.reduce((acc, ele) => acc += (ele.product.price * (ele.quantity || 1)), 0)).toFixed(2)
+}

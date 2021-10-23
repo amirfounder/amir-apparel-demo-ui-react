@@ -5,11 +5,13 @@ export const Page = React.memo((props) => {
   const {
     children,
     dataTestId,
+    style
   } = props;
 
   return (
     <>
       <div
+        style={style}
         data-testid={dataTestId || 'page'}
         className={styles.main}
       >
