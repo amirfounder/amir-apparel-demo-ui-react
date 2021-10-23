@@ -12,6 +12,7 @@ import {
   ShopPage,
 } from '../pages';
 import { ProductPage } from '../pages/ProductPage';
+import { ThankYouPage } from '../pages/ThankYouPage';
 
 export const App = () => {
   return (
@@ -26,6 +27,7 @@ export const App = () => {
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/register" component={RegisterPage} />
         <Route exact path="/checkout" component={CheckoutPage} />
+        <Route exact path="/checkout/thank-you" component={ThankYouPage} />
         <Route exact path="/login" component={LoginPage} />
       </Switch>
       <Footer />

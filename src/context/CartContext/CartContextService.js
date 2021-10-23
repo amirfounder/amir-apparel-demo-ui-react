@@ -19,7 +19,10 @@ export const cartReducer = (state, action) => {
         const existingLineItem = stateCopy.splice(indexOfExistingLineItem, 1)[0];
         existingLineItem.quantity += quantity;
         return [...stateCopy, existingLineItem];
-      }
-    default: {}
+      };
+    case 'clear':
+      return []
+    default: 
+      return state
   }
 }

@@ -1,36 +1,58 @@
 import React, { useState } from 'react';
-import { DeliveryAddressForm } from '../../forms';
+import { ShippingDetailsForm, PaymentDetailsForm } from '../../forms';
 import { Heading } from '../../Heading';
 import { Page } from '../../Page';
 import { CartSummary } from './CartSummary';
 import styles from './CheckoutPage.module.scss'
 import { WidgetContainer } from './WidgetContainer';
 import { Button } from '../../Button'
-import { PaymentDetailsForm } from '../../forms/PaymentDetailsForm';
-import { validateDeliveryAddressForm, validatePaymentDetailsForm } from './CheckoutPageService';
+import { validateShippingDetailsForm, validatePaymentDetailsForm, savePurchase, buildPurchaseDTO } from './CheckoutPageService';
+import { useCartContext } from '../../../context/CartContext';
+import { useHistory } from 'react-router';
+import { CheckboxInput } from '../../inputs';
+import constants from '../../../utils/constants';
 
 export const CheckoutPage = () => {
-  const [deliveryAddressState, setDeliveryAddressState] = useState({});
-  const [paymentDetailsState, setPaymentDetailsState] = useState({});
-  const [deliveryAddressErrorsState, setDeliveryAddressErrorsState] = useState({});
+  const { cart, cartDispatcher } = useCartContext()
+  const history= useHistory();
+
+  const [shippingDetails, setShippingDetails] = useState({ state: constants.STATES[1] });
+  const [paymentDetails, setPaymentDetails] = useState({ state: constants.STATES[1] });
+  const [shippingDetailsErrorsState, setShippingDetailsErrorsState] = useState({});
   const [paymentDetailsErrorsState, setPaymentDetailsErrorsState] = useState({});
+  const [sameShippingAddress, setSameShippingAddress] = useState(true);
+  const [apiError, setApiError] = useState(false);
+
+  const toggleSameShippingDetails = () => {
+    setSameShippingAddress((prevState) => setSameShippingAddress(!prevState));
+  }
 
   const handleCompletePurchase = () => {
     const
-      deliveryAddressErrors = validateDeliveryAddressForm(deliveryAddressState),
-      paymentDetailsErrors = validatePaymentDetailsForm(paymentDetailsState);
+      shippingDetailsErrors = validateShippingDetailsForm(shippingDetails),
+      paymentDetailsErrors = validatePaymentDetailsForm(paymentDetails, sameShippingAddress);
     
     const formsAreValid =
-      Object.keys(deliveryAddressErrors).length === 0 &&
+      Object.keys(shippingDetailsErrors).length === 0 &&
       Object.keys(paymentDetailsErrors).length === 0
 
     if (formsAreValid) {
-      //
-    } else {
-      //
+      const purchaseDTO = buildPurchaseDTO(
+        shippingDetails,
+        paymentDetails,
+        sameShippingAddress,
+        cart
+      );
+      
+      savePurchase(
+        purchaseDTO,
+        cartDispatcher,
+        history,
+        setApiError
+      );
     }
 
-    setDeliveryAddressErrorsState(deliveryAddressErrors)
+    setShippingDetailsErrorsState(shippingDetailsErrors)
     setPaymentDetailsErrorsState(paymentDetailsErrors)
   }
 
@@ -44,29 +66,41 @@ export const CheckoutPage = () => {
           <Heading level='1'>
             Checkout
           </Heading>
+          {apiError && <p>There was an API error</p>}
         </div>
         <div className={styles.body}>
           <div className={styles.column}>
             <CartSummary />
           </div>
           <div className={styles.forms}>
-            <WidgetContainer name="1. Delivery Address">
-              <DeliveryAddressForm
-                formErrors={deliveryAddressErrorsState}
-                formValues={deliveryAddressState}
-                setFormValues={setDeliveryAddressState}
+            <WidgetContainer name="1. Shipping Address">
+              <ShippingDetailsForm
+                formErrors={shippingDetailsErrorsState}
+                formValues={shippingDetails}
+                setFormValues={setShippingDetails}
                 handleCompletePurchase={handleCompletePurchase}
               />
             </WidgetContainer>
             <WidgetContainer name="2. Payment Details">
               <PaymentDetailsForm
+                showBillingAddressFields={!sameShippingAddress}
                 formErrors={paymentDetailsErrorsState}
-                formValues={paymentDetailsState}
-                setFormValues={setPaymentDetailsState}
+                formValues={paymentDetails}
+                setFormValues={setPaymentDetails}
                 handleCompletePurchase={handleCompletePurchase}
               />
+              <div>
+                <CheckboxInput
+                  onChange={toggleSameShippingDetails}
+                  checked={sameShippingAddress}
+                  label='Same shipping address as billing address'
+                />
+              </div>
             </WidgetContainer>
-            <Button size='medium' onClick={handleCompletePurchase}>
+            <Button
+              size='medium'
+              onClick={handleCompletePurchase}
+            >
               Complete Purchase
             </Button>
           </div>

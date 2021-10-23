@@ -1,1 +1,2 @@
-export * from './DeliveryAddressForm'
+export * from './ShippingDetailsForm';
+export * from './PaymentDetailsForm';

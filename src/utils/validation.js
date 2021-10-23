@@ -1,3 +1,5 @@
+import constants from "./constants"
+
 const REGEX = {
   ALPHANUMERIC: /^[a-z\s\d0-9]+$/i,
   EMAIL: /^[a-z0-9]+@[a-z0-9]+\.[a-z]+$/i,
@@ -7,13 +9,14 @@ const REGEX = {
   CVV: /^[0-9]{3}$/i
 }
 
-const isNotEmpty = (value) => !!value === true && String(value).trim().length > 0
-const isAlphanumeric = (value) => !!value === true && String(value).match(REGEX.ALPHANUMERIC)
-const isEmail = (value) => !!value === true && String(value).match(REGEX.EMAIL)
-const isZipCode = (value) => !!value === true && String(value).match(REGEX.ZIP_CODE)
-const isCreditCard = (value) => !!value === true && String(value).match(REGEX.CREDIT_CARD)
-const isExpirationDate = (value) => !!value === true && String(value).match(REGEX.EXPIRATION_DATE)
-const isCVV = (value) => !!value === true && String(value).match(REGEX.CVV)
+const isNotEmpty = (value) => !!value && String(value).trim().length > 0
+const isAlphanumeric = (value) => !!value && String(value).match(REGEX.ALPHANUMERIC)
+const isEmail = (value) => !!value && String(value).match(REGEX.EMAIL)
+const isZipCode = (value) => !!value && String(value).match(REGEX.ZIP_CODE)
+const isCreditCard = (value) => !!value && String(value).match(REGEX.CREDIT_CARD)
+const isExpirationDate = (value) => !!value && String(value).match(REGEX.EXPIRATION_DATE)
+const isCVV = (value) => !!value && String(value).match(REGEX.CVV)
+const isState = (value) => !!value && constants.STATES.includes(String(value))
 
 export const validateAlphanumeric = (value) => {
   if (isNotEmpty(value)) {
@@ -52,7 +55,7 @@ export const validateRequired = (value) => {
   return 'This field is required'
 }
 
-export const validateCreditCard = (value) => {
+export const validateCreditCardNumber = (value) => {
   if (isNotEmpty(value)) {
     if (isCreditCard(value)) {
       return ''
@@ -83,4 +86,14 @@ export const validateCVV = (value) => {
     return 'Field must contain a valid CVV code of 3 digits'
   }
   return 'Field cannot be emtpy'
+}
+
+export const validateState = (value) => {
+  if (isNotEmpty(value)) {
+    if (isState(value)) {
+      return ''
+    }
+    return 'Field must be a valid state'
+  }
+  return 'Field cannot be empty'
 }
