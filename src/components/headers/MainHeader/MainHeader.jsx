@@ -1,20 +1,16 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
-import styles from './Header.module.scss'
+import styles from './MainHeader.module.scss'
 import { BiCartAlt, BiShoppingBag } from 'react-icons/bi'
-import { useCartContext } from "../../context/CartContext";
-import { generateCartBadgeNumber } from "./HeaderService";
+import { useCartContext } from "../../../context/CartContext";
+import { generateCartBadgeNumber } from "./MainHeaderService";
+import { Logo } from "../../Logo";
+import { CartIcon } from "../../icons/CartIcon/CartIcon";
+import { WishlistIcon } from "../../icons/WishlistIcon/WishlistIcon";
 
-export const Header = () => {
-  const {
-    cart
-  } = useCartContext();
-  const history = useHistory();
-
-  const handleCartIconClick = () => history.push('/cart')
-
+export const MainHeader = () => {
   return (
-    <div className={styles.main} data-testid='header'>
+    <div className={styles.main} data-testid='main-header'>
       <div className={styles.top}>
         <div className={styles.column}>
           <div>
@@ -32,9 +28,7 @@ export const Header = () => {
       </div>
       <div className={styles.bottom}>
         <div className={styles.column}>
-          <Link to="/" className={styles.navLink}>
-            AA
-          </Link>
+          <Logo />
         </div>
         <div className={styles.column}>
           <div className={styles.menu}>
@@ -47,17 +41,8 @@ export const Header = () => {
         </div>
         <div className={styles.column}>
           <div className={styles.actions}>
-            <BiShoppingBag className={styles.icon} />
-            <div className={styles.cart}>
-              <BiCartAlt
-                data-testid='header-cart-icon'
-                onClick={handleCartIconClick}
-                className={styles.icon}
-              />
-              <div className={styles.badge}>
-                {generateCartBadgeNumber(cart)}
-              </div>
-            </div>
+            <WishlistIcon />
+            <CartIcon />
           </div>
         </div>
       </div>

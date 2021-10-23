@@ -25,13 +25,13 @@ const componentToRender = (
 
 test('Header renders', () => {
   render(componentToRender);
-  const header = screen.getByTestId('header');
+  const header = screen.getByTestId('main-header');
   expect(header).toBeInTheDocument();
 })
 
 test('Cart pushes history', () => {
   render(componentToRender);
-  const headerCartIcon = screen.getByTestId('header-cart-icon');
+  const headerCartIcon = screen.getByTestId('main-header-cart-icon');
   fireEvent.click(headerCartIcon);
   expect(mockHistoryPush).toHaveBeenCalledWith('/cart');
 })

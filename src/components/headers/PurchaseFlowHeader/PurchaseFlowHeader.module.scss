@@ -1,0 +1,21 @@
+.main {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  min-height: 90px;
+  display: grid;
+  height: 9vh;
+  max-height: 120px;
+  box-shadow: 0px 5px 15px 5px rgba(0, 0, 0, .05);
+  background-color: white;
+  z-index: 0;
+  position: relative;
+  padding: 0 3vw;
+  align-items: center;
+}
+
+.actions {
+  justify-self: end;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1.5rem;
+}
