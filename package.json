@@ -2,7 +2,7 @@
   "name": "amir-apparel-demo-ui-react",
   "version": "0.1.0",
   "engines": {
-    "node": "14.16.xx"
+    "node": "14.16.x"
   },
   "private": true,
   "dependencies": {
