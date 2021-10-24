@@ -1,0 +1,12 @@
+.main {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+}
+
+.box {
+  min-width: 25vw;
+  padding: 30px 25px;
+  background-color: white;
+}
