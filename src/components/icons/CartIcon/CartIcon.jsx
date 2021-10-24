@@ -3,7 +3,7 @@ import styles from './CartIcon.module.scss'
 import { useCartContext } from '../../../context/CartContext';
 import { generateCartBadgeNumber } from './CartIconService';
 import { BiCartAlt } from 'react-icons/bi';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { Badge } from '../Badge';
 
 export const CartIcon = () => {

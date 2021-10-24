@@ -1,9 +1,6 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from './MainHeader.module.scss'
-import { BiCartAlt, BiShoppingBag } from 'react-icons/bi'
-import { useCartContext } from "../../../context/CartContext";
-import { generateCartBadgeNumber } from "./MainHeaderService";
 import { Logo } from "../../Logo";
 import { CartIcon } from "../../icons/CartIcon/CartIcon";
 import { WishlistIcon } from "../../icons/WishlistIcon/WishlistIcon";

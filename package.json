@@ -1,6 +1,9 @@
 {
   "name": "amir-apparel-demo-ui-react",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.16.x"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -11,14 +14,15 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
+    "react-router": "^5.2.1",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
     "sass": "^1.41.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts --max_old_space_size=2560 start",
+    "build": "react-scripts --max_old_space_size=2560 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "npm test -- --coverage --watchAll=false"
