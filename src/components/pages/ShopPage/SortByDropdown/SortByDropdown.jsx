@@ -37,7 +37,7 @@ export const SortByDropdown = () => {
       )
     return () => {
       document.removeEventListener(
-          'mouseenter',
+          'mousedown',
           handleClickOutsideComponent
         )
     }
