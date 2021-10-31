@@ -17,7 +17,7 @@ import {
   ShopPage,
   ProductPage,
   ThankYouPage,
-  ProfilePage
+  AccountPage
 } from '../pages';
 
 export const App = () => {
@@ -48,7 +48,7 @@ export const App = () => {
         <Route exact path="/checkout" component={CheckoutPage} />
         <Route exact path="/checkout/thank-you" component={ThankYouPage} />
         <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/profile" component={AccountPage} />
       </Switch>
       <Footer />
     </div>

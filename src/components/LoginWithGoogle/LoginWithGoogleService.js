@@ -30,7 +30,7 @@ export const getUserByEmail = async (email, dispatchUser, onSuccess, setApiError
         value: data
       })
       userExists = true;
-      onSuccess()
+      onSuccess && onSuccess()
     })
     .catch(setApiError)
   return userExists;
@@ -48,7 +48,7 @@ export const createUser = async (user, dispatchUser, onSuccess, setApiError) => 
         type: 'login',
         value: data
       })
-      onSuccess()
+      onSuccess && onSuccess()
     })
     .catch(setApiError)
 }

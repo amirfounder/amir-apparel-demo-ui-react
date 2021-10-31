@@ -1,10 +1,10 @@
 import React from 'react';
 import { Page } from '../../Page';
 
-export const ProfilePage = () => {
+export const AccountPage = () => {
   return (
-    <Page dataTestId="login-page">
-      Profile page
+    <Page dataTestId="account-page">
+      Account page
     </Page>
   )
 }

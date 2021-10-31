@@ -1,5 +1,7 @@
 import React from 'react';
+import { LoginWithGoogle } from '../../LoginWithGoogle';
 import { Modal } from '../../Modal';
+import styles from './LoginRegisterModal.module.scss'
 
 export const LoginRegisterModal = (props) => {
   const {
@@ -7,14 +9,24 @@ export const LoginRegisterModal = (props) => {
     setShow
   } = props;
 
+  const onLoginSuccess = () => {
+    setShow(false);
+  }
+
   return (
-    <Modal show={show}>
-      <div>
-        lol
+    <Modal
+      show={show}
+      setShow={setShow}
+      overlayColor='rgba(0, 0, 0, .08)'
+    >
+      <div className={styles.main}>
+        <div>
+          lol
+        </div>
+        <LoginWithGoogle
+          onSuccess={onLoginSuccess}
+        />
       </div>
-      <button onClick={setShow((prevState) => !prevState)}>
-        toggle
-      </button>
     </Modal>
   )
 }
