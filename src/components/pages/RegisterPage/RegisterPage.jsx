@@ -12,7 +12,9 @@ export const RegisterPage = () => {
   } = useUserContext();
   const history = useHistory();
   
-  const handleGoogleLoginSuccess = () => { history.push('/profile') };
+  const handleGoogleLoginSuccess = () => {
+    history.push('/profile')
+  };
 
   return (
     <Page dataTestId="register-page">
