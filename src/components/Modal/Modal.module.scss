@@ -1,9 +1,15 @@
 .overlay {
-  display: grid;
   position: absolute;
+  display: grid;
   top: 0;
   left: 0;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0,0,0,.12);
+  background-color: rgba(0,0,0,.25);
+  width: 100vw;
+  height: 100vh;
+}
+
+.main {
+  background-color: white;
 }
