@@ -17,14 +17,13 @@ import {
   ShopPage,
   ProductPage,
   ThankYouPage,
+  ProfilePage
 } from '../pages';
 
 export const App = () => {
 
   const location = useLocation()
   const purchaseFlowPathnames = ['/cart', '/checkout']
-
-  console.log(location)
 
   return (
     <div data-testid="app">
@@ -49,6 +48,7 @@ export const App = () => {
         <Route exact path="/checkout" component={CheckoutPage} />
         <Route exact path="/checkout/thank-you" component={ThankYouPage} />
         <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/profile" component={ProfilePage} />
       </Switch>
       <Footer />
     </div>

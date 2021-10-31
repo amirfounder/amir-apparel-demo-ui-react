@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router';
 import { useUserContext } from '../../../context/UserContext/UserContext';
 import styles from './AccountHeader.module.scss';
 
@@ -8,8 +9,12 @@ export const AccountHeader = () => {
     dispatchUser,
     state: { isLoggedIn }
   } = useUserContext();
+  const history = useHistory();
 
-  const handleLogout = () => { dispatchUser({ type: 'logout' }) }
+  const handleLogout = () => {
+    dispatchUser({ type: 'logout' })
+    history.push('/')
+  }
 
   return (
     <div className={styles.main}>
