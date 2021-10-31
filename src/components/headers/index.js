@@ -1,2 +1,2 @@
-export * from './MainHeader'
+export * from './NavigationHeader'
 export * from './PurchaseFlowHeader'
