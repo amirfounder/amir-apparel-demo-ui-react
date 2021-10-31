@@ -41,6 +41,7 @@ export const LoginWithGoogle = (props) => {
       clientId={constants.GOOGLE_CLIENT_ID}
       cookiePolicy='single_host_origin'
       onSuccess={handleLoginSuccess}
+      onFailure={console.error}
     >
       Login with Google
     </GoogleLogin>

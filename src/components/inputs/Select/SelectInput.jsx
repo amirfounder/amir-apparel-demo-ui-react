@@ -36,7 +36,10 @@ export const SelectInput = (props) => {
           const text = option?.text || option
           const value = option?.value || option
           return (
-            <option value={value}>
+            <option
+              key={value}
+              value={value}
+            >
               {text}
             </option>
           )
