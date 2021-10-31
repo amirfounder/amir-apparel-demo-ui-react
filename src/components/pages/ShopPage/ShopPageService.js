@@ -29,18 +29,6 @@ export const buildNewAttributeOptionsBasedOnSearchQuery = (filterOptions, attrib
   return filterOptionsCopy;
 }
 
-export const buildSetFilterOptionsWithNewAttributeOptionsFnFn = (filterOptionsDispatcher) => {
-  return (attribute) => {
-    return (value) => {
-      filterOptionsDispatcher({
-        attribute,
-        value,
-        type: 'init'
-      })
-    }
-  }
-}
-
 export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPages, setApiError) => {
   sendHttpRequest('GET', constants.PRODUCTS_ENDPOINT + '/filter' + searchQuery)
     .then((response) => {
@@ -58,7 +46,7 @@ export const getProducts = (searchQuery, setProducts, setCurrentPage, setTotalPa
     .catch(setApiError);
 }
 
-export const getFilterOptionsByAttribute = (attribute, searchQuery, setFilterOptionsWithNewAttributeOptions, setApiError) => {
+export const getFilterOptionsByAttribute = (attribute, searchQuery, filterOptionsDispatcher, setApiError) => {
   sendHttpRequest('GET', `/products/attribute/${attribute}`)
     .then((response) => {
       if (response.ok) {
@@ -70,7 +58,11 @@ export const getFilterOptionsByAttribute = (attribute, searchQuery, setFilterOpt
       if (Array.isArray(body)) {
         const attributeOptions = Object.fromEntries(body.map((option) => [option.toLowerCase(), false]))
         const newAttributeOptions = buildNewAttributeOptionsBasedOnSearchQuery(attributeOptions, attribute, searchQuery)
-        setFilterOptionsWithNewAttributeOptions(newAttributeOptions);
+        filterOptionsDispatcher({
+          type: 'init',
+          attribute,
+          value: newAttributeOptions
+        })
         setApiError('')
       }
     })

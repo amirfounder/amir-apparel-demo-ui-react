@@ -32,7 +32,7 @@ export const ProductFilterToggle = (props) => {
           show={show}
           toggleShow={toggleShow}
         >
-          <Heading level={4}>
+          <Heading ignoreMargin level={4}>
             {name}
           </Heading>
         </Toggle.Header>
