@@ -1,4 +1,5 @@
 import React from 'react';
+import { Heading } from '../../Heading';
 import { LoginWithGoogle } from '../../LoginWithGoogle';
 import { Modal } from '../../Modal';
 import styles from './LoginRegisterModal.module.scss'
@@ -17,11 +18,13 @@ export const LoginRegisterModal = (props) => {
     <Modal
       show={show}
       setShow={setShow}
-      overlayColor='rgba(0, 0, 0, .08)'
+      overlayColor='rgba(0, 0, 0, .24)'
     >
       <div className={styles.main}>
         <div>
-          lol
+          <Heading>
+            Login
+          </Heading>
         </div>
         <LoginWithGoogle
           onSuccess={onLoginSuccess}
