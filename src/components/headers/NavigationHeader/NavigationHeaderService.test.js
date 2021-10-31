@@ -1,4 +1,4 @@
-import { generateCartBadgeNumber } from "./MainHeaderService";
+import { generateCartBadgeNumber } from "./NavigationHeaderService";
 
 test('object passed', () => {
   const

@@ -1,7 +1,11 @@
 import { Route, Switch } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { Footer } from '../Footer';
-import { MainHeader, PurchaseFlowHeader } from '../headers';
+import {
+  NavigationHeader,
+  PurchaseFlowHeader
+} from '../headers';
+import { AccountHeader } from '../headers/AccountHeader/AccountHeader';
 import {
   AboutPage,
   ContactPage,
@@ -12,7 +16,7 @@ import {
   CartPage,
   ShopPage,
   ProductPage,
-  ThankYouPage
+  ThankYouPage,
 } from '../pages';
 
 export const App = () => {
@@ -27,7 +31,12 @@ export const App = () => {
       {
         purchaseFlowPathnames.includes(location.pathname)
           ? <PurchaseFlowHeader />
-          : <MainHeader />
+          : (
+            <>
+              <AccountHeader />
+              <NavigationHeader />
+            </>
+          )
       }
       <Switch>
         <Route exact path="/" component={HomePage} />

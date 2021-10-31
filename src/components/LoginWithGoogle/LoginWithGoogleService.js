@@ -8,7 +8,7 @@ export const buildUserDTOFromGoogleResponse = (response) => {
       familyName: lastName
     }
   } = response;
-  
+
   return {
     email,
     firstName,
@@ -16,8 +16,8 @@ export const buildUserDTOFromGoogleResponse = (response) => {
   }
 }
 
-export const getUserByEmail = async (email, dispatchUser, setApiError) => {
-  let user = null;
+export const getUserByEmail = async (email, dispatchUser, onSuccess, setApiError) => {
+  let userExists = false;
   await sendHttpRequest('GET', `/users/${email}`)
     .then((response) => {
       if (response.ok) {
@@ -25,14 +25,18 @@ export const getUserByEmail = async (email, dispatchUser, setApiError) => {
       }
     })
     .then((data) => {
-      dispatchUser({ type: 'set', value: data })
-      user = data;
+      dispatchUser({
+        type: 'login',
+        value: data
+      })
+      userExists = true;
+      onSuccess()
     })
     .catch(setApiError)
-  return user;
+  return userExists;
 }
 
-export const createUser = async (user, dispatchUser, setApiError) => {
+export const createUser = async (user, dispatchUser, onSuccess, setApiError) => {
   await sendHttpRequest('POST', `/users`, user)
     .then((response) => {
       if (response.ok) {
@@ -41,9 +45,10 @@ export const createUser = async (user, dispatchUser, setApiError) => {
     })
     .then((data) => {
       dispatchUser({
-        type: 'set',
+        type: 'login',
         value: data
       })
+      onSuccess()
     })
     .catch(setApiError)
 }

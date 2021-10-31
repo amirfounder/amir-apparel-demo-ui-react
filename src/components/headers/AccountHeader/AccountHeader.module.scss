@@ -1,0 +1,43 @@
+.main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0vh 3vw;
+  min-height: 45px;
+  height: 6vh;
+  max-height: 70px;
+  background-color: #f4f4f4;
+  z-index: 999;
+  position: relative;
+  font-size: 14px;
+  align-items: center;
+
+  &>.column:nth-child(1) {
+
+    &>.navLink {
+      margin-right: 1.5vw;
+    }
+  }
+
+  &>.column:nth-child(2) {
+
+    justify-self: end;
+
+    &>.navLink + .navLink {
+      margin-left: 1.5vw;
+    }
+  }
+}
+
+.navLink {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    color: #444;
+    transition-duration: .2s;
+    cursor: pointer;
+  }
+  &:not(:hover) {
+    transition-duration: .2s;
+  }
+}

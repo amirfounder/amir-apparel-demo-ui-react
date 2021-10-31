@@ -8,8 +8,16 @@ import { buildUserDTOFromGoogleResponse, createUser, getUserByEmail } from './Lo
 export const LoginWithGoogle = () => {
   const history = useHistory();
   const {
-    state, dispatchUser
+    dispatchUser
   } = useUserContext()
+
+  const onCreateUserSuccess = () => {
+    history.goBack()
+  };
+
+  const onGetByEmailSuccess = () => {
+    history.goBack()
+  }
 
   /**
    * Handles a successful google login response
@@ -18,19 +26,20 @@ export const LoginWithGoogle = () => {
   const handleLoginSuccess = async (response) => {
     sessionStorage.setItem('token', response.tokenObj.id_token)
 
-    const dbUser = await getUserByEmail(
+    const userExists = await getUserByEmail(
       response.profileObj.email,
-      dispatchUser
+      dispatchUser,
+      onGetByEmailSuccess
     );
 
-    if (!dbUser) {
+    if (!userExists) {
       const user = buildUserDTOFromGoogleResponse(response);
       createUser(
         user,
-        dispatchUser
+        dispatchUser,
+        onCreateUserSuccess
       )
     }
-    // history.goBack();
   }
   
   return (
