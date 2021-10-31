@@ -23,6 +23,7 @@ export const getUserByEmail = async (email, dispatchUser, onSuccess, setApiError
       if (response.ok) {
         return response.json()
       }
+      throw new Error();
     })
     .then((data) => {
       dispatchUser({
@@ -32,7 +33,7 @@ export const getUserByEmail = async (email, dispatchUser, onSuccess, setApiError
       userExists = true;
       onSuccess && onSuccess()
     })
-    .catch(setApiError)
+    .catch(() => { setApiError(true) });
   return userExists;
 }
 

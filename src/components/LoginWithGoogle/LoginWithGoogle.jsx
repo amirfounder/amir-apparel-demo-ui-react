@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import GoogleLogin from 'react-google-login'
 import { useUserContext } from '../../context/UserContext/UserContext';
 import constants from '../../utils/constants';
@@ -8,10 +8,11 @@ export const LoginWithGoogle = (props) => {
   const {
     onSuccess
   } = props;
-
   const {
     dispatchUser
   } = useUserContext()
+
+  const [, setApiError] = useState(false);
 
   /**
    * Handles a successful google login response
@@ -23,7 +24,8 @@ export const LoginWithGoogle = (props) => {
     const userExists = await getUserByEmail(
       response.profileObj.email,
       dispatchUser,
-      onSuccess
+      onSuccess,
+      setApiError
     );
 
     if (!userExists) {
@@ -31,7 +33,8 @@ export const LoginWithGoogle = (props) => {
       createUser(
         user,
         dispatchUser,
-        onSuccess
+        onSuccess,
+        setApiError
       )
     }
   }
