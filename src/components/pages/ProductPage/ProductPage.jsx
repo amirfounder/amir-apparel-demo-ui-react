@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useCartContext } from '../../../context/CartContext';
 import constants from '../../../utils/constants';
-import { buildCartProductDTO, parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
+import { parseIdFromProductPageNameAndIdParam } from '../../../utils/utils';
 import { Button } from '../../Button';
 import { Page } from '../../Page';
 import { Heading } from '../../Heading';
@@ -11,6 +11,7 @@ import { Toggle } from '../../Toggle/Toggle';
 import styles from './ProductPage.module.scss';
 import { getProductById } from './ProductPageService';
 import { QuantityPicker } from './QuantityPicker';
+import { buildCartProductDTO } from '../../../dtos/cardProductDto';
 
 export const ProductPage = () => {
 
@@ -28,10 +29,10 @@ export const ProductPage = () => {
   const toggleShippingShow = () => setShippingToggle((prevState) => !prevState);
   
   const handleAddToCartClick = () => {
-    const cartProduct = buildCartProductDTO(product)
+    const productToDispatch = buildCartProductDTO(product)
     cartDispatcher({
       type: 'add',
-      product: cartProduct,
+      product: productToDispatch,
       quantity
     })
     setQuantity(1)

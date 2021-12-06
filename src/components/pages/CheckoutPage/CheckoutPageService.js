@@ -2,7 +2,7 @@ import { sendHttpRequest } from "../../../utils/httpHelper"
 import { scrollToTop } from "../../../utils/utils"
 import {
   validateAlphanumeric,
-  validateCreditCardNumber,
+  validateCardNumber,
   validateCVV,
   validateEmail,
   validateRequired,
@@ -30,7 +30,7 @@ export const validatePaymentDetailsForm = (formValues, sameShippingAddress) => {
     zipCode: !sameShippingAddress && validateZipCode(formValues?.zipCode),
     state: !sameShippingAddress && validateState(formValues?.state),
     cardholderName: validateAlphanumeric(formValues?.cardholderName),
-    creditCardNumber: validateCreditCardNumber(formValues?.creditCardNumber),
+    cardNumber: validateCardNumber(formValues?.cardNumber),
     expirationDate: validatExpirationDate(formValues?.expirationDate),
     cvv: validateCVV(formValues?.cvv)
   })
@@ -41,38 +41,6 @@ export const minimizeFormErrorObject = (errors) => {
     Object.entries(errors).filter(([, value]) => !!value)
   )
 }
-
-export const buildPurchaseDTO = (
-  shippingDetails,
-  paymentDetails,
-  sameShippingDetails,
-  cart
-) => ({
-  firstname: shippingDetails.firstName,
-  lastName: shippingDetails.lastName,
-  email: shippingDetails.email,
-  shippingDetails: {
-    street: shippingDetails.street,
-    streetOptional: shippingDetails.streetOptional,
-    city: shippingDetails.city,
-    state: shippingDetails.state,
-    zipCode: shippingDetails.zipCode
-  },
-  billingAddress: {
-    street: sameShippingDetails ? shippingDetails.street : paymentDetails.street,
-    streetOptional: sameShippingDetails ? shippingDetails.streetOptional : paymentDetails.streetOptional,
-    city: sameShippingDetails ? shippingDetails.city : paymentDetails.city,
-    state: sameShippingDetails ? shippingDetails.state : paymentDetails.state,
-    zipCode: sameShippingDetails ? shippingDetails.zipCode : paymentDetails.zipCode
-  },
-  creditCard: {
-    cardholderName: paymentDetails.cardholderName,
-    number: paymentDetails.creditCardNumber,
-    expirationDate: paymentDetails.cvv,
-    cvv: paymentDetails.cvv
-  },
-  lineItems: cart
-})
 
 export const savePurchase = (
   purchaseDTO,

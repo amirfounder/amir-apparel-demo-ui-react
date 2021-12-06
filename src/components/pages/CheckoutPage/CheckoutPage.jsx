@@ -6,21 +6,25 @@ import { CartSummary } from './CartSummary';
 import styles from './CheckoutPage.module.scss'
 import { WidgetContainer } from './WidgetContainer';
 import { Button } from '../../Button'
-import { validateShippingDetailsForm, validatePaymentDetailsForm, savePurchase, buildPurchaseDTO } from './CheckoutPageService';
+import { validateShippingDetailsForm, validatePaymentDetailsForm, savePurchase } from './CheckoutPageService';
 import { useCartContext } from '../../../context/CartContext';
 import { useHistory } from 'react-router-dom';
 import { CheckboxInput } from '../../inputs';
 import constants from '../../../utils/constants';
+import { buildPurchaseDTO } from '../../../dtos/purchaseDto';
 
 export const CheckoutPage = () => {
   const { cart, cartDispatcher } = useCartContext()
-  const history= useHistory();
+  const history = useHistory();
 
   const [shippingDetails, setShippingDetails] = useState({ state: constants.STATES[1] });
-  const [paymentDetails, setPaymentDetails] = useState({ state: constants.STATES[1] });
   const [shippingDetailsErrorsState, setShippingDetailsErrorsState] = useState({});
+  
+  const [paymentDetails, setPaymentDetails] = useState({ state: constants.STATES[1] });
   const [paymentDetailsErrorsState, setPaymentDetailsErrorsState] = useState({});
+  
   const [sameShippingAddress, setSameShippingAddress] = useState(true);
+  
   const [apiError, setApiError] = useState(false);
 
   const toggleSameShippingDetails = () => {
