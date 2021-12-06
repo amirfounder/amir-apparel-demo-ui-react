@@ -18,7 +18,7 @@ export const buildUserDTOFromGoogleResponse = (response) => {
 
 export const getUserByEmail = async (email, dispatchUser, onSuccess, setApiError) => {
   let userExists = false;
-  await sendHttpRequest('GET', `/users/${email}`)
+  await sendHttpRequest('GET', `/users/?email=${email}`)
     .then((response) => {
       if (response.ok) {
         return response.json()
