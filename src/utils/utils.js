@@ -25,14 +25,6 @@ export const getDeepCopy = (object) => {
   return JSON.parse(JSON.stringify(object));
 }
 
-export const buildCartProductDTO = (product) => ({
-  id: product?.id,
-  name: product?.name,
-  description: product?.description,
-  imageSrc: product?.imageSrc,
-  price: product?.price
-})
-
 /**
  * @name buildSearchQueryObj
  * @description parses a searchQueryString and returns an object with the key, value pairs

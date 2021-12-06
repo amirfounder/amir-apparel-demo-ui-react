@@ -55,7 +55,7 @@ export const validateRequired = (value) => {
   return 'This field is required'
 }
 
-export const validateCreditCardNumber = (value) => {
+export const validateCardNumber = (value) => {
   if (isNotEmpty(value)) {
     if (isCreditCard(value)) {
       return ''

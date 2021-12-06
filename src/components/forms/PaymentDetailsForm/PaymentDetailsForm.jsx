@@ -88,9 +88,9 @@ export const PaymentDetailsForm = (props) => {
       <InputColumns columns='3fr 1fr 1fr'>
         <TextInput
           label='Credit Card'
-          id='creditCardNumber'
-          value={formValues?.creditCardNumber}
-          error={formErrors?.creditCardNumber}
+          id='cardNumber'
+          value={formValues?.cardNumber}
+          error={formErrors?.cardNumber}
           onChange={handleOnChange}
           onKeyDown={handleKeyDown}
         />

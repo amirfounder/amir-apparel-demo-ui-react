@@ -10,8 +10,9 @@ export const cartReducer = (state, action) => {
   switch (type) {
     case 'add':
       const indexOfExistingLineItem = state
-        .map((cartItem) => cartItem?.product?.id)
+        .map((product) => product?.product?.id)
         .indexOf(product.id)
+
       if (indexOfExistingLineItem === -1) {
         return [ ...state, { product, quantity }]
       } else {
