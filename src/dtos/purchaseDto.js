@@ -4,10 +4,10 @@ export const buildPurchaseDTO = (
   sameShippingDetails,
   cart
 ) => ({
-  firstname: shippingDetails.firstName,
+  firstName: shippingDetails.firstName,
   lastName: shippingDetails.lastName,
   email: shippingDetails.email,
-  shippingDetails: {
+  shippingAddress: {
     street: shippingDetails.street,
     streetOptional: shippingDetails.streetOptional,
     city: shippingDetails.city,
