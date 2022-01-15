@@ -8,6 +8,8 @@ export const Page = React.memo((props) => {
     style
   } = props;
 
+  console.log('rendered the page!')
+
   return (
     <>
       <div

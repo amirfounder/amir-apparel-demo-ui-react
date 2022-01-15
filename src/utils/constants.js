@@ -1,6 +1,6 @@
 export default Object.freeze({
   LOCALHOST_API_ENDPOINT: "http://localhost:8085",
-  HEROKU_SPRING_BOOT_API_ENDPOINT: 'https://aa-demo-api-spring-boot.herokuapp.com',
+  HEROKU_SPRING_BOOT_API_ENDPOINT: 'https://aa-demo-api-dotnet.herokuapp.com',
   PRODUCTS_ENDPOINT: "/products",
   PLACEHOLDER_IMAGE_URL: 'https://www.gaithersburgdental.com/wp-content/uploads/2016/10/orionthemes-placeholder-image.png',
   GOOGLE_CLIENT_ID: '374854544228-voblkfpqht2inc9jst09hp1qtq40bp1m.apps.googleusercontent.com',
