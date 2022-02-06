@@ -9,12 +9,18 @@ This project is the UI of the client-server architecture Amir Apparel Demo. You 
 
 # Developer Notes
 
-- Testing covers lots of methods. However, not testing the rest because it does not provide as much educational value as doing some of the other features on this project.
+My motivation for this project was to build a UI so I can have a base design for frontend projects.
+This project includes basic features such as pagination, filtering, validation, and scss. Included frameworks / libraries:
+
+- Sass
+- React
+- React Router
 
 ## Challenges
 
 - Pagination function
 - Updating the filters URL query from multiple components
+- So much testing copy pasta. We should make some code generators for this.
 
 ## Lessons
 
